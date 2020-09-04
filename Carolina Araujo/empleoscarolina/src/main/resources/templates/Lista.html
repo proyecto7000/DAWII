@@ -3,28 +3,39 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<img th:src="@{/images/logo.png}" width="136" height="136">
 
-<center><h2><u>Lista de Vacantes</u></h2></center>
+<h1 class="text-primary">Lista de Vacantes</h1>
 
-<table border=1 align="center">
+
+<table class="table table-striped table-bordered table-hover">
 
 	<tr>
+		 <td>Imagen</td>
 		 <td>Id</td>
 		 <td>Nombre</td>
 		 <td>Descripcion</td>
 		 <td>Fecha</td>
 		 <td>Salario </td>
+		 <td>Destacada </td>
 	</tr> 
 
 	<tr th:each="tmpEmp: ${vacantesV}">
-		 <td th:text="${tmpEmp.id}" />
-		 <td th:text="${tmpEmp.nombre}" />
-		 <td th:text="${tmpEmp.descripcion}" />
-		 <td th:text="${tmpEmp.fecha}" />
-		 <td th:text="${tmpEmp.salario}" />
+		 <td><img th:src="@{/images/{vartemp}  (vartemp=${tmpEmp.imagen})  }"  width="136" height="136"></td>
+		 <td th:text="${tmpEmp.id}"></td>
+		 <td th:text="${tmpEmp.nombre}"></td>
+		 <td th:text="${tmpEmp.descripcion}"></td>
+		 <td th:text="${tmpEmp.fecha}"></td>
+		 <td th:text="${tmpEmp.salario}"></td>
+		 <td>
+		 	<span th:if="${tmpEmp.destacada==1}" class="badge badge-success">Si </span>
+		 	<span th:unless="${tmpEmp.destacada==1}"class="badge badge-danger">No</span>
+		 </td>
 	</tr> 
 </table>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

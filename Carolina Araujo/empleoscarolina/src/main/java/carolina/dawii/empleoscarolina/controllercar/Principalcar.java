@@ -72,6 +72,8 @@ public class Principalcar {
 		mivacante1.setDescripcion("Finanzas de la empresa");
 		mivacante1.setFecha(new Date());
 		mivacante1.setSalario(125.90);
+		mivacante1.setDestacada(1);
+		mivacante1.setImagen("empresa1.png");
 		
 		
 		Vacante mivacante2=new Vacante();
@@ -80,6 +82,8 @@ public class Principalcar {
 		mivacante2.setDescripcion("Programacion");
 		mivacante2.setFecha(new Date());
 		mivacante2.setSalario(250.90);
+		mivacante2.setDestacada(2);
+		mivacante2.setImagen("empresa2.png");
 		
 	
 		Vacante mivacante3=new Vacante();
@@ -88,6 +92,8 @@ public class Principalcar {
 		mivacante3.setDescripcion("Instalaciones");
 		mivacante3.setFecha(new Date());
 		mivacante3.setSalario(120.90);
+		mivacante3.setDestacada(3);
+		mivacante3.setImagen("empresa3.png");
 		
 		
 		  List<Vacante> lista =new LinkedList<>(); 

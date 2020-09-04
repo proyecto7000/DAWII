@@ -35,6 +35,8 @@ public class HomeController {
 		v1.setEdad(25);
 		v1.setDireccion("Rivero 205");
 		v1.setTelefono(931478758);
+		v1.setDestacado(0);
+		v1.setImagenes("empresa1.png");
 		
 		Vacantes v2=new Vacantes();
 		v2.setCodigo(2);
@@ -42,6 +44,8 @@ public class HomeController {
 		v2.setEdad(30);
 		v2.setDireccion("Rivero 206");
 		v2.setTelefono(921478783);
+		v2.setDestacado(1);
+		v2.setImagenes("empresa2.png");
 		
 		Vacantes v3=new Vacantes();
 		v3.setCodigo(3);
@@ -49,6 +53,8 @@ public class HomeController {
 		v3.setEdad(45);
 		v3.setDireccion("Rivero 207");
 		v3.setTelefono(976478198);
+		v3.setDestacado(1);
+		v3.setImagenes("empresa3.png");
 		
 		Vacantes v4=new Vacantes();
 		v4.setCodigo(4);
@@ -56,6 +62,8 @@ public class HomeController {
 		v4.setEdad(20);
 		v4.setDireccion("Rivero 208");
 		v4.setTelefono(946478156);
+		v4.setDestacado(0);
+		v4.setImagenes("logo.png");
 		
 		List<Vacantes> listas=new LinkedList<>();
 		

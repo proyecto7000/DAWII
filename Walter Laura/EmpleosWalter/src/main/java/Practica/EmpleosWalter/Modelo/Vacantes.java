@@ -8,7 +8,22 @@ public class Vacantes {
 	private boolean Educacion; 
 	private String Direccion;
 	private int Telefono;
+	private int destacado;
+	private String imagenes="no-image.png";
+
 	
+	public String getImagenes() {
+		return imagenes;
+	}
+	public void setImagenes(String imagenes) {
+		this.imagenes = imagenes;
+	}
+	public int getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(int destacado) {
+		this.destacado = destacado;
+	}
 	public int getCodigo() {
 		return Codigo;
 	}
@@ -45,10 +60,10 @@ public class Vacantes {
 	public void setTelefono(int telefono) {
 		Telefono = telefono;
 	}
-	
 	@Override
 	public String toString() {
-		return "Vacantes [Codido=" + Codigo + ", Nombre=" + Nombre + ", edad=" + edad + ", Educacion=" + Educacion
-				+ ", Direccion=" + Direccion + ", Telefono=" + Telefono + "]";
+		return "Vacantes [Codigo=" + Codigo + ", Nombre=" + Nombre + ", edad=" + edad + ", Educacion=" + Educacion
+				+ ", Direccion=" + Direccion + ", Telefono=" + Telefono + ", destacado=" + destacado + ", imagenes="
+				+ imagenes + "]";
 	}
 }

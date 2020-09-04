@@ -32,6 +32,9 @@ public class Principal {
 		vacante1.setDescripcion("se necesita ingeniero para soporte intranet");
 		vacante1.setFecha(new Date());
 		vacante1.setSalario(8000.0);
+		vacante1.setDestacada(0);
+		vacante1.setLogo("empresa1.png");
+		
 		
 		vacante vacante2= new vacante();
 		vacante2.setId(2);
@@ -39,6 +42,8 @@ public class Principal {
 		vacante2.setDescripcion("se necesita ingeniero de sistemas");
 		vacante2.setFecha(new Date());
 		vacante2.setSalario(10000.0);
+		vacante2.setDestacada(1);
+		vacante2.setLogo("empresa2.png");
 		
 		vacante vacante3= new vacante();
 		vacante3.setId(3);
@@ -46,6 +51,8 @@ public class Principal {
 		vacante3.setDescripcion(" Se necesita abogado se paga poco");
 		vacante3.setFecha(new Date());
 		vacante3.setSalario(320.50);
+		vacante3.setDestacada(2);
+		vacante3.setLogo("empresa3.png");
 		
 		vacante vacante4= new vacante();
 		vacante4.setId(4);
@@ -53,6 +60,8 @@ public class Principal {
 		vacante4.setDescripcion("se necesita Doctor con doctorado ");
 		vacante4.setFecha(new Date());
 		vacante4.setSalario(5650.0);
+		vacante4.setDestacada(1);
+    	
 		
 		
 		List<vacante>  lista = new LinkedList<>();

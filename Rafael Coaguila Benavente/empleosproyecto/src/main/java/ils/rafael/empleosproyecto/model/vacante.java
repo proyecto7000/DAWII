@@ -9,7 +9,23 @@ public class vacante {
     private String   descripcion;
     private  Date fecha;
     private Double salario;
+    private Integer destacada;
+    private String logo="no-image.png";
     
+    
+    
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public Integer getDestacada() {
+		return destacada;
+	}
+	public void setDestacada(Integer destacada) {
+		this.destacada = destacada;
+	}
 	public Integer getId() {
 		return id;
 	}

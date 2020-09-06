@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<img th:src="@{../images/logo.png}" width="136" height="136">
+	<title>Listado de Vacantes</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+</head>
+<body>
+<i><h1 style="color: blue;">Listado de Vacantes</h1></i>
+
+<table class="table table-striped">
+<tr>
+<th>Imagen</th>
+<th>Id</th>
+<th>Nombre</th>
+<th>Fecha Pub</th>
+<th>Salario Ofrecido</th>
+<th>Descripcion</th>
+<th>Destacada</th>
+</tr>
+
+
+<tr th:each="tmpILS : ${vacantesV}">
+
+<td><img th:src="@{/images/{tmp} ( tmp = ${	tmpILS.imagen} ) }" width="136" height="136"></td>
+<td th:text="${tmpILS.id}"></td>
+<td th:text="${tmpILS.nombre}"></td>
+<td th:text="${tmpILS.fecha}"></td>
+<td th:text="${tmpILS.salario}"></td>
+<td th:text="${tmpILS.descripcion}"></td>
+
+<td>
+<span th:if="${tmpILS.destacada==1}" class="badge badge-success">Si</span>
+<span th:unless="${tmpILS.destacada==1}" class="badge badge-danger">No</span>
+</td>
+
+</tr>
+</table>
+
+<script src=""https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous""></script>
+
+</body>
+</html>

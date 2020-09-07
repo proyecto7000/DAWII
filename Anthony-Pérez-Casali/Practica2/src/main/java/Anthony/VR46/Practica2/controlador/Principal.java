@@ -30,6 +30,8 @@ public class Principal {
 		Vacante1.setDescripcion("Finanzas");
 		Vacante1.setFecha(new Date());
 		Vacante1.setSalario(120.57);
+		Vacante1.setDestacado(1);
+		Vacante1.setImagen("empresa1.png");
 		
 		VACANTE Vacante2 = new VACANTE();
 		Vacante2.setID(2);
@@ -37,6 +39,8 @@ public class Principal {
 		Vacante2.setDescripcion("software");
 		Vacante2.setFecha(new Date());
 		Vacante2.setSalario(124.57);
+		Vacante2.setDestacado(0);
+		Vacante2.setImagen("empresa2.png");
 		
 		VACANTE Vacante3 = new VACANTE();
 		Vacante3.setID(3);
@@ -44,6 +48,8 @@ public class Principal {
 		Vacante3.setDescripcion("Forence");
 		Vacante3.setFecha(new Date());
 		Vacante3.setSalario(234.57);
+		Vacante3.setDestacado(1);
+		Vacante3.setImagen("empresa3.png");
 		
 		List<VACANTE> Lista = new LinkedList<>();
 		Lista.add(Vacante1);

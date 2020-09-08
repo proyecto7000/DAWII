@@ -21,7 +21,7 @@ public class Principal {
 		return "Home";	
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/lista")
 	public String MostrarLista(Model model) {
 		
 		VACANTE Vacante1 = new VACANTE();

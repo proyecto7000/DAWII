@@ -35,25 +35,7 @@ public class Principalcar {
 		return "homecar";
 	}
 	*/
-	
-	@GetMapping("/vacantes")
-	public String mostrarVacantes(Model model){
-		
-		Vacante mivacante1=new Vacante();
-		mivacante1.setId(1);
-		mivacante1.setNombre("Contador");
-		mivacante1.setDescripcion("Finanzas de la empresa");
-		mivacante1.setFecha(new Date());
-		mivacante1.setSalario(125.90);
 
-		
-		model.addAttribute("vacanteV", mivacante1);
-		return "vacantes";
-	}
-	
-	
-	
-	
 	
 	@GetMapping("/lista")
 	public String mostrarLista(Model model){

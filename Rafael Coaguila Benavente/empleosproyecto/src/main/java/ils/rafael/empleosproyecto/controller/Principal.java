@@ -23,7 +23,7 @@ public class Principal {
 	
 	
 	
-	@GetMapping("/detalle")
+	@GetMapping("/lista")
 	public String mostrarlistadetalle(Model model){
         
 		vacante vacante1= new vacante();
@@ -73,7 +73,7 @@ public class Principal {
 		
 		model.addAttribute( "vacantes" , lista );
           	  	
-		return "detalle";
+		return "vacantes/listadetalle";
 	}
 	
 	

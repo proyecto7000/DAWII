@@ -23,6 +23,7 @@
 	<th scope="col">Dirección</th>
 	<th scope="col">Telefono</th>
 	<th scope="col">Destacado</th>
+	<th scope="col"></th>
 </tr>
 </thead>
 
@@ -38,6 +39,10 @@
 	<td th:text="${list.Telefono}"></td>
 	<td th:if="${list.destacado==1}"><span class="badge badge-dark">Si</span></td>
 	<td th:unless="${list.destacado==1}"><span class="badge badge-success">No</span></td>
+	
+    <td>
+    <a th:href="@{/vacantes/Vistas/{id}(id=${list.Codigo})}" class="btn btn-success">Detalle</a>
+    </td>
 	
 </tr>
 </tbody>

@@ -18,6 +18,7 @@
 		<th>SALARIO</th>
 		<th>DESTACADO</th>
 		<th>DETALLE</th>
+		<th>ELIMINAR</th>
 	</tr>
 	<tr th:each="tmpILS:${VacantesV}">
 		<td><img th:src="@{/images/{img}( img=${tmpILS.imagen})}"width="136" height="136"></td>
@@ -28,10 +29,15 @@
 		<td th:text="${tmpILS.Salario}"></td>
 <!-- 		<td th:text="${tmpILS.Destacado==1} ? 'ACTIVO' : 'INACTIVO'"></td> -->
 		<td>
-		<span th:if="${tmpILS.Destacado==1}" class="badge badge-success">SI</span>
-		<span th:unless="${tmpILS.Destacado==1}" class="badge badge-danger">NO</span>
+			<span th:if="${tmpILS.Destacado==1}" class="badge badge-success">SI</span>
+			<span th:unless="${tmpILS.Destacado==1}" class="badge badge-danger">NO</span>
 		</td>
-		<td><a th:href="@{/detalle/{ID} (ID=${tmpILS.ID})}" class="btn btn-success">DETALLE</a></td>
+		<td>
+			<a th:href="@{/detalle/{ID} (ID=${tmpILS.ID})}" class="btn btn-success">DETALLE</a>
+		</td>
+		<td>
+			<a th:href="@{/delete?ID={ID} (ID=${tmpILS.ID})}" class="btn btn-danger">BORRAR</a>
+		</td>
 	</tr>
 	</table>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

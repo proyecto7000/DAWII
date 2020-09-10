@@ -6,5 +6,12 @@
 </head>
 <body>
 <h1>FORMULARIO DE CATEGORIAS</h1>
+<form th:action="@{/save}" method="Post">
+  <label for="fname">NOMBRE CAEGORIA: </label><br>
+  <input type="text" id="fname" name="Nombre" value=""><br>
+  <label for="lname">DESCRIPCION DE CATEGORIA:</label><br>
+  <input type="text" id="lname" name="Descripcion" value=""><br><br>
+  <input type="submit" value="Submit">
+</form> 
 </body>
 </html>

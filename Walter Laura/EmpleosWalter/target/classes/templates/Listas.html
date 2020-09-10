@@ -23,7 +23,8 @@
 	<th scope="col">Dirección</th>
 	<th scope="col">Telefono</th>
 	<th scope="col">Destacado</th>
-	<th scope="col"></th>
+	<th scope="col">Detalle</th>
+	<th scope="col">Borrar</th>
 </tr>
 </thead>
 
@@ -42,6 +43,10 @@
 	
     <td>
     <a th:href="@{/vacantes/Vistas/{id}(id=${list.Codigo})}" class="btn btn-success">Detalle</a>
+    </td>
+    
+    <td>
+    <a th:href="@{/vacantes/Borrar/(id=${list.Codigo})}" class="btn btn-danger">Borrar</a>
     </td>
 	
 </tr>

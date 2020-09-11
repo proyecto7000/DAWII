@@ -25,7 +25,7 @@ public class VacantServiceImpl implements VacantService {
 			v1.setDireccion("Rivero 205");
 			v1.setTelefono(931478758);
 			v1.setDestacado(0);
-			v1.setImagenes("empresa1.png");
+			v1.setImagenes("logo1.png");
 			
 			Vacantes v2=new Vacantes();
 			v2.setCodigo(2);
@@ -34,7 +34,7 @@ public class VacantServiceImpl implements VacantService {
 			v2.setDireccion("Rivero 206");
 			v2.setTelefono(921478783);
 			v2.setDestacado(1);
-			v2.setImagenes("empresa2.png");
+			v2.setImagenes("logo2.png");
 			
 			Vacantes v3=new Vacantes();
 			v3.setCodigo(3);
@@ -43,7 +43,7 @@ public class VacantServiceImpl implements VacantService {
 			v3.setDireccion("Rivero 207");
 			v3.setTelefono(976478198);
 			v3.setDestacado(1);
-			v3.setImagenes("empresa3.png");
+			v3.setImagenes("logo3.png");
 			
 			Vacantes v4=new Vacantes();
 			v4.setCodigo(4);
@@ -52,7 +52,7 @@ public class VacantServiceImpl implements VacantService {
 			v4.setDireccion("Rivero 208");
 			v4.setTelefono(946478156);
 			v4.setDestacado(0);
-			v4.setImagenes("logo.png");
+			v4.setImagenes("logo4.png");
 			
 
 			

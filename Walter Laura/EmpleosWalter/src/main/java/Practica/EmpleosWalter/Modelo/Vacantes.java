@@ -11,7 +11,6 @@ public class Vacantes {
 	private int destacado;
 	private String imagenes="no-image.png";
 
-	
 	public String getImagenes() {
 		return imagenes;
 	}

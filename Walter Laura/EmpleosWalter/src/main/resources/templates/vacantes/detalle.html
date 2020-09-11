@@ -5,6 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 th:text="'El id es: ' + ${idVacante}"></h1>
+<h2>Detalles del Empleado</h2>
+<strong>Codigo: <span th:text="${VacanteV.Codigo}"></span></strong><br>
+<strong>Nombre: <span th:text="${VacanteV.Nombre}"></span></strong><br>
+<strong>Edad: <span th:text="${VacanteV.Edad}"></span></strong><br>
+<strong>Direccion: <span th:text="${VacanteV.Direccion}"></span></strong><br>
+<strong>Telefono: <span th:text="${VacanteV.Telefono}"></span></strong><br>
+<strong>Destacado: <p th:if="${VacanteV.destacado==1}"><span class="badge badge-dark">Si</span></p>
+<p th:unless="${VacanteV.destacado==1}"><span class="badge badge-success">No</span></p>
+</strong>
 </body>
 </html>

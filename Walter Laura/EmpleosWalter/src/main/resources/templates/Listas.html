@@ -1,57 +1,119 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/css/jumbotron.css" rel="stylesheet">
+    <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
 
-<title>Insert title here</title>
-</head>
-<body>
+  <body>
 
-<table class="table">
-<thead class="thead-dark">
-<tr>
-	
-	<th scope="col">Logo</th>
-	<th scope="col">Código</th>
-	<th scope="col">Nombre</th>
-	<th scope="col">Edad</th>
-	<th scope="col">Dirección</th>
-	<th scope="col">Telefono</th>
-	<th scope="col">Destacado</th>
-	<th scope="col">Detalle</th>
-	<th scope="col">Borrar</th>
-</tr>
-</thead>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">EmpleosApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<tbody>
-<tr th:each="list: ${Vacantes}">
-	
-	
-	<td><img th:src="@{/imagenes/{logo} (logo=${list.imagenes})}" width="136" height="136"></td>
-	<td scope="row" th:text="${list.Codigo}"></td>
-	<td th:text="${list.Nombre}"></td>
-	<td th:text="${list.Edad}"></td>
-	<td th:text="${list.Direccion}"></td>
-	<td th:text="${list.Telefono}"></td>
-	<td th:if="${list.destacado==1}"><span class="badge badge-dark">Si</span></td>
-	<td th:unless="${list.destacado==1}"><span class="badge badge-success">No</span></td>
-	
-    <td>
-    <a th:href="@{/vacantes/Vistas/{id}(id=${list.Codigo})}" class="btn btn-success">Detalle</a>
-    </td>
-    
-    <td>
-    <a th:href="@{/vacantes/Borrar/(id=${list.Codigo})}" class="btn btn-danger">Borrar</a>
-    </td>
-	
-</tr>
-</tbody>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu 2</a>
+            </li>          
+          </ul>  
+          <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" href="#">Registrarse</a>
+        </div>
+      </nav>
+    </header>
 
-</table>
-</body>
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h3>Encuentra el Empleo que andas buscando.</h3>
+          Puedes buscar por descripción y categoría.
+          <form class="form-inline">
+            <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
+            <select class="custom-select custom-select mb-3">
+              <option selected>Seleccione una categoría</option>
+              <option value="1">Ventas</option>
+              <option value="2">Contabilidad</option>
+              <option value="3">Transporte</option>
+              <option value="4">Informática</option>
+              <option value="5">Construcción</option>
+            </select>&nbsp;
+            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+      
+
+      <div class="container"> 
+        <h2 class="font-weight-bold text-center text-capitalize">Lista de Vacantes</h2>
+        <hr>
+        <div class="row" th:each="list: ${Vacantes}">
+          <div class="col-md-3">            
+            <img th:src="@{/imagenes/{logo} (logo=${list.imagenes})}" width="150" height="136">          
+          </div>
+          <div class="col-md-9">
+          
+            <h2 th:text="${list.Nombre}"></h2>
+         
+	
+            <h6 class="card-title"><strong>Codigo: </strong> <span th:text="${list.Codigo}" ></span></h6>
+            <h6 class="card-title"><strong>Dirección: </strong> <span th:text="${list.Direccion}" ></span></h6> 
+            <h6 class="card-title"><strong>Telefono: </strong> <span th:text="${list.Telefono}"></span></h6>
+            <h6 class="card-title"><strong>Edad: </strong> <span th:text="${list.Edad}" ></span></h6> 
+            
+            <h6 class="card-title"><strong>Destacado: 
+            <span th:if="${list.destacado==1}" class="badge badge-dark">Si</span>
+            <span th:unless="${list.destacado==1}"  class="badge badge-success">No</span>
+            </strong></h6>
+
+           <p><a th:href="@{/vacantes/Vistas/{id}(id=${list.Codigo})}" class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a>            
+           <a th:href="@{/vacantes/Borrar/(id=${list.Codigo})}" class="btn btn-secondary" href="#" role="button">Eliminar &raquo;</a></p>            
+          
+          </div>
+        </div>  
+      
+      
+               
+		  <hr>	
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>

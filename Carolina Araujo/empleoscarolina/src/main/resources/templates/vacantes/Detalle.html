@@ -2,15 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Detalle de la vacante</title>
+<title>Detalle</title>
 </head>
 <body>
-<!-- <table> -->
-<!-- <!-- <tr th:each="tmpEmp: ${empleos}"> --> 
-<!-- <!-- <td th:text="${tmpEmp}" /> --> 
-<!-- <!-- </tr> --> 
-<!-- </table> -->
-
-	<h1 th:text="'El id es: '+${idVacante}"></h1>
+<!-- 	<h2>Detalle de la vacante <span th:text="${id}"></span></h2> -->
+	
+	<p th:text="${vacanteV.id}"></p>
+	<p th:text="${vacanteV.nombre}"></p>
+	<p th:text="${vacanteV.descripcion}"></p>
+	<p th:text="${vacanteV.fecha}"></p>
+	<p th:text="${vacanteV.salario}"></p>
+	
+	
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Lista</title>
@@ -36,7 +37,7 @@
 		 	<span th:if="${tmpEmp.destacada==1}" class="badge badge-success">Si </span>
 		 	<span th:unless="${tmpEmp.destacada==1}"class="badge badge-danger">No</span>
 		 </td>
-		 <td><a th:href="@{/vacantes/view/{id} (id=${tmpEmp.id}) }" class="btn btn-success">Detalle</a></td>
+		 <td><a th:href="@{/vacantes/detalle/{id} (id=${tmpEmp.id}) }" class="btn btn-success">Detalle</a></td>
 		 <td><a th:href="@{/vacantes/delete (id=${tmpEmp.id}) }" class="btn btn-danger">Borrar</a></td>
 	</tr> 
 </table>

@@ -27,11 +27,5 @@ public class CategoriasController {
 			System.out.println("Descripcion de Categoria:  "+MiDescripcion);
 		return "CATEGORIAS/ListaCategoria";
 		}
-		@GetMapping("/delete")
-		public String Borrar(@RequestParam("ID") int id, Model mimodelo){
-		// Procesamiento del parámetro. Aquí, ya se hizo la conversión a String a int.
-		System.out.println("RequestParam: " + id);
-		mimodelo.addAttribute("ID", id);
-		return "CATEGORIAS/Mensaje";
-		}
+		
 }

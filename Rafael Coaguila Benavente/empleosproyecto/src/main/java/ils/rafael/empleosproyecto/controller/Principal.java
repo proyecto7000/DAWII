@@ -1,6 +1,6 @@
 package ils.rafael.empleosproyecto.controller;
 
-import java.util.Date;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,11 +18,15 @@ public class Principal {
 	@Autowired
 	vacantesService vacantesservicio;
 	
-	@GetMapping("/inicio")
+	@GetMapping("/")
 	public String paginainicio(Model model){
-	model.addAttribute("mensaje","Rafael");
+
 		
-		return "home";
+		List<vacante> lista  =  vacantesservicio.cargarvacante(); 
+		
+		model.addAttribute( "vacantes" , lista );
+          	  			
+		return "vacantes/home";
 	}
 	
 	

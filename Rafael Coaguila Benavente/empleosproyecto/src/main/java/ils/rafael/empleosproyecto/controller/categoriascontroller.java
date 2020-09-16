@@ -14,8 +14,6 @@ public class categoriascontroller {
 	
 	@GetMapping("/index")
 	public String mostrarindex(Model model){
-		
-		
 		return "categorias/listacategorias";
 	}
 	

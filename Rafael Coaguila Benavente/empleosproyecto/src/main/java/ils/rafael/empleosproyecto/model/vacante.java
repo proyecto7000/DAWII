@@ -11,9 +11,32 @@ public class vacante {
     private Double salario;
     private Integer destacada;
     private String logo="no-image.png";
+    private String estatus;
+    private String detalles;
+    private String categoria;
     
     
     
+    
+   
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public String getEstatus() {
+		return estatus;
+	}
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+	public String getDetalles() {
+		return detalles;
+	}
+	public void setDetalles(String detalles) {
+		this.detalles = detalles;
+	}
 	public String getLogo() {
 		return logo;
 	}
@@ -56,12 +79,14 @@ public class vacante {
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
-	
 	@Override
 	public String toString() {
 		return "vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + "]";
+				+ ", salario=" + salario + ", destacada=" + destacada + ", logo=" + logo + ", estatus=" + estatus
+				+ ", detalles=" + detalles + "]";
 	}
+	
+	
 	
     
     

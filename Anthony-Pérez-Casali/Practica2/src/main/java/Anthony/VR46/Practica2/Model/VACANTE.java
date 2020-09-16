@@ -11,6 +11,22 @@ public class VACANTE {
 	private double Salario;
 	private Integer Destacado;
 	private String imagen="no-image.png";
+	private String Estatus;
+	private String Detalle;
+	
+	public String getEstatus() {
+		return Estatus;
+	}
+	public void setEstatus(String estatus) {
+		Estatus = estatus;
+	}
+	public String getDetalle() {
+		return Detalle;
+	}
+	public void setDetalle(String detalle) {
+		Detalle = detalle;
+	}
+	
 	
 	public String getImagen() {
 		return imagen;
@@ -57,7 +73,10 @@ public class VACANTE {
 	@Override
 	public String toString() {
 		return "VACANTE [ID=" + ID + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Fecha=" + Fecha
-				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + "]";
+				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + ", Estatus=" + Estatus
+				+ ", Detalle=" + Detalle + "]";
 	}
+	
+	
 	
 }

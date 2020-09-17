@@ -9,10 +9,10 @@
 
     <title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
     <!-- Bootstrap core CSS -->
-    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link th:href="@{bootstrap/css/jumbotron.css}" rel="stylesheet">
-    <link th:href="@{bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
   </head>
 
   <body>
@@ -52,13 +52,11 @@
           </div>
           <div class="col-md-9">
           
-            <h2 th:text="${list.Nombre}"></h2>
+            <h2 th:text="${list.nombre}"></h2>
          
-	
-            <h6 class="card-title"><strong>Codigo: </strong> <span th:text="${list.Codigo}" ></span></h6>
-            <h6 class="card-title"><strong>Dirección: </strong> <span th:text="${list.Direccion}" ></span></h6> 
-            <h6 class="card-title"><strong>Telefono: </strong> <span th:text="${list.Telefono}"></span></h6>
-            <h6 class="card-title"><strong>Edad: </strong> <span th:text="${list.Edad}" ></span></h6> 
+            <h6 class="card-title"><strong>Estatus: </strong> <span th:text="${list.estatus}"></span></h6>
+            <h6 class="card-title"><strong>Salario: </strong> <span th:text="${list.salario}" ></span></h6> 
+            <h6 class="card-title"><strong>Fecha: </strong> <span th:text="${list.fecha}" ></span></h6> 
             
             <h6 class="card-title"><strong>Destacado: 
             <span th:if="${list.destacado==1}" class="badge badge-dark">Si</span>
@@ -67,8 +65,8 @@
              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             
 
-           <p><a th:href="@{/vacantes/Vistas/{id}(id=${list.Codigo})}" class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a>            
-           <a th:href="@{/vacantes/Borrar/(id=${list.Codigo})}" class="btn btn-secondary" href="#" role="button">Eliminar &raquo;</a></p>            
+           <p><a th:href="@{/vacantes/Vistas/{id}(id=${list.id})}" class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a>            
+           <a th:href="@{/vacantes/Borrar/(id=${list.id})}" class="btn btn-secondary" href="#" role="button">Eliminar &raquo;</a></p>            
           
           </div>
         </div>  

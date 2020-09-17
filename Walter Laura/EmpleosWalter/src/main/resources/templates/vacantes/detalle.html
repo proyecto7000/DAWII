@@ -29,12 +29,12 @@
           </div>
           <div class="col-md-9">
             <div class="card">
-              <h4 class="card-header">Aplicar para el codigo: <strong th:text="${VacanteV.Codigo}"></strong></h4>              
+              <h4 class="card-header">Aplicar para el codigo: <strong th:text="${VacanteV.id}"></strong></h4>              
               <div class="card-body">
-                <h5 class="card-title"><strong>Nombre del Trabajador: </strong> <span th:text="${VacanteV.Nombre}"></span></h5>                
-                <h6 class="card-title"><strong>Edad: </strong><span th:text="${VacanteV.Edad}"></span></h6>
-                <h6 class="card-title"><strong>Direccion: </strong><span th:text="${VacanteV.Direccion}"></span></h6>
-                <h6 class="card-title"><strong>Telefono: </strong><span th:text="${VacanteV.Telefono}"></span></h6>
+                <h5 class="card-title"><strong>Nombre del Trabajador: </strong> <span th:text="${VacanteV.nombre}"></span></h5>                
+                <h6 class="card-title"><strong>Descripcion: </strong><span th:text="${VacanteV.descripcion}"></span></h6>
+                <h6 class="card-title"><strong>Salario: </strong><span th:text="${VacanteV.salario}"></span></h6>
+                <h6 class="card-title"><strong>Estatus: </strong><span th:text="${VacanteV.estatus}"></span></h6>
                 <p class="card-text">La descripción corta de la oferta de trabajo</p>
                 
                 <div class="card bg-light mb-3" >
@@ -53,8 +53,6 @@
     </main>
 
     <footer th:insert="fragmentos/Footer ::pie-pagina" class="footer"></footer>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
   </body>

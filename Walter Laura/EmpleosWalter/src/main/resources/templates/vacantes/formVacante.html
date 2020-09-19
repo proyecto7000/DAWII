@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,18 +7,17 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>EmpleosApp | Creación de Ofertas de Trabajo</title>
-        <!-- Bootstrap core CSS -->
+    <title>EmpleosApp | Listado de Ofertas de Trabajo</title>
+    <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
   </head>
 
   <body>
-
-        <header th:insert="fragmentos/Menu ::menu-principal"></header>
+       <header th:insert="fragmentos/Menu ::menu-principal"></header>
 
     <main role="main">     
       <hr>
@@ -27,8 +26,17 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-          
-            <form th:action="@{/vacantes/Save}" method="post">              
+
+            <form th:action="@{/vacantes/Save}" method="post" th:object="${vacantes}"> 
+
+                    <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
+                              Porfavor corriga el error:
+                             <ul>
+                              <li th:each="err :  ${#fields.errors('*')}"  th:text="${err}"   />
+                             </ul>
+            </div>
+
+            
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
@@ -122,9 +130,11 @@
 
     <footer th:insert="fragmentos/Footer ::pie-pagina" class="footer"></footer>
 
-	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script> 
+    <script th:src="@{https://code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
     <script th:src="@{/tinymce/tinymce.min.js}"></script>
     <script>
@@ -134,15 +144,16 @@
         }
       );
       
-      /*
+      
       tinymce.init({
           selector: '#detalles',
           plugins: "textcolor, table lists code",
-          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
-                    | bullist numlist outdent indent | forecolor backcolor table code"
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\ | bullist numlist outdent indent | forecolor backcolor table code"
+          
+   
       });
       
-      */
+      
       
     </script>
   </body>

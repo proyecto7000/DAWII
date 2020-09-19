@@ -19,7 +19,8 @@
   <body>
        <header th:insert="fragmentos/Menu ::menu-principal"></header>
 
-    <main role="main">     
+    <main role="main">  
+    <div  th:if="${mensaje != null}"  class="alert alert-success"  th:text="${mensaje}"></div>   
       <hr>
       <div class="container"> 
 

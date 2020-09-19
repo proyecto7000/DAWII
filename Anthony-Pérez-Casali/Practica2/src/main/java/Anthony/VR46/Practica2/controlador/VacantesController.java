@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Anthony.VR46.Practica2.Model.VACANTE;
 import Anthony.VR46.Practica2.Service.IVacantesServices;
@@ -52,14 +55,29 @@ public class VacantesController {
 	}
 	
 	@GetMapping("/createvacante")
-	public String NuevaVacante(){
+	public String NuevaVacante(VACANTE vacantee){
 	return "VACANTES/formVacante";
 	}
 	
 	@PostMapping("/savevacante")
-	public String NuevaVacante(VACANTE MiVacante){
+	public String guardarvacante(VACANTE MiVacante, BindingResult miresultado, RedirectAttributes atributos){
+		
+		
+		for(ObjectError error: miresultado.getAllErrors()) {
+			System.out.println("OCURRIO UN ERROR: " + error.getDefaultMessage());
+		}
+		
+		if (miresultado.hasErrors()){
+			return "/VACANTES/formVacante";
+		}
+		
+		String msje = "VACANTE AGREGADA EXITOSAMENTE";
+		
+		atributos.addFlashAttribute("mensaje", msje);
+				
 		System.out.println(MiVacante.toString());
-	return "/VACANTES/ListaVacantes";
+		vacanteServicio.guardarVacante(MiVacante);
+		return "redirect:/indexvacante";
     }
 	
 	@InitBinder

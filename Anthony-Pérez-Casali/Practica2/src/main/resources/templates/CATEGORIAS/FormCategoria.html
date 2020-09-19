@@ -27,12 +27,12 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/save}" method="Post">              
+            <form th:action="@{/savecategoria}" method="Post">              
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">
-                    <label for="Nombre">Nombre</label>
-                    <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Escriba el nombre de la categoria" required="required">
+                    <label for="NombreCat">Nombre</label>
+                    <input type="text" class="form-control" id="NombreCat" name="NombreCat" placeholder="Escriba el nombre de la categoria" required="required">
                   </div>
                 </div>                
               </div> 
@@ -40,7 +40,7 @@
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="Descripcion">Descripción</label>
-                    <textarea class="form-control" name="Descripcion" id="Descripcion" rows="2"></textarea>
+                    <textarea class="form-control" name="DescripcionCat" id="DescripcionCat" rows="2"></textarea>
                   </div> 
                 </div>                
               </div> 

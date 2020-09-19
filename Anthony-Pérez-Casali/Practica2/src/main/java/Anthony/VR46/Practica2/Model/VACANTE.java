@@ -12,7 +12,7 @@ public class VACANTE {
 	private Integer Destacado;
 	private String imagen="no-image.png";
 	private String Estatus;
-	private String Detalle;
+	private String detalles;
 	
 	public String getEstatus() {
 		return Estatus;
@@ -20,11 +20,11 @@ public class VACANTE {
 	public void setEstatus(String estatus) {
 		Estatus = estatus;
 	}
-	public String getDetalle() {
-		return Detalle;
+	public String getdetalles() {
+		return detalles;
 	}
-	public void setDetalle(String detalle) {
-		Detalle = detalle;
+	public void setdetalles(String detalle) {
+		detalles = detalle;
 	}
 	
 	
@@ -74,7 +74,7 @@ public class VACANTE {
 	public String toString() {
 		return "VACANTE [ID=" + ID + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Fecha=" + Fecha
 				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + ", Estatus=" + Estatus
-				+ ", Detalle=" + Detalle + "]";
+				+ ", Detalle=" + detalles + "]";
 	}
 	
 	

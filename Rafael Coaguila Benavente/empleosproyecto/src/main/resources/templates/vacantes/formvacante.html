@@ -18,29 +18,8 @@
 
   <body>
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">EmpleosApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Menu 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Menu 2</a>
-            </li>          
-          </ul>  
-          <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" href="#">Registrarse</a>
-        </div>
-      </nav>
+   <header th:insert="/fragments/menu :: menu-principal">
+    
     </header>
 
     <main role="main">     
@@ -50,7 +29,15 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/savevacante}" method="post"   >              
+            <form th:action="@{/vacantes/savevacante}" method="post" th:object="${vacante}"  >
+            
+            <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
+                              porfavor corriga el error:
+                             <ul>
+                              <li       th:each="err :  ${#fields.errors('*')}"  th:text="${err}"   />
+                             </ul>
+            </div>
+                          
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
@@ -70,11 +57,11 @@
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <select class="form-control" name="categoria" id="categoria">
-                      <option value="1">Ventas</option>
-                      <option value="2">Contabilidad</option>
-                      <option value="3">Transporte</option>
-                      <option value="4">Informatica</option>
-                      <option value="5">Construccion</option>
+                      <option value="ventas">Ventas</option>
+                      <option value="contabilidad">Contabilidad</option>
+                      <option value="transporte">Transporte</option>
+                      <option value="informatica">Informatica</option>
+                      <option value="construccion">Construccion</option>
                     </select>
                   </div>
                 </div>
@@ -142,13 +129,8 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <p>
-          &copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
-        </p>
-      </div>
+     <footer  th:insert="/fragments/footer ::  pie-pagina"  class="footer">
+     
     </footer>
 
     <!-- Bootstrap core JavaScript
@@ -165,15 +147,16 @@
         }
       );
       
-      /*
+      
       tinymce.init({
           selector: '#detalles',
           plugins: "textcolor, table lists code",
-          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
-                    | bullist numlist outdent indent | forecolor backcolor table code"
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\ | bullist numlist outdent indent | forecolor backcolor table code"
+          
+   
       });
       
-      */
+      
       
     </script>
   </body>

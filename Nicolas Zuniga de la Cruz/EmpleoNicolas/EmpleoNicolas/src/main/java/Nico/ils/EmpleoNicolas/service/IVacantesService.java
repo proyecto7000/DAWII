@@ -7,6 +7,6 @@ public interface IVacantesService {
 	//EN INTERFACE SE DECLARAN LSO METODOS MAS NO SE IMPLEMENTAN
 	public List<Vacante>CargaVacantes();
 	public Vacante buscarVacanteporID(int id);
-	
+	public  void guardarvacante(Vacante vacante);
 	
 }

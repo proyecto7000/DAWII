@@ -94,6 +94,12 @@ public class VacanteServiceImpl implements IVacantesService {
 		
 		return null;
 	}
+
+	@Override
+	public void guardarvacante(Vacante vacante) {
+		// TODO Auto-generated method stub
+		lista.add(vacante);
+	}
 	
 	
 	

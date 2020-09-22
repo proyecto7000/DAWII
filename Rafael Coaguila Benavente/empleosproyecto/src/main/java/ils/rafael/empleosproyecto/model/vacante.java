@@ -13,16 +13,18 @@ public class vacante {
     private String logo="no-image.png";
     private String estatus;
     private String detalles;
-    private String categoria;
+    private categoria categoria;
     
     
     
     
    
-	public String getCategoria() {
+	
+	
+	public categoria getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(categoria categoria) {
 		this.categoria = categoria;
 	}
 	public String getEstatus() {
@@ -83,7 +85,15 @@ public class vacante {
 	public String toString() {
 		return "vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 				+ ", salario=" + salario + ", destacada=" + destacada + ", logo=" + logo + ", estatus=" + estatus
-				+ ", detalles=" + detalles + "]";
+				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
+	}
+	
+	
+	
+	
+
+
+	
 	}
 	
 	
@@ -91,4 +101,4 @@ public class vacante {
     
     
     
-}
+

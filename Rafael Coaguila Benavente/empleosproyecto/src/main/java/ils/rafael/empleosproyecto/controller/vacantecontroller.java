@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ils.rafael.empleosproyecto.model.vacante;
+import ils.rafael.empleosproyecto.service.icategoriasService;
 import ils.rafael.empleosproyecto.service.vacantesService;
 
 @Controller
@@ -29,8 +30,11 @@ public class vacantecontroller {
 
 	
 	@Autowired
-	
 	private vacantesService vacanteservicio;
+	 
+	@Autowired
+	private icategoriasService  categoriaservicio;
+
 	
 	@GetMapping("/detalle/{id}")
 	public String mostrardetalle(@PathVariable("id") int idvacante , Model model) {
@@ -59,8 +63,11 @@ public class vacantecontroller {
 	
 	
 	@GetMapping("/createvacante")
-	public String vacantenueva( vacante vacante ) 
+	public String vacantenueva( vacante vacante, Model model) 
 	{
+		model.addAttribute("categoriasD" , categoriaservicio.buscarTodas());
+		
+		
 		return "/vacantes/formvacante";
 	}
 	

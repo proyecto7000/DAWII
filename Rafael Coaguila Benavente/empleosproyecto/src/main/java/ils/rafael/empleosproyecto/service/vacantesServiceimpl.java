@@ -18,7 +18,7 @@ public class vacantesServiceimpl implements vacantesService {
 		
     	vacante vacante1= new vacante();
    		vacante1.setId(1);
-   		vacante1.setCategoria("Ventas");
+   		
    		vacante1.setNombre("ingeniero quimico");
    		vacante1.setDescripcion("se necesita ingeniero para soporte intranet");
    		vacante1.setFecha(new Date());
@@ -30,7 +30,7 @@ public class vacantesServiceimpl implements vacantesService {
    		
    		vacante vacante2= new vacante();
    		vacante2.setId(2);
-   		vacante2.setCategoria("informatica");
+   		
    		vacante2.setNombre("ingeniero de Sistemas");
    		vacante2.setDescripcion("se necesita ingeniero de sistemas");
    		vacante2.setFecha(new Date());
@@ -41,7 +41,7 @@ public class vacantesServiceimpl implements vacantesService {
    		
    		vacante vacante3= new vacante();
    		vacante3.setId(3);
-   		vacante3.setCategoria("informatica");
+   		
    		vacante3.setNombre("Abogado");
    		vacante3.setDescripcion(" Se necesita abogado se paga poco");
    		vacante3.setFecha(new Date());
@@ -52,7 +52,7 @@ public class vacantesServiceimpl implements vacantesService {
    		
    		vacante vacante4= new vacante();
    		vacante4.setId(4);
-   		vacante4.setCategoria("Contabilidad");
+   		
    		vacante4.setNombre("Doctor");
    		vacante4.setDescripcion("se necesita Doctor con doctorado ");
    		vacante4.setFecha(new Date());

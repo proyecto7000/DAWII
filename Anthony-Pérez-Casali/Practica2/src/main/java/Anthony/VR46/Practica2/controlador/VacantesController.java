@@ -27,13 +27,10 @@ public class VacantesController {
 	@Autowired
 	private IVacantesServices vacantesServicio;
 	
-	@Autowired
-	IVacantesServices vacanteServicio;
-	
 	//Implemente el controlador /vacantes/index 
 	@GetMapping("/indexvacante")
 	public String MostrarIndex(Model model){
-		List<VACANTE> Listas= vacanteServicio.CargaVacantes();
+		List<VACANTE> Listas= vacantesServicio.CargaVacantes();
 		model.addAttribute("VacantesV", Listas);
 		return "/VACANTES/listVacantes";
 	}
@@ -41,8 +38,8 @@ public class VacantesController {
 	@GetMapping("/detalle/{id}")
 	public String mostrarDetalle(@PathVariable("id") int idVacante,Model model){
 	System.out.println("PathVariable: " + idVacante);
-	VACANTE mivacante = vacantesServicio.buscarporID(idVacante);
-	model.addAttribute("MiVacante", mivacante);
+	VACANTE vacante = vacantesServicio.buscarporID(idVacante);
+	model.addAttribute("MiVacante", vacante);
 	return "VACANTES/Detalle";
 	}
 	
@@ -55,28 +52,32 @@ public class VacantesController {
 	}
 	
 	@GetMapping("/createvacante")
-	public String NuevaVacante(VACANTE vacantee){
+	public String NuevaVacante(VACANTE vacante)
+	{
 	return "VACANTES/formVacante";
 	}
 	
 	@PostMapping("/savevacante")
-	public String guardarvacante(VACANTE MiVacante, BindingResult miresultado, RedirectAttributes atributos){
+	public String guardarvacante(VACANTE vacante, BindingResult miresultado, RedirectAttributes Attributes)
+	{
 		
 		
-		for(ObjectError error: miresultado.getAllErrors()) {
+		for(ObjectError error: miresultado.getAllErrors()) 
+		{
 			System.out.println("OCURRIO UN ERROR: " + error.getDefaultMessage());
 		}
 		
-		if (miresultado.hasErrors()){
+		if (miresultado.hasErrors())
+		{
 			return "/VACANTES/formVacante";
 		}
 		
 		String msje = "VACANTE AGREGADA EXITOSAMENTE";
 		
-		atributos.addFlashAttribute("mensaje", msje);
+		Attributes.addFlashAttribute("mensaje", msje);
 				
-		System.out.println(MiVacante.toString());
-		vacanteServicio.guardarVacante(MiVacante);
+		System.out.println(vacante.toString());
+		vacantesServicio.guardarVacante(vacante);
 		return "redirect:/indexvacante";
     }
 	

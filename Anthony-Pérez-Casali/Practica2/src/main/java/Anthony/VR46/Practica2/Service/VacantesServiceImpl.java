@@ -11,7 +11,7 @@ import Anthony.VR46.Practica2.Model.VACANTE;
 @Service
 public class VacantesServiceImpl implements IVacantesServices{
 	
-	private List<VACANTE> Lista;
+	List<VACANTE> Lista;
 	
 	public VacantesServiceImpl() {
 		
@@ -53,18 +53,18 @@ public class VacantesServiceImpl implements IVacantesServices{
 		return Lista;
 	}
 	@Override
-	public VACANTE buscarporID(int id) {
+	public VACANTE buscarporID(int ID) {
 		// TODO Auto-generated method stub
 		for (VACANTE tmpvacante : Lista) {
-			if(tmpvacante.getID()==id)
+			if(tmpvacante.getID()==ID)
 				return tmpvacante;
 		}
 		return null;
 	}
 	@Override
-	public void guardarVacante(VACANTE MiVacante) {
+	public void guardarVacante(VACANTE vacante) {
 		// TODO Auto-generated method stub
-		Lista.add(MiVacante);
+		Lista.add(vacante);
 	}
 
 }

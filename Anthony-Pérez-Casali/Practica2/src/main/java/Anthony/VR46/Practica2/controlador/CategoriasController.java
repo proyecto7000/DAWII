@@ -9,9 +9,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,6 +33,33 @@ public class CategoriasController {
 			return "/CATEGORIAS/ListaCategoria";
 		}
 		
+		@GetMapping("/createcategoria")
+		//@RequestMapping(value="/create", method=RequestMethod.GET)
+		public String crearCat(CATEGORIAS categorias) {
+		return "CATEGORIAS/FormCategoria";
+		}
+		
+		@PostMapping("/savecategoria")
+		//@RequestMapping(value="/savecategoria", method=RequestMethod.POST)
+		public String NuevaVacante(CATEGORIAS categoria, BindingResult miresultado, RedirectAttributes atributos){
+					
+			for(ObjectError error: miresultado.getAllErrors()) {
+				System.out.println("OCURRIO UN ERROR: " + error.getDefaultMessage());
+				}
+					
+				if (miresultado.hasErrors()){
+					return "CATEGORIAS/FormCategoria";
+				}
+					
+				String msje = "CATEGORIA AGREGADA EXITOSAMENTE";
+					
+				atributos.addFlashAttribute("mensaje", msje);
+							
+				System.out.println(categoria.toString());
+				categoriasService.guardarcategoria(categoria);
+				return "redirect:/indexcategoria";
+		    }
+		
 		@GetMapping("/detalleC/{IDC}")
 		public String mostrarDetalleC(@PathVariable("IDC") int idCategoria,Model model){
 		System.out.println("PathVariable: " + idCategoria);
@@ -48,32 +75,9 @@ public class CategoriasController {
 		return "CATEGORIAS/Mensaje";
 		}
 		
-		@GetMapping("/createcategoria")
-		//@RequestMapping(value="/create", method=RequestMethod.GET)
-		public String crearCat(CATEGORIAS categorias) {
-		return "CATEGORIAS/FormCategoria";
-		}
 		
 		
-		//@PostMapping("/save")
-		@RequestMapping(value="/savecategoria", method=RequestMethod.POST)
-		public String NuevaVacante(CATEGORIAS categoria, BindingResult miresultado, RedirectAttributes atributos){
-			
-			for(ObjectError error: miresultado.getAllErrors()) {
-				System.out.println("OCURRIO UN ERROR: " + error.getDefaultMessage());
-			}
-			
-			if (miresultado.hasErrors()){
-				return "CATEGORIAS/FormCategoria";
-			}
-			
-			String msje = "CATEGORIA AGREGADA EXITOSAMENTE";
-			
-			atributos.addFlashAttribute("mensaje", msje);
-					
-			System.out.println(categoria.toString());
-			categoriasService.guardarcategoria(categoria);
-			return "redirect:/indexcategoria";
-	    }
+		
+		
 		
 }

@@ -19,6 +19,7 @@ import Anthony.VR46.Practica2.Service.IVacantesServices;
 public class Principal {
 	
 	@Autowired
+	
 	IVacantesServices vacanteServicio;
 	
 	@GetMapping("/VR46")

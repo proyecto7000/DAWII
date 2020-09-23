@@ -13,6 +13,7 @@ public class VACANTE {
 	private String imagen="no-image.png";
 	private String Estatus;
 	private String detalles;
+	private CATEGORIAS Categoria;
 	
 	public String getEstatus() {
 		return Estatus;
@@ -70,13 +71,19 @@ public class VACANTE {
 	public void setDestacado(Integer destacado) {
 		Destacado = destacado;
 	}
+	
+	public CATEGORIAS getCategoria() {
+		return Categoria;
+	}
+	public void setCategoria(CATEGORIAS categoria) {
+		Categoria = categoria;
+	}
+	
 	@Override
 	public String toString() {
 		return "VACANTE [ID=" + ID + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Fecha=" + Fecha
 				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + ", Estatus=" + Estatus
-				+ ", Detalle=" + detalles + "]";
+				+ ", detalles=" + detalles + ", Categoria=" + Categoria + "]";
 	}
-	
-	
 	
 }

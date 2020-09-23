@@ -16,16 +16,22 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Anthony.VR46.Practica2.Model.VACANTE;
+import Anthony.VR46.Practica2.Service.ICategoriasService;
 import Anthony.VR46.Practica2.Service.IVacantesServices;
+import Anthony.VR46.Practica2.Util.Utileria;
 
 @Controller
 public class VacantesController {
 	
 	@Autowired
 	private IVacantesServices vacantesServicio;
+	
+	@Autowired
+	 private ICategoriasService ServiceCategoria;
 	
 	//Implemente el controlador /vacantes/index 
 	@GetMapping("/indexvacante")
@@ -52,13 +58,14 @@ public class VacantesController {
 	}
 	
 	@GetMapping("/createvacante")
-	public String NuevaVacante(VACANTE vacante)
+	public String NuevaVacante(VACANTE vacante , Model model)
 	{
-	return "VACANTES/formVacante";
+		model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
+		return "VACANTES/formVacante";
 	}
 	
 	@PostMapping("/savevacante")
-	public String guardarvacante(VACANTE vacante, BindingResult miresultado, RedirectAttributes Attributes)
+	public String guardarvacante(VACANTE vacante, BindingResult miresultado, RedirectAttributes Attributes,@RequestParam("archivoImagen") MultipartFile multiPart)
 	{
 		
 		
@@ -71,6 +78,17 @@ public class VacantesController {
 		{
 			return "/VACANTES/formVacante";
 		}
+		
+		if (!multiPart.isEmpty()) {
+			//String ruta = "/empleos/img-vacantes/"; // Linux/MAC
+			String ruta = "c:/empleos/img-vacantes/"; // Windows
+			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			if (nombreImagen != null){ // La imagen si se subio
+			// Procesamos la variable nombreImagen
+			vacante.setImagen(nombreImagen);
+			}
+		}
+		
 		
 		String msje = "VACANTE AGREGADA EXITOSAMENTE";
 		

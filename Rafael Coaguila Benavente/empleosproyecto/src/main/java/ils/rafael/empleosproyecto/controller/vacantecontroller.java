@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ils.rafael.empleosproyecto.model.vacante;
 import ils.rafael.empleosproyecto.service.icategoriasService;
 import ils.rafael.empleosproyecto.service.vacantesService;
+import ils.rafael.empleosproyecto.util.Utileria;
 
 @Controller
 @RequestMapping(value="/vacantes")
@@ -76,7 +78,7 @@ public class vacantecontroller {
 	
 	
 	@PostMapping("/savevacante")
-	public String guardarvaca(vacante vacante, BindingResult resultado,RedirectAttributes Attributes) 
+	public String guardarvaca(vacante vacante, BindingResult resultado,RedirectAttributes Attributes,  @RequestParam("archivoImagen") MultipartFile multiPart) 
 	{
 		
 		for(ObjectError error: resultado.getAllErrors()){
@@ -94,7 +96,18 @@ public class vacantecontroller {
             Attributes.addFlashAttribute("mensaje", msje);
 		
 		
-		
+		 
+            if (!multiPart.isEmpty()) {
+            	//String ruta = "/empleos/img-vacantes/"; // Linux/MAC
+            	String ruta = "f:/empleos/img-vacantes/"; // Windows
+            	String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+            	if (nombreImagen != null){ // La imagen si se subio
+            	// Procesamos la variable nombreImagen
+            	vacante.setLogo(nombreImagen); 
+            	
+            	}
+            }
+            
 		
 		
 		System.out.println(vacante.toString());

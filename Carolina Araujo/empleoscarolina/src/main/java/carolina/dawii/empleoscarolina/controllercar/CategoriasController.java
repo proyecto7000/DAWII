@@ -2,11 +2,15 @@ package carolina.dawii.empleoscarolina.controllercar;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import carolina.dawii.empleoscarolina.model.Vacante;
 
 @Controller
 @RequestMapping(value="/categorias")
@@ -17,17 +21,19 @@ public class CategoriasController {
 	
 	@GetMapping("/create")
 	//@RequestMapping(value="/create", method=RequestMethod.GET)
-	public String crear() {
-		return "categorias/formCategorias";
+	public String crear( ) {
+		return "categorias/formCategoria";
 	}
 	
 	
-	@PostMapping("/save")
-	//@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String guardar(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion) {
-		System.out.println("Nombre de categoria: " +nombre);
-		System.out.println("Descripcion de Catetgoria: " +descripcion);
-		return "/categorias/listaCategorias";
+	//@PostMapping("/save")
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public String guardar(@RequestParam("Nombre")String nombre, @RequestParam("Descripcion")String descripcion) {
+		
+		System.out.println("Nombre de Categoria: "+nombre);
+		System.out.println("Descripcion de Categoria: "+descripcion);
+		
+		return "categorias/listaCategorias";
 	}
 	
 	

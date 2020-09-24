@@ -29,12 +29,12 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/VACANTE/save}" method="post" th:object="${Vacante}"  >
+            <form th:action="@{/VACANTE/save}" method="post" th:object="${vacante}" enctype="multipart/form-data" >
             
             <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
                Porfavor corriga los errores:
                 <ul>
-                   <li th:each="err :  ${#fields.errors('*')}"  th:text="${err}"   />
+                   <li th:each="err : ${#fields.errors('*')}"  th:text="${err}"   />
                 </ul>
             </div>
                           
@@ -56,8 +56,8 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label> 
-                    <select class="form-control" name="categoria" id="categoria" >
-                      <option th:each="categorias  : ${categorias}" th:value="${categorias.id}" th:text="${categorias.nombre}" ></option>
+                    <select class="form-control" th:field="*{categoria.id}" >
+                      <option th:each="categorias  : ${categorias}" th:value="${categorias.id}" th:text="${categorias.nombre}" >Ventas</option>
                    
                     </select>
                   </div>
@@ -65,8 +65,8 @@
 
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="estatus">Estatus</label>
-                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus">
+                    <label for="status">Estatus</label>
+                    <select class="form-control" name="status" th:field="*{status}" id="status">
 					  <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
                       <option value="Eliminada">Eliminada</option>	

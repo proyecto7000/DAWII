@@ -50,7 +50,15 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/categorias/save}" method="post">              
+            <form th:action="@{/categorias/save}" method="post" th:object="${Categoria}">      
+            <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
+               Porfavor corriga los errores:
+               <ul>
+                <li th:each="err : ${#fields.errors('*')}"  th:text="${err}"   />
+               </ul>
+            </div>
+            
+                    
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">

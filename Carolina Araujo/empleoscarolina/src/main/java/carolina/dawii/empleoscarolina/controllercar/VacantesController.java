@@ -62,7 +62,7 @@ public class VacantesController {
 		Vacante estaVacante= vacanteServicio.buscarPorId(idVacante);
 		
 		model.addAttribute("vacanteV", estaVacante);
-		return "vacantes/detalle";
+		return "/vacantes/detalle";
 	}
 	
 	@GetMapping("/delete")
@@ -70,19 +70,21 @@ public class VacantesController {
 		//Procesamiento del parámetro. Aqui ya se hizo la conversion de String a int
 		System.out.println("RequestParam: "+ id);
 		miModelo.addAttribute("miId" , id);
-		return "categorias/mensaje";
+		return "/categorias/mensaje";
 	}
 	
 	
 	
 	@PostMapping("/save")
-	public String guardarVacante(Vacante vacante, BindingResult result, RedirectAttributes attributes, @RequestParam("archivoImagen") MultipartFile multiPart) {
+	public String guardarVacante(Vacante vacante, BindingResult result, RedirectAttributes attributes, 
+	@RequestParam("archivoImagen") MultipartFile multiPart) {
 		if(result.hasErrors()) {
 			for(ObjectError error: result.getAllErrors()) {
 				System.out.println("Ocurrio un error: "+error.getDefaultMessage());
 			}
+
+				return "/vacantes/formVacante";
 			
-			return "vacantes/formVacante";
 		}
 		
 		if (!multiPart.isEmpty()) {
@@ -95,16 +97,12 @@ public class VacantesController {
 		
 			}
 		}
-		
-		
-		
-		
-		
+
 		
 		vacanteServicio.guardarVacante(vacante);
 		attributes.addFlashAttribute("msg","Registro guardado");
-		System.out.println("Vacante: "+vacante );
-		return "redirect:/home";
+		System.out.println("vacante: "+ vacante );
+		return "redirect:/";
 	}
 	
 	

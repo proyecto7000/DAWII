@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Pagina Principal</title>
 </head>
 <body>
-<h1>Ya estoy utilizando el motor de plantillas Thymeleaf</h1>
-
- <p th:text="${'Nombre: '+nombreV}" > </p>
- <p th:text="${'Edad: '+edadV}" > </p>
- <p th:text="${'Peso: '+pesoV}" > </p>
- <p th:text="${'Sexo: '+sexoV}" > </p>
- 
- 
+ <h1 th:text="${mensaje}">Bienvenidos a empleos</h1>
+ <h2>Hoy es </h2>
 </body>
 </html>

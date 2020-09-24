@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import carolina.dawii.empleoscarolina.model.Vacante;
 
 @Service
-public class VacantesServiceImpl implements IVacantesService {	
+public class VacantesServiceImpl implements IVacantesService {
+
 	
 	private List<Vacante> lista;
 	
@@ -57,13 +58,15 @@ public class VacantesServiceImpl implements IVacantesService {
 		  
 	}
 	
-	@Override
-	public List<Vacante> CargaVacantes(){
-		return lista;
-	}
 	
 	@Override
-	public Vacante buscarPorId(int idVacante) {
+	public List<Vacante> CargaVacantes() {
+		// TODO Auto-generated method stub
+		return lista;
+	}
+
+	@Override
+	public Vacante buscarPorId(Integer idVacante) {
 		// TODO Auto-generated method stub
 		for(Vacante v : lista) {
 			if(v.getId()==idVacante) {
@@ -72,17 +75,6 @@ public class VacantesServiceImpl implements IVacantesService {
 		}
 		return null;
 	}
-
-
-	@Override
-	public void guardarVacante(Vacante miVacante) {
-		// TODO Auto-generated method stub
-		lista.add(miVacante);
-	}
-	
-	
-
-
 
 		
 }

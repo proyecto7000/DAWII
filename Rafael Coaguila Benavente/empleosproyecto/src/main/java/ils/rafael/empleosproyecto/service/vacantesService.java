@@ -11,6 +11,4 @@ public interface vacantesService {
 	
 	public vacante buscaridvacante(int id);
 	
-	public  void guardarvacante(vacante vacante);
-	
 }

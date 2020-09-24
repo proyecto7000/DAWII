@@ -11,23 +11,6 @@ public class VACANTE {
 	private double Salario;
 	private Integer Destacado;
 	private String imagen="no-image.png";
-	private String Estatus;
-	private String detalles;
-	private CATEGORIAS Categoria;
-	
-	public String getEstatus() {
-		return Estatus;
-	}
-	public void setEstatus(String estatus) {
-		Estatus = estatus;
-	}
-	public String getdetalles() {
-		return detalles;
-	}
-	public void setdetalles(String detalle) {
-		detalles = detalle;
-	}
-	
 	
 	public String getImagen() {
 		return imagen;
@@ -71,19 +54,10 @@ public class VACANTE {
 	public void setDestacado(Integer destacado) {
 		Destacado = destacado;
 	}
-	
-	public CATEGORIAS getCategoria() {
-		return Categoria;
-	}
-	public void setCategoria(CATEGORIAS categoria) {
-		Categoria = categoria;
-	}
-	
 	@Override
 	public String toString() {
 		return "VACANTE [ID=" + ID + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Fecha=" + Fecha
-				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + ", Estatus=" + Estatus
-				+ ", detalles=" + detalles + ", Categoria=" + Categoria + "]";
+				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + "]";
 	}
 	
 }

@@ -2,72 +2,9 @@
 <html xmlns: th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-
-    <title>EmpleosApp | Creación de Categorías</title>
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
-  </head>
-
-  <body>
-    <header th:insert="fragmentos/Menu ::menu-principal"></header>
-    
-                
-    <main role="main">     
-    <div  th:if="${mensaje != null}"  class="alert alert-success"  th:text="${mensaje}"   role="alert" ></div>
-      <hr>
-      <div class="container"> 
-              
-        <div class="card">
-          <h4 class="card-header"><strong>Listado de Categorías</strong></h4>              
-          <div class="card-body">
-            <a class="btn btn-primary" href="/categorias/Crear" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
-            <hr>
-            <table class="table table-hover">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Descripción</th>
-                  <th scope="col">Operaciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr th:each="listar : ${Categorias}">
-                
-                   <td th:text="${listar.id}"></td>
-                   <td th:text="${listar.nombre}"></td>                  
-                   <td th:text="${listar.descripcion}"></td> 
-                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/categorias/delete(id=${listar.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-                   </td>
-                </tr>
-              </tbody>
-            </table>
-            
-          </div>
-        </div>
-      </div> <!-- /container -->
-
-    </main>
-
-<footer th:insert="fragmentos/Footer ::pie-pagina" class="footer"></footer>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== --> 
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
-  </body>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Lista de Categorias</h1>
+</body>
 </html>
-
-
-

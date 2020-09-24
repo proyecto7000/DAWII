@@ -41,10 +41,6 @@ public class Principal {
 		return "vacantes/listadetalle";
 	}
 	
-
-	
-
-	
 	
 }
 	

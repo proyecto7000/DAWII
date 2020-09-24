@@ -1,77 +1,68 @@
 package Practica.EmpleosWalter.Modelo;
 
-import java.util.Date;
-
 public class Vacantes {
 
-	private Integer id;
-	private String nombre;
-	private String descripcion;
-	private Date fecha;
-	private Double salario;
-	private Integer destacado;
+	private int Codigo;
+	private String Nombre;
+	private int edad;
+	private boolean Educacion; 
+	private String Direccion;
+	private int Telefono;
+	private int destacado;
 	private String imagenes="no-image.png";
-	private String estatus;
-	private String detalles;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public Double getSalario() {
-		return salario;
-	}
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
-	public Integer getDestacado() {
-		return destacado;
-	}
-	public void setDestacado(Integer destacado) {
-		this.destacado = destacado;
-	}
+
 	public String getImagenes() {
 		return imagenes;
 	}
 	public void setImagenes(String imagenes) {
 		this.imagenes = imagenes;
 	}
-	public String getEstatus() {
-		return estatus;
+	public int getDestacado() {
+		return destacado;
 	}
-	public void setEstatus(String estatus) {
-		this.estatus = estatus;
+	public void setDestacado(int destacado) {
+		this.destacado = destacado;
 	}
-	public String getDetalles() {
-		return detalles;
+	public int getCodigo() {
+		return Codigo;
 	}
-	public void setDetalles(String detalles) {
-		this.detalles = detalles;
+	public void setCodigo(int codigo) {
+		Codigo = codigo;
 	}
-	
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public int getEdad() {
+		return edad;
+	}
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	public boolean isEducacion() {
+		return Educacion;
+	}
+	public void setEducacion(boolean educacion) {
+		Educacion = educacion;
+	}
+	public String getDireccion() {
+		return Direccion;
+	}
+	public void setDireccion(String direccion) {
+		Direccion = direccion;
+	}
+	public int getTelefono() {
+		return Telefono;
+	}
+	public void setTelefono(int telefono) {
+		Telefono = telefono;
+	}
 	@Override
 	public String toString() {
-		return "Vacantes [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", detacado=" + destacado + ", imagenes=" + imagenes + ", estatus=" + estatus
-				+ ", detalles=" + detalles + "]";
+		return "Vacantes [Codigo=" + Codigo + ", Nombre=" + Nombre + ", edad=" + edad + ", Educacion=" + Educacion
+				+ ", Direccion=" + Direccion + ", Telefono=" + Telefono + ", destacado=" + destacado + ", imagenes="
+				+ imagenes + "]";
 	}
 }

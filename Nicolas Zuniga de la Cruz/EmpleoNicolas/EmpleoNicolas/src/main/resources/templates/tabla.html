@@ -19,8 +19,6 @@
 <th>Salario Ofrecido</th>
 <th>Descripcion</th>
 <th>Destacada</th>
-<th>Detalle</th>
-<th>Borrar</th>
 </tr>
 
 
@@ -37,12 +35,6 @@
 <span th:if="${tmpILS.destacada==1}" class="badge badge-success">Si</span>
 <span th:unless="${tmpILS.destacada==1}" class="badge badge-danger">No</span>
 </td>
-
-
-
-<td><a th:href="@{/vacantes/detalle/{id} (id=${tmpILS.id})	}" class="badge badge-success">Detalle</a></td>
-
-<td><a th:href="@{/vacantes/delete (id=${tmpILS.id}) }" class="btn btn-danger">Borrar</a></td>
 
 </tr>
 </table>

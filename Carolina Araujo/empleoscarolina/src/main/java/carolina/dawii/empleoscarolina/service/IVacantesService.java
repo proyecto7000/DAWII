@@ -5,6 +5,8 @@ import java.util.List;
 import carolina.dawii.empleoscarolina.model.Vacante;
 
 public interface IVacantesService {
-	List<Vacante> CargaVacantes();
-	Vacante buscarPorId(Integer idVacante);
+	public List<Vacante> CargaVacantes();
+	public Vacante buscarPorId(int idVacante);
+	public void guardarVacante(Vacante vacante);
+	
 }

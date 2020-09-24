@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <table style="border:1">
+         <tr >
+         <td>Id</td>
+         <td>Nombre</td>
+         <td>Descripcion</td>
+         <td>Fecha</td>
+         <td>Salario</td>
+        </tr>
+     <tr th:each="tmpILS: ${vacantesV}">
+         <td th:text="${tmpILS.id}" />
+         <td th:text="${tmpILS.nombre}" />
+         <td th:text="${tmpILS.descripcion}" />
+         <td th:text="${tmpILS.fecha}" />
+         <td th:text="${tmpILS.salario}" />
+   </tr>
+
+  </table>
+</body>
+</html>

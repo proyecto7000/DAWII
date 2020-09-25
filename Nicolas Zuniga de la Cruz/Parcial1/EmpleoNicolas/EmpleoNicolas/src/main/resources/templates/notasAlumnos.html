@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>INGRESE NUEVO REGISTRO DE NOTAS</h2>
+
+	<form th:action="@{/save}" method=post>
+	<table border="1">
+	<tr>
+	<td>Codigo</td>
+	<td>Nombre</td>
+	<td>Nota 1</td>
+	<td>Nota 2</td>
+	</tr>
+	
+	<tr>
+	<td><input type="text" name="codigo"></td>
+	<td><input type="text" name="nombre"></td>
+	<td><input type="text" name="nota1"></td>
+	<td><input type="text" name="nota2"></td>
+	
+	</tr>
+	
+	</table>
+	<br/>
+	<button type="submit">Guardar</button>
+	</form>
+</body>
+</html>

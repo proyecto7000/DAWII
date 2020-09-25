@@ -27,7 +27,7 @@
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
 
-            <form th:action="@{/vacantes/Save}" method="post" th:object="${vacantes}"> 
+            <form th:action="@{/vacantes/Save}" method="post" th:object="${vacantes}" enctype="multipart/form-data"> 
 
                     <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
                               Porfavor corriga el error:

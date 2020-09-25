@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ import carolina.dawii.empleoscarolina.util.Utileria;
 @Controller
 @RequestMapping(value="/VACANTE")
 public class VacantesController {
+	
+	@Value("${empleoscarolina.ruta.imagenes}")
+	private String ruta;
 	
 	@Autowired
 	private IVacantesService vacanteServicio;

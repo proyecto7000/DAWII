@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,9 @@ import Practica.EmpleosWalter.Util.Utileria;
 @RequestMapping("/vacantes")
 public class VacantController {
 
+	@Value("${empleosapp.ruta.imagenes}")
+	private String ruta;
+	
 	@Autowired
 	private VacantService servicioVacantes;
 	
@@ -63,7 +67,7 @@ public class VacantController {
 		}
 
 		if(!multipart.isEmpty()) {
-			String ruta="c:/empleos/img-vacantes/";
+			//String ruta="c:/empleos/img-vacantes/";
 			String nombreImagen =Utileria.guardarArchivo(multipart, ruta);
 			if(nombreImagen !=null) {
 				vacante.setImagenes(nombreImagen);

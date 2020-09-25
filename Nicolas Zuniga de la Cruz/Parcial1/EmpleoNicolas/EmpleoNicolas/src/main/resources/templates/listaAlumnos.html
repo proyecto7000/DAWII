@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>lista Alumnos</title>
+</head>
+<body>
+
+	<table border="1">
+	<tr>
+	<td>CODIGO</td>
+	<td>NOMBRE</td>
+	<td>NOTA 1</td>
+	<td>NOTA 2</td>
+	<td>PROMEDIO</td>
+	</tr>
+	
+	<tr th:each="tmpAlu : ${AlumnosV}">
+	<td th:text="${tmpAlu.codigo}"></td>
+	<td th:text="${tmpAlu.nombre}"></td>
+	<td th:text="${tmpAlu.nota1}"></td>
+	<td th:text="${tmpAlu.nota2}"></td>
+	<td th:text="${tmpAlu.promedio}"></td>
+	
+	</tr>
+	
+	</table>
+	<h3 th:text="${promedio}"></h3>
+	<a th:href="@{/create}">Crear Alumno</a>
+
+</body>
+</html>

@@ -32,6 +32,11 @@ public class CategoriaServiceImpl implements CategoriaService{
 		categoria3.setId(3);
 		categoria3.setNombre("Contabilidad");
 		categoria3.setDescripcion("Contador");
+		
+		Categorias categoria4 = new Categorias();
+		categoria4.setId(4);
+		categoria4.setNombre("Ingeniero");
+		categoria4.setDescripcion("De construccion civil");
 
 		list = new LinkedList<>();
 		
@@ -39,6 +44,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 		list.add(categoria1);
 		list.add(categoria2);
 		list.add(categoria3);
+		list.add(categoria4);
 	}
 	
 	

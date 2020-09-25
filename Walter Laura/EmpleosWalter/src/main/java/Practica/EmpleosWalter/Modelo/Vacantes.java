@@ -13,6 +13,8 @@ public class Vacantes {
 	private String imagenes="no-image.png";
 	private String estatus;
 	private String detalles;
+	private Categorias categoria;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -68,10 +70,20 @@ public class Vacantes {
 		this.detalles = detalles;
 	}
 	
+	
+	public Categorias getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
+	}
+	
 	@Override
 	public String toString() {
 		return "Vacantes [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", detacado=" + destacado + ", imagenes=" + imagenes + ", estatus=" + estatus
-				+ ", detalles=" + detalles + "]";
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagenes=" + imagenes + ", estatus="
+				+ estatus + ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
+	
+	
 }

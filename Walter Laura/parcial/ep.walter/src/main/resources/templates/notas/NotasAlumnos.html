@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+<form th:action="@{/notas/Save}" method="post" th:object="${alumno}">
+                    <label>Codigo</label>
+                    <input type="text" name="codigo" placeholder="Escriba el nombre de la categoria" value="">
+                    <br/>
+                    <br/>
+                    <label>Nombre</label>
+                    <input type="text"  name="nombre" placeholder="Escriba el nombre de la categoria" value="">
+                     <br/>
+                     <br/>
+                    <label>Nota 1</label>
+                    <input type="text"  name="nota1" placeholder="Escriba el nombre de la categoria" value="">
+                     <br/>
+                     <br/>
+                    <label>Nota 2</label>
+                    <input type="text"  name="nota2" placeholder="Escriba el nombre de la categoria" value="">
+                    <br/>
+                     <br/>
+                  <button type="submit" title="Guardar el registro." class="btn btn-primary">Guardar</button>
+</form>
+
+</body>
+</html>

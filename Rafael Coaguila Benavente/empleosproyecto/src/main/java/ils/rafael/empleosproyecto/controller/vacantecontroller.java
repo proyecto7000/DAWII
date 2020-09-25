@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,8 @@ import ils.rafael.empleosproyecto.util.Utileria;
 @RequestMapping(value="/vacantes")
 public class vacantecontroller {
 
+	@Value("${empleosproyecto.ruta.imagenes}")
+	private String ruta; 
 	
 	@Autowired
 	private vacantesService vacanteservicio;
@@ -99,7 +102,7 @@ public class vacantecontroller {
 		 
             if (!multiPart.isEmpty()) {
             	//String ruta = "/empleos/img-vacantes/"; // Linux/MAC
-            	String ruta = "f:/empleos/img-vacantes/"; // Windows
+            	//String ruta = "f:/empleos/img-vacantes/"; // Windows
             	String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
             	if (nombreImagen != null){ // La imagen si se subio
             	// Procesamos la variable nombreImagen

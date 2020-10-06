@@ -1,5 +1,6 @@
 package ils.empleos.jpaCarolina;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -8,15 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import ils.empleos.jpaCarolina.model.Categoria;
+import ils.empleos.jpaCarolina.model.Vacante;
 import ils.empleos.jpaCarolina.repository.CategoriasRepository;
+import ils.empleos.jpaCarolina.repository.VacantesRepository;
 
 @SpringBootApplication
 public class JpaCarolinaApplication implements CommandLineRunner{
 
 	@Autowired
-	private CategoriasRepository repo;
+	private CategoriasRepository repoCategorias;
+	
+	@Autowired
+	private VacantesRepository repoVacantes;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaCarolinaApplication.class, args);
@@ -24,7 +33,67 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		guardarTodas();
+		guardarVacante();
+	}
+	
+	
+	private void guardarVacante() {
+		Vacante vacante = new Vacante();
+		vacante.setNombre("Profesor de matemáticas");
+		vacante.setDescripcion("Escuela primaria solicita profesor para curso de matemáicas");
+		vacante.setFecha(new Date());
+		vacante.setSalario(8500.0);
+		vacante.setEstatus("Aprobada");
+		vacante.setDestacado(0);
+		vacante.setImagen("escuela.png");
+		vacante.setDetalles("<h1>Los requisitos para profesor de Matematicas</h1>");
+		Categoria cat = new Categoria();
+		cat.setId(15);
+		vacante.setCategoria(cat);
+		repoVacantes.save(vacante);
+	}
+	
+	
+	
+	private void buscarTodas() {
+		List<Vacante> lista = repoVacantes.findAll();
+		for(Vacante v : lista) {
+			System.out.println(v.getId() + " " + v.getNombre() + "-> " + v.getCategoria().getNombre());
+		}
+			
+		
+	}
+	
+	private void buscarTodosPaginacion() {
+		Page<Categoria> page = repoCategorias.findAll(PageRequest.of(0, 5, Sort.by("nombre").descending()));
+		System.out.println("Total Registros: " + page.getTotalElements());
+		System.out.println("Total Paginas: " + page.getTotalPages());
+		for(Categoria c : page.getContent()) {
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
+	}
+	
+	
+	
+	private void buscarTodosOrdenados() {
+		List<Categoria> categorias = repoCategorias.findAll(Sort.by("nombre").descending());
+		for(Categoria c : categorias) {
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
+	}
+	
+
+	 private void borrarTodoEnBloque() { 
+		 repoCategorias.deleteAllInBatch(); 
+	 }
+
+	
+	
+	private void buscarTodosJpa() {
+		List<Categoria> categorias = repoCategorias.findAll();
+		for(Categoria c : categorias) {
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
 	}
  
 	private void guardar() {
@@ -32,13 +101,13 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 		Categoria cat=new Categoria();
 		cat.setNombre("Finanzas");
 		cat.setDescripcion("Trabajos relacionados con finanzas y contabilidad");
-		repo.save(cat);
+		repoCategorias.save(cat);
 		System.out.println(cat);
 	}
 	
 	 
 	private void buscarPorId(){
-		Optional<Categoria> optional = repo.findById(1);
+		Optional<Categoria> optional = repoCategorias.findById(1);
 		if(optional.isPresent()){
 		System.out.println(optional.get());
 		}else
@@ -47,12 +116,12 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 
 
 	private void modificar(){
-		Optional<Categoria> optional = repo.findById(2);
+		Optional<Categoria> optional = repoCategorias.findById(2);
 		if(optional.isPresent()){
 		Categoria catTmp = optional.get();
 		catTmp.setNombre("Ing. de software");
 		catTmp.setDescripcion("Desarrollo de sistemas");
-		repo.save(catTmp);
+		repoCategorias.save(catTmp);
 		System.out.println(optional.get());
 		}else
 		System.out.println("Categoria no encontrada");	
@@ -61,17 +130,17 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 
 	private void eliminar(){
 		int idCategoria = 1;
-		repo.deleteById(idCategoria);
+		repoCategorias.deleteById(idCategoria);
 	}
 
 
 	private void conteo(){
-		long count=repo.count();
+		long count=repoCategorias.count();
 		System.out.println("Total de Categorías: " + count);
 	}
 	
 	private void eliminarTodos() {
-		repo.deleteAll();
+		repoCategorias.deleteAll();
 	}
 	
 	
@@ -83,7 +152,7 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 		ids.add(1);
 		ids.add(4);
 		ids.add(10);
-		Iterable<Categoria> categorias = repo.findAllById(ids);
+		Iterable<Categoria> categorias = repoCategorias.findAllById(ids);
 		for(Categoria cat : categorias) {
 			System.out.println(cat);
 		}
@@ -91,7 +160,7 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 	}
 
 	private void buscarTodos() {
-		Iterable<Categoria> categorias = repo.findAll();
+		Iterable<Categoria> categorias = repoCategorias.findAll();
 		for (Categoria cat : categorias) {
 			System.out.println(cat);
 		}
@@ -99,7 +168,7 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 	
 	
 	private void existeId() {
-		boolean existe = repo.existsById(16);
+		boolean existe = repoCategorias.existsById(16);
 		System.out.println("La categoria existe: " + existe);
 	}
 	
@@ -133,7 +202,7 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 	
 	private void guardarTodas() {
 		List<Categoria> categorias= getListaCategorias();
-		repo.saveAll(categorias);
+		repoCategorias.saveAll(categorias);
 	}
 	
 	

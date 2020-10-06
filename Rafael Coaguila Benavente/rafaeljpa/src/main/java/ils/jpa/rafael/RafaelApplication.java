@@ -13,13 +13,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import ils.jpa.rafael.model.categoria;
+import ils.jpa.rafael.model.vacante;
 import ils.jpa.rafael.repository.CategoriasRepository;
+import ils.jpa.rafael.repository.VacantesRepository;
 
 @SpringBootApplication
 public class RafaelApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoriasRepository repo;
+	
+	@Autowired
+	private VacantesRepository repovacantes;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RafaelApplication.class, args);
@@ -28,9 +33,37 @@ public class RafaelApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Buscartodaspaginacion();
+		buscatodasVacantes();
 		
 	}
+	
+	
+	private void guardarvacante() {
+		
+	
+	}
+	
+	
+	
+	// TODO ESTO ES VACANTES
+	
+	private void buscatodasVacantes() {
+		List<vacante> lista = repovacantes.findAll();
+		for(vacante v : lista ) {
+			System.out.println(v.getId()+"  "+ v.getNombre()+" /// "+ v.getCategoria().getNombre());
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// TODO ESTO ES CATEGORIAS
+	
 	// busca  la tabla (comienza desde la tabla 0) o la que deseee, y de segundo parametro el numero de registro que se desea buscar y mostrar
 	private void Buscartodaspaginacion() {
 		Page<categoria> page =  repo.findAll(PageRequest.of(0, 5,Sort.by("nombre")));

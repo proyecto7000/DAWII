@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import ils.jpa.rafael.model.categoria;
 import ils.jpa.rafael.repository.CategoriasRepository;
@@ -25,9 +28,55 @@ public class RafaelApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		guardartodas();
+		Buscartodaspaginacion();
 		
 	}
+	// busca  la tabla (comienza desde la tabla 0) o la que deseee, y de segundo parametro el numero de registro que se desea buscar y mostrar
+	private void Buscartodaspaginacion() {
+		Page<categoria> page =  repo.findAll(PageRequest.of(0, 5,Sort.by("nombre")));
+	     
+		//campos adicionales  para ver el total de registros y paginas.
+		System.out.println("Total de registros " +  page.getTotalElements());
+		System.out.println("Total de paginas " +  page.getTotalPages());
+		 
+		for(categoria c : page.getContent()) {
+			System.out.println(c.getId()+" "+ c.getNombre());
+		}
+	}
+	
+	
+	
+	
+	//  busca todas la lista  en este caso por nombre de la A a la Z  y si se usa .DESCENDING() Lo hara de manera contraria 
+	private void buscartodosOrdenados() {
+		 List<categoria> categorias = repo.findAll(Sort.by("nombre"));
+		 for(categoria c: categorias) {
+			 System.out.println(c.getId()+ " " +  c.getNombre());
+		 }
+		
+	}
+	// borra todas las datos insertados de golpe y no uno por uno como lo hace el crud
+	
+	private void borrartodasEnbloque() {
+	                repo.deleteAllInBatch();   
+	}
+	
+	
+	//encuentra todos registro para mostrarlo por id y nombre
+	
+	private void buscartodasjpa() {
+		 List<categoria> categorias = repo.findAll();
+		 for(categoria c: categorias) {
+			 System.out.println(c.getId()+ " " +  c.getNombre());
+		 }
+		 
+		 
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------------
+	
+	//CRUD CRUD CRUD CRUD
 	
 	// guarda los insert en cantidad y no una por una 
 	private void guardartodas() {

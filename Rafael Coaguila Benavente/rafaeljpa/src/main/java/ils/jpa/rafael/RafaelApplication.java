@@ -14,8 +14,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import ils.jpa.rafael.model.categoria;
+import ils.jpa.rafael.model.perfil;
+import ils.jpa.rafael.model.usuario;
 import ils.jpa.rafael.model.vacante;
 import ils.jpa.rafael.repository.CategoriasRepository;
+import ils.jpa.rafael.repository.PerfilesRepository;
+import ils.jpa.rafael.repository.UsuariosRepository;
 import ils.jpa.rafael.repository.VacantesRepository;
 
 @SpringBootApplication
@@ -27,6 +31,13 @@ public class RafaelApplication implements CommandLineRunner {
 	@Autowired
 	private VacantesRepository repovacantes;
 	
+	
+	@Autowired
+	private PerfilesRepository repoperfiles;
+	
+	@Autowired
+	private UsuariosRepository repousuarios;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(RafaelApplication.class, args);
 	}
@@ -34,8 +45,55 @@ public class RafaelApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		guardarvacante();
+		buscarusuario();
 		
+	}
+       // BUSCA UN USUARIO Y DESPLEGAR SUS PERFILES ASOCIADOS.
+	     public  void  buscarusuario() {
+	    	 Optional<usuario> optional =  repousuarios.findById(1);
+	    	 if(optional.isPresent()) {
+	    		 usuario u  = optional.get();
+	    		 System.out.println("USUARIO :   " + u.getNombre());
+	    		 System.out.println("Perfiles asignados ");
+	    		 for (perfil p : u.getPerfiles()) {
+	    			 System.out.println(p.getPerfil());
+	    		 }
+	    	 }
+	    	 else {
+	    		 System.out.println("Usuario no encontrado");
+	    	 }
+	     }
+	
+	
+	//crea un usuario con dos perfiles.
+	
+	private void CrearUsuarioConDosPerfiles() {
+		
+		usuario user = new usuario();
+		user.setNombre("Rafael");
+		user.setEmail("Rafo.stva@gmail.com");
+		user.setFechaRegistro(new Date());
+		user.setUsername("Rafolll");
+		user.setPassword("12345");
+		user.setEstatus(1);
+		
+		perfil per1  = new perfil();  /// perfil 1	
+		per1.setId(2);
+		
+		perfil per2 = new perfil(); /// perfil 2
+		per2.setId(3);
+		
+		user.agregar(per1);
+		user.agregar(per2);
+
+		repousuarios.save(user);
+	}
+	
+	
+	
+	
+	private void crearPerfilAplicacion() {
+		repoperfiles.saveAll(getPerfilesAplicacion());
 	}
 	
 	
@@ -244,6 +302,30 @@ public class RafaelApplication implements CommandLineRunner {
 		
 		
 	}
+	
+	
+	
+	
+	private  List<perfil> getPerfilesAplicacion(){
+	
+		List<perfil> lista = new LinkedList<perfil>();
+		perfil per1 = new perfil();
+		per1.setPerfil("SUPERVISOR");
+		
+		perfil per2 = new perfil();
+		per2.setPerfil("ADMINISTRADOR");
+		
+		perfil per3 = new perfil();
+		per3.setPerfil("USUARIO");
+		
+		lista.add(per1);
+		lista.add(per2);
+		lista.add(per3);
+	
+		return  lista;
+		
+	}
+	
 	
 
 }

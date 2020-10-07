@@ -2,8 +2,19 @@ package DAWII.ILS.JPAAnthony.Model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+@Entity
+@Table(name = "vacantes")
 public class VACANTE {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ID;
 	private String Nombre;
 	private String Descripcion;
@@ -13,6 +24,9 @@ public class VACANTE {
 	private String imagen="no-image.png";
 	private String Estatus;
 	private String detalles;
+	//@Transient
+	@OneToOne
+	@JoinColumn(name = "idCategoria")
 	private CATEGORIAS Categoria;
 	
 	public String getEstatus() {

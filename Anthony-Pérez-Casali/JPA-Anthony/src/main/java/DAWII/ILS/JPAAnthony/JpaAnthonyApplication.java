@@ -1,5 +1,6 @@
 package DAWII.ILS.JPAAnthony;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -8,15 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import DAWII.ILS.JPAAnthony.Model.CATEGORIAS;
+import DAWII.ILS.JPAAnthony.Model.VACANTE;
 import DAWII.ILS.JPAAnthony.REPOSITORIO.CATEGORIASRepositorio;
+import DAWII.ILS.JPAAnthony.REPOSITORIO.VACANTESRepositorio;
 
 @SpringBootApplication
 public class JpaAnthonyApplication implements CommandLineRunner {
 
 	@Autowired
-	private CATEGORIASRepositorio repo;
+	private CATEGORIASRepositorio repocategorias;
+	
+	@Autowired
+	private VACANTESRepositorio repovacantes;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaAnthonyApplication.class, args);
@@ -25,21 +34,51 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		guardartodas();
+		guardarvacante();
 	}
+	
+	private void guardarvacante()
+	{
+		VACANTE vac = new VACANTE();
+		vac.setNombre("PROFESOR MATEMATICO");
+		vac.setDescripcion("Trabajos relacionados con EDUCACION");
+		vac.setFecha(new Date());
+		vac.setSalario(433.0);
+		vac.setEstatus("Aprobada");
+		vac.setDestacado(0);
+		vac.setImagen("escuela.png");
+		vac.setdetalles("<h1>los requisitos</h1>");
+		CATEGORIAS cat = new CATEGORIAS();
+		cat.setId(15);
+		vac.setCategoria(cat);
+		repovacantes.save(vac);
+		System.out.println(vac);
+	}
+	
+	private void buscarvacantes()
+	{
+		List<VACANTE> lista = repovacantes.findAll();
+		for(VACANTE v : lista)
+		{
+			System.out.println(v.getID() + " :NOMBRE: " + v.getNombre() + " :CATEGORIA: " + v.getCategoria().getNombre());
+		}
+	}
+	
+	
+	
 	//METODO CREATE
 	private void guardar()
 	{
 		CATEGORIAS cat = new CATEGORIAS();
 		cat.setNombre("FINANZAS");
 		cat.setDescripcion("Trabajos relacionados con Finanzas y Contabilidad");
-		repo.save(cat);
+		repocategorias.save(cat);
 		System.out.println(cat);
 	}
 	//METODO BUSCAR
 	private void buscarPorID()
 	{
-		Optional<CATEGORIAS> optional = repo.findById(1);
+		Optional<CATEGORIAS> optional = repocategorias.findById(1);
 		if (optional.isPresent()) 
 		{
 			System.out.println(optional.get());
@@ -52,13 +91,13 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	//METODOMODIFICAR
 	private void modificar()
 	{
-		Optional<CATEGORIAS> optional = repo.findById(1);
+		Optional<CATEGORIAS> optional = repocategorias.findById(1);
 		if (optional.isPresent()) 
 		{
 			CATEGORIAS catTmp = optional.get();
 			catTmp.setNombre("FINANZAS NUEVA");
 			catTmp.setDescripcion("DESCRIPCION NUEVA");
-			repo.save(catTmp);
+			repocategorias.save(catTmp);
 			System.out.println("MODIFICADA CON EXITO: " + optional.get());
 		}else
 		{
@@ -69,18 +108,18 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	private void eliminar()
 	{
 		int idcategoria = 2;
-		repo.deleteById(idcategoria);
+		repocategorias.deleteById(idcategoria);
 	}
 	//METODO DE CONTAR
 	private void contar()
 	{
-		long count = repo.count();
+		long count = repocategorias.count();
 		System.out.println("TOTAL DE CATEGORIAS: " + count);
 	}
 	//METODO ELIMINAR TODO
 	private void eliminartodo()
 	{
-		repo.deleteAll();
+		repocategorias.deleteAll();
 	}
 	//METODO ENCONTRAR POR IDS
 	private void encontrarporIDs()
@@ -89,7 +128,7 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 		ids.add(1);
 		ids.add(4);
 		ids.add(6);
-		Iterable<CATEGORIAS> categorias = repo.findAllById(ids);
+		Iterable<CATEGORIAS> categorias = repocategorias.findAllById(ids);
 		for (CATEGORIAS cat : categorias)
 			{
 				System.out.println(cat);
@@ -98,13 +137,13 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	//METODO EXISTE id
 	private void existeID()
 	{
-		boolean existe = repo.existsById(50);
+		boolean existe = repocategorias.existsById(50);
 		System.out.println("LA CATEGORIA EXISTE " + existe);
 	}	
 	//METODO BUSCAR TODO
 	private void buscartodos()
 	{
-		Iterable<CATEGORIAS> categorias =  repo.findAll();
+		Iterable<CATEGORIAS> categorias =  repocategorias.findAll();
 		for(CATEGORIAS cat : categorias)
 		{
 			System.out.println(cat);
@@ -135,6 +174,40 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	private void guardartodas()
 	{
 		List<CATEGORIAS> categorias = getListaCategorias();
-		repo.saveAll(categorias);
+		repocategorias.saveAll(categorias);
+	}
+	
+	private void borrarbloque()
+	{
+		repocategorias.deleteAllInBatch();
+	}
+	
+	private void buscartodosjpa()
+	{
+		List<CATEGORIAS> categorias = repocategorias.findAll();
+		for(CATEGORIAS c : categorias)
+		{
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
+	}
+
+	private void buscartodosordenado()
+	{
+		List<CATEGORIAS> categorias = repocategorias.findAll(Sort.by("nombre"));
+		for(CATEGORIAS c : categorias)
+		{
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
+	}
+	
+	private void buscartodospaginacion()
+	{
+		Page<CATEGORIAS> page = repocategorias.findAll(PageRequest.of(1, 5, Sort.by("nombre")));
+		System.out.println("TOTAL REGISTROS: " + page.getTotalElements());
+		System.out.println("TOTAL PAGINAS: " + page.getTotalPages());
+		for(CATEGORIAS c : page.getContent())
+		{
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
 	}
 }

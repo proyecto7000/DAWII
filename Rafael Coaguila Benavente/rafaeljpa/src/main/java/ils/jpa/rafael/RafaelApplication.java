@@ -1,5 +1,6 @@
 package ils.jpa.rafael;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -33,14 +34,25 @@ public class RafaelApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		buscatodasVacantes();
+		guardarvacante();
 		
 	}
 	
 	
 	private void guardarvacante() {
-		
-	
+		vacante vacante = new vacante();
+		vacante.setNombre("Profesor de matematicas");
+		vacante.setDescripcion("Escuela primeria  solicita profesor para curso de matematicas");
+		vacante.setFecha(new Date());
+		vacante.setSalario(8500.0);
+		vacante.setEstatus("Aprobada");
+		vacante.setDestacado(0);
+		vacante.setImagen("escuela.png");
+		vacante.setDetalles("<h1>los requisitos para profesor de matematicas</h1>");
+		categoria cat = new  categoria();
+		cat.setId(15);
+		vacante.setCategoria(cat);
+		repovacantes.save(vacante);
 	}
 	
 	

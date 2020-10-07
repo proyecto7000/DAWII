@@ -14,8 +14,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import ils.empleos.jpaCarolina.model.Categoria;
+import ils.empleos.jpaCarolina.model.Perfil;
+import ils.empleos.jpaCarolina.model.Usuario;
 import ils.empleos.jpaCarolina.model.Vacante;
 import ils.empleos.jpaCarolina.repository.CategoriasRepository;
+import ils.empleos.jpaCarolina.repository.PerfilesRepository;
+import ils.empleos.jpaCarolina.repository.UsuariosRepository;
 import ils.empleos.jpaCarolina.repository.VacantesRepository;
 
 @SpringBootApplication
@@ -27,14 +31,69 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 	@Autowired
 	private VacantesRepository repoVacantes;
 	
+	@Autowired
+	private UsuariosRepository repoUsuarios;
+	
+	@Autowired
+	private PerfilesRepository repoPerfiles;
+	
+	
+	
+
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaCarolinaApplication.class, args);
 	}
 
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		guardarVacante();
+		buscarUsuario();
 	}
+	
+
+	//METODO PARA CREAR PERFILES / ROLES
+	private void crearPerfilesAplicacion() {
+		repoPerfiles.saveAll(getPerfilesAplicacion());
+	}
+	
+	
+	public void buscarUsuario() {
+		Optional<Usuario> optional = repoUsuarios.findById(1);
+		if(optional.isPresent()) {
+			Usuario u= optional.get();
+			System.out.println("Usuario: " + u.getNombre());
+			System.out.println("Perfiles asignados");
+			for(Perfil p : u.getPerfiles()) {
+				System.out.println(p.getPerfil());
+			}
+		}else {
+			System.out.println("Usuario no encontrado");
+		}
+	}
+	
+	private void crearUsuarioConDosPerfiles() {
+		Usuario user = new Usuario();
+		user.setNombre("Ivan Tinajero");
+		user.setEmail("ivanetinajero@gmail.com");
+		user.setFechaRegistro(new Date());
+		user.setUsername("itinajero");
+		user.setPassword("12345");
+		user.setEstatus(1);
+		
+		Perfil per1 = new Perfil();
+		per1.setId(2);
+		
+		Perfil per2 = new Perfil();
+		per2.setId(3);
+		
+		user.agregar(per1);
+		user.agregar(per2);
+		
+		repoUsuarios.save(user);
+	}
+	
+	
+	
 	
 	
 	private void guardarVacante() {
@@ -203,6 +262,29 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 	private void guardarTodas() {
 		List<Categoria> categorias= getListaCategorias();
 		repoCategorias.saveAll(categorias);
+	}
+	
+	
+	
+	private List<Perfil> getPerfilesAplicacion(){
+		List<Perfil> lista = new LinkedList<Perfil>();
+		
+		Perfil per1 = new Perfil();
+		per1.setPerfil("SUPERVISOR");
+		
+		Perfil per2 = new Perfil();
+		per2.setPerfil("ADMINISTRADOR");
+		
+		Perfil per3 = new Perfil();
+		per3.setPerfil("USUARIO");
+		
+		lista.add(per1);
+		lista.add(per2);
+		lista.add(per3);
+		
+		return lista;
+		
+		
 	}
 	
 	

@@ -14,8 +14,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import DAWII.ILS.JPAAnthony.Model.CATEGORIAS;
+import DAWII.ILS.JPAAnthony.Model.PERFIL;
+import DAWII.ILS.JPAAnthony.Model.USUARIO;
 import DAWII.ILS.JPAAnthony.Model.VACANTE;
 import DAWII.ILS.JPAAnthony.REPOSITORIO.CATEGORIASRepositorio;
+import DAWII.ILS.JPAAnthony.REPOSITORIO.PERFILESRepositorio;
+import DAWII.ILS.JPAAnthony.REPOSITORIO.USUARIOSRepositorio;
 import DAWII.ILS.JPAAnthony.REPOSITORIO.VACANTESRepositorio;
 
 @SpringBootApplication
@@ -27,6 +31,14 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	@Autowired
 	private VACANTESRepositorio repovacantes;
 	
+	@Autowired
+	private USUARIOSRepositorio repousuarios;
+	
+	@Autowired
+	private PERFILESRepositorio repoperfiles;
+	
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaAnthonyApplication.class, args);
 	}
@@ -34,7 +46,73 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		guardarvacante();
+		buscarusuarioid();
+	}
+	
+	private void buscarusuarioid()
+	{
+		Optional<USUARIO> optional = repousuarios.findById(1);
+		if (optional.isPresent()) 
+		{
+			USUARIO u = optional.get();
+			System.out.println("USUARIO: " + u.getNombre());
+			System.out.println("PERFILES ASIGNADOS");
+			for(PERFIL p : u.getPerfiles()) {
+				System.out.println(p.getPerfil());
+			}
+		}
+		else
+		{
+			System.out.println("USUARIO NO ENCONTRADO");
+		}
+	}
+	
+	
+	private void crearusuarioconperfil()
+	{
+		USUARIO user = new USUARIO();
+		user.setNombre("Anthony");
+		user.setEmail("Anthony.com");
+		user.setFechaRegistro(new Date());
+		user.setUsername("thony");
+		user.setPassword("1234");
+		user.setEstatus(1);
+		
+		PERFIL per1 = new PERFIL();
+		per1.setId(2);
+		
+		PERFIL per2 = new PERFIL();
+		per2.setId(3);
+		
+		user.agregar(per1);
+		user.agregar(per2);
+		
+		repousuarios.save(user);
+	}
+	
+	
+	private List<PERFIL> getPerfilesAplicacion()
+	{
+		List<PERFIL> listap = new LinkedList<PERFIL>();
+		
+		PERFIL per1 = new PERFIL();
+		per1.setPerfil("SUPERVISOR");
+		
+		PERFIL per2 = new PERFIL();
+		per2.setPerfil("ADMINISTRADOR");
+		
+		PERFIL per3 = new PERFIL();
+		per3.setPerfil("USUARIO");
+		
+		listap.add(per1);
+		listap.add(per2);
+		listap.add(per3);
+		return listap;
+	}
+	
+	private void crearperfilesaplicacion()
+	{
+		repoperfiles.saveAll(getPerfilesAplicacion());
 	}
 	
 	private void guardarvacante()

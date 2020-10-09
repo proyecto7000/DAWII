@@ -47,10 +47,70 @@ public class JpaCarolinaApplication implements CommandLineRunner{
 
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		buscarUsuario();
+		tarea2();
 	}
 	
+	
+	
+	
+	public void tarea1() {
+		List<Vacante> lista = repoVacantes.findBySalarioGreaterThanEqual(3500);
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": s/." + v.getSalario());
+		}
+	}
+	
+	public void tarea2() {
+		List<Vacante> lista = repoVacantes.findTop7ByOrderByIdAsc();
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre());
+		}
+	}
+	
+	
+	
+	
+	private void buscarVacantesVariosEstatus() {
+		String[] estatus = new String[] {"Eliminada", "Aprobada"};
+		List<Vacante> lista = repoVacantes.findByEstatusIn(estatus);
+		for(Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": " + v.getEstatus());
+		}
+	}
+	
+	
+	private void buscarVacantesSalario() {
+		List<Vacante> lista = repoVacantes.findBySalarioBetweenOrderBySalarioDesc(7000, 14000);
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": s/." + v.getSalario());
+		}
+	}
+	
+	
+	private void buscarVacantesPorDestacadoEstatus() {
+		List<Vacante> lista = repoVacantes.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": " + v.getEstatus() + ": " + v.getDestacado());
+		}
+	}
 
+	
+	private void buscarVacantesPorEstatus() {
+		List<Vacante> lista = repoVacantes.findByEstatus("Aprobada");
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacante v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": " + v.getEstatus());
+		}
+	}
+	
+	
+	
+	
+	
 	//METODO PARA CREAR PERFILES / ROLES
 	private void crearPerfilesAplicacion() {
 		repoPerfiles.saveAll(getPerfilesAplicacion());

@@ -14,8 +14,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import ils.demoJPA.walterJPA.Repository.CategoriasRepository;
+import ils.demoJPA.walterJPA.Repository.PerfilesRepository;
+import ils.demoJPA.walterJPA.Repository.UsuariosRepository;
 import ils.demoJPA.walterJPA.Repository.VacantesRepository;
 import ils.demoJPA.walterJPA.model.Categorias;
+import ils.demoJPA.walterJPA.model.Perfil;
+import ils.demoJPA.walterJPA.model.Usuario;
 import ils.demoJPA.walterJPA.model.Vacantes;
 
 
@@ -29,6 +33,13 @@ public class WalterJpaApplication implements CommandLineRunner{
 	@Autowired
 	private VacantesRepository repoVacantes;
 	
+	@Autowired
+	private PerfilesRepository repoPerfiles;
+	
+	@Autowired
+	private UsuariosRepository repoUsuarios;
+	
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(WalterJpaApplication.class, args);
@@ -37,10 +48,52 @@ public class WalterJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		buscarVacantes();
+		buscarUsuario();
 		
 	}
 	 
+	public void buscarUsuario() {
+		Optional<Usuario>optional=repoUsuarios.findById(1);
+		if(optional.isPresent()) {
+			Usuario u=optional.get();
+			System.out.println("Usario: "+u.getNombre());
+			System.out.println("Perfiles asignados");
+			for(Perfil p:u.getPerfiles()) {
+				System.out.println(p.getPerfil());
+			}
+		}else {
+			System.out.println("Usuario no encontrado");
+		}
+	}
+	
+	
+	private void crearUsuarioConDosPerfiles() {
+		
+		Usuario user = new Usuario();
+		user.setNombre("Marco Larota");
+		user.setEmail("MarcoL@gmail.com");
+		user.setFechaRegistro(new Date());
+		user.setUsername("Larota");
+		user.setPassword("123");
+		user.setEstatus(1);
+		
+		Perfil per1=new Perfil();
+		per1.setId(2);
+		
+		Perfil per2=new Perfil();
+		per2.setId(3);
+		
+		user.agregar(per1);
+		user.agregar(per2);
+		
+		repoUsuarios.save(user);
+	}
+	
+	private void crearPerfilesAplicacion() {
+		repoPerfiles.saveAll(getPerfilesAplicacion());
+	}
+	
+	
 	public void guardarVacante() {
 		Vacantes vacante = new Vacantes();
 		vacante.setNombre("Profesor de matematicas");
@@ -215,4 +268,29 @@ public class WalterJpaApplication implements CommandLineRunner{
 		
 		
 	}
+	
+	
+	private List<Perfil> getPerfilesAplicacion(){
+		List<Perfil> lista=new LinkedList<Perfil>();
+		Perfil per1 = new Perfil();
+		per1.setPerfil("Supervisor");
+		
+		Perfil per2 = new Perfil();
+		per2.setPerfil("Administrador");
+		
+		Perfil per3 = new Perfil();
+		per3.setPerfil("Usuario");
+		
+		lista.add(per1);
+		lista.add(per2);
+		lista.add(per3);
+		
+		return lista;
+	}
+	
+	
+	
+	
+	
+	
 }

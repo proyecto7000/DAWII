@@ -44,7 +44,7 @@
 	</tr>
 	<tr th:each="tmpILS:${VacantesV}">
 		<td><img th:src="@{/images/{img}( img=${tmpILS.imagen})}"width="136" height="136"></td>
-	    <td th:text="${tmpILS.ID}"></td>
+	    <td th:text="${tmpILS.Id}"></td>
 		<td th:text="${tmpILS.Nombre}"></td>
 		<td th:text="${tmpILS.Descripcion}"></td>
 		<td th:text="${tmpILS.Fecha}"></td>
@@ -55,10 +55,10 @@
 			<span th:unless="${tmpILS.Destacado==1}" class="badge badge-danger">NO</span>
 		</td>
                   	<td>
-                    	<a th:href="@{/detalle/{ID} (ID=${tmpILS.ID})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    	<a th:href="@{/detalle/{ID} (ID=${tmpILS.Id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     </td>
                   	<td>
-                    	<a th:href="@{/delete?ID={ID} (ID=${tmpILS.ID})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    	<a th:href="@{/delete?ID={ID} (ID=${tmpILS.Id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   	</td>
                 </tr>          
               </tbody>

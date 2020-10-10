@@ -15,89 +15,90 @@ import javax.persistence.Transient;
 public class VACANTE {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ID;
-	private String Nombre;
-	private String Descripcion;
-	private Date Fecha;
-	private double Salario;
-	private Integer Destacado;
+	private Integer id;
+	private String nombre;
+	private String descripcion;
+	private Date fecha;
+	private double salario;
+	private Integer destacado;
 	private String imagen="no-image.png";
-	private String Estatus;
+	private String estatus;
 	private String detalles;
 	//@Transient
 	@OneToOne
 	@JoinColumn(name = "idCategoria")
-	private CATEGORIAS Categoria;
-	
-	public String getEstatus() {
-		return Estatus;
-	}
-	public void setEstatus(String estatus) {
-		Estatus = estatus;
-	}
-	public String getdetalles() {
-		return detalles;
-	}
-	public void setdetalles(String detalle) {
-		detalles = detalle;
-	}
+	private CATEGORIAS idcategoria;
 	
 	
+	//METODOS GETTER SETTER
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public double getSalario() {
+		return salario;
+	}
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	public Integer getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
 	public String getImagen() {
 		return imagen;
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public Integer getID() {
-		return ID;
+	public String getEstatus() {
+		return estatus;
 	}
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
-	public String getNombre() {
-		return Nombre;
+	public String getDetalles() {
+		return detalles;
 	}
-	public void setNombre(String nombre) {
-		Nombre = nombre;
+	public void setDetalles(String detalles) {
+		this.detalles = detalles;
 	}
-	public String getDescripcion() {
-		return Descripcion;
+	public CATEGORIAS getIdcategoria() {
+		return idcategoria;
 	}
-	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+	public void setIdcategoria(CATEGORIAS idcategoria) {
+		this.idcategoria = idcategoria;
 	}
-	public Date getFecha() {
-		return Fecha;
-	}
-	public void setFecha(Date fecha) {
-		Fecha = fecha;
-	}
-	public double getSalario() {
-		return Salario;
-	}
-	public void setSalario(double salario) {
-		Salario = salario;
-	}
-	public Integer getDestacado() {
-		return Destacado;
-	}
-	public void setDestacado(Integer destacado) {
-		Destacado = destacado;
-	}
-	
-	public CATEGORIAS getCategoria() {
-		return Categoria;
-	}
-	public void setCategoria(CATEGORIAS categoria) {
-		Categoria = categoria;
-	}
-	
 	@Override
 	public String toString() {
-		return "VACANTE [ID=" + ID + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", Fecha=" + Fecha
-				+ ", Salario=" + Salario + ", Destacado=" + Destacado + ", imagen=" + imagen + ", Estatus=" + Estatus
-				+ ", detalles=" + detalles + ", Categoria=" + Categoria + "]";
+		return "VACANTE [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
+				+ ", detalles=" + detalles + ", idcategoria=" + idcategoria + "]";
 	}
+	
+	
+	
 	
 }

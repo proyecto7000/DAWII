@@ -46,8 +46,63 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		buscarusuarioid();
+		buscar7();
 	}
+	
+	private void buscarvacantevariosestatus()
+	{
+		String[] estatus = new String[] {"Eliminada", "Creada"};
+		List<VACANTE> lista = repovacantes.findByEstatusIn(estatus);
+		System.out.println("TOTAL REGISTROS: " + lista.size());
+		for(VACANTE v : lista)
+		{
+			System.out.println(v.getId() + " " + v.getNombre() + " " + v.getEstatus());
+		}
+		
+	}
+	
+//	private void buscarsalario()
+//	{
+//		List<VACANTE> lista = repovacantes.findBySalarioGreaterThanEqual(3500);
+//		System.out.println("TOTAL REGISTROS: " + lista.size());
+//		for(VACANTE v : lista)
+//		{
+//			System.out.println(v.getId() + " " + v.getNombre() + " " + v.getSalario());
+//		}
+//	}
+	
+	private void buscarvacantesalario()
+	{
+		List<VACANTE> lista = repovacantes.findBySalarioBetweenOrderBySalarioDesc(7000, 14000);
+		System.out.println("TOTAL REGISTROS: " + lista.size());
+		for(VACANTE v : lista)
+		{
+			System.out.println(v.getId() + " " + v.getNombre() + " " + v.getSalario());
+		}
+	}
+	
+	private void buscarvacantedestacadoestatus()
+	{
+		List<VACANTE> lista = repovacantes.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
+		System.out.println("TOTAL REGISTROS: " + lista.size());
+		for(VACANTE v : lista)
+		{
+			System.out.println(v.getId() + " " + v.getNombre() + " " + v.getEstatus() + " " + v.getDestacado());
+		}
+	}
+	
+	
+	private void buscarvacanteporestatus()
+	{
+		List<VACANTE> lista = repovacantes.findByEstatus("Aprobada");
+		System.out.println("TOTAL REGISTROS: " + lista.size());
+		for(VACANTE v : lista)
+		{
+			System.out.println(v.getId() + " " + v.getNombre() + " " + v.getEstatus());
+		}
+		
+	}
+	
 	
 	private void buscarusuarioid()
 	{
@@ -125,10 +180,10 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 		vac.setEstatus("Aprobada");
 		vac.setDestacado(0);
 		vac.setImagen("escuela.png");
-		vac.setdetalles("<h1>los requisitos</h1>");
+		vac.setDetalles("<h1>los requisitos</h1>");
 		CATEGORIAS cat = new CATEGORIAS();
 		cat.setId(15);
-		vac.setCategoria(cat);
+		vac.setIdcategoria(cat);
 		repovacantes.save(vac);
 		System.out.println(vac);
 	}
@@ -138,7 +193,7 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 		List<VACANTE> lista = repovacantes.findAll();
 		for(VACANTE v : lista)
 		{
-			System.out.println(v.getID() + " :NOMBRE: " + v.getNombre() + " :CATEGORIA: " + v.getCategoria().getNombre());
+			System.out.println(v.getId() + " :NOMBRE: " + v.getNombre() + " :CATEGORIA: " + v.getIdcategoria().getNombre());
 		}
 	}
 	
@@ -273,6 +328,15 @@ public class JpaAnthonyApplication implements CommandLineRunner {
 	{
 		List<CATEGORIAS> categorias = repocategorias.findAll(Sort.by("nombre"));
 		for(CATEGORIAS c : categorias)
+		{
+			System.out.println(c.getId() + " " + c.getNombre());
+		}
+	}
+	
+	private void buscar7()
+	{
+		List<VACANTE> vacantes = repovacantes.findFirst7ByOrderByIdDesc();
+		for(VACANTE c : vacantes)
 		{
 			System.out.println(c.getId() + " " + c.getNombre());
 		}

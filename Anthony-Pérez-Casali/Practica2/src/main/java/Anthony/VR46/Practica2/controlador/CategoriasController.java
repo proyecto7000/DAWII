@@ -3,6 +3,7 @@ package Anthony.VR46.Practica2.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import Anthony.VR46.Practica2.Service.ICategoriasService;
 public class CategoriasController {
 	
 	@Autowired
+	@Qualifier("categoriasServiceJPA")
 	private ICategoriasService categoriasService;
 	
 	
@@ -60,8 +62,8 @@ public class CategoriasController {
 				return "redirect:/indexcategoria";
 		    }
 		
-		@GetMapping("/detalleC/{IDC}")
-		public String mostrarDetalleC(@PathVariable("IDC") int idCategoria,Model model){
+		@GetMapping("/detalleC/{id}")
+		public String mostrarDetalleC(@PathVariable("id") int idCategoria,Model model){
 		System.out.println("PathVariable: " + idCategoria);
 		CATEGORIAS micategoria = categoriasService.buscarPorId(idCategoria);
 		model.addAttribute("MiCategoria", micategoria);
@@ -69,9 +71,9 @@ public class CategoriasController {
 		}
 		
 		@GetMapping("/deleteC")
-		public String BorrarC(@RequestParam("IDC") int idCategoria, Model mimodelo){
+		public String BorrarC(@RequestParam("id") int idCategoria, Model mimodelo){
 		System.out.println("RequestParam: " + idCategoria);
-		mimodelo.addAttribute("IDC", idCategoria);
+		mimodelo.addAttribute("id", idCategoria);
 		return "CATEGORIAS/Mensaje";
 		}
 		

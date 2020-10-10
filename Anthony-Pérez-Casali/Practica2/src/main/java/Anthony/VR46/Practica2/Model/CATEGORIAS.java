@@ -1,36 +1,45 @@
 package Anthony.VR46.Practica2.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CATEGORIAS")
 public class CATEGORIAS {
-	private Integer IDC;
-	private String NombreCat;
-	private String DescripcionCat;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nombre;
+	private String descripcion;
 	
 	//METODOS getter and setter
 	
-	public Integer getIDC() {
-		return IDC;
+	public Integer getId() {
+		return id;
 	}
-	public void setIDC(Integer iDC) {
-		IDC = iDC;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public String getNombreCat() {
-		return NombreCat;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNombreCat(String nombreCat) {
-		NombreCat = nombreCat;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getDescripcionCat() {
-		return DescripcionCat;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDescripcionCat(String descripcionCat) {
-		DescripcionCat = descripcionCat;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
-	//METODO TO STRING
+	//METODO to string
 	
 	@Override
 	public String toString() {
-		return "CATEGORIAS [IDC=" + IDC + ", NombreCat=" + NombreCat + ", DescripcionCat=" + DescripcionCat + "]";
+		return "CATEGORIAS [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
-	
 }

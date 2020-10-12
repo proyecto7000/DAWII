@@ -2,17 +2,32 @@ package Practica.EmpleosWalter.Modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="vacantes")
 public class Vacantes {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private String descripcion;
 	private Date fecha;
 	private Double salario;
 	private Integer destacado;
-	private String imagenes="no-image.png";
+	private String imagen="no-image.png";
 	private String estatus;
 	private String detalles;
+	
+    @OneToOne
+    @JoinColumn(name="idCategoria")
 	private Categorias categoria;
 	
 	public Integer getId() {
@@ -52,10 +67,10 @@ public class Vacantes {
 		this.destacado = destacado;
 	}
 	public String getImagenes() {
-		return imagenes;
+		return imagen;
 	}
 	public void setImagenes(String imagenes) {
-		this.imagenes = imagenes;
+		this.imagen = imagenes;
 	}
 	public String getEstatus() {
 		return estatus;
@@ -81,7 +96,7 @@ public class Vacantes {
 	@Override
 	public String toString() {
 		return "Vacantes [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacado=" + destacado + ", imagenes=" + imagenes + ", estatus="
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagenes=" + imagen + ", estatus="
 				+ estatus + ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
 	

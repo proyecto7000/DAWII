@@ -3,6 +3,7 @@ package Practica.EmpleosWalter.Servicio;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import Practica.EmpleosWalter.Modelo.Categorias;
@@ -10,10 +11,9 @@ import Practica.EmpleosWalter.Modelo.Categorias;
 
 
 @Service
+//@Primary
 public class CategoriaServiceImpl implements CategoriaService{
 
-	
-	
 	List<Categorias>list;
 	  
 	public CategoriaServiceImpl() {

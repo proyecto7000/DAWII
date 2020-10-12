@@ -45,9 +45,85 @@ public class RafaelApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		buscarusuario();
+		BuscarVacantesVariosEstatus();
 		
 	}
+	
+
+	
+	
+	// buscar vacantes por varios estatus (in)
+	
+        private void BuscarVacantesVariosEstatus() {
+        	
+        	String[]  estatus = new  String[] {"Eliminada", "Creada"};
+        	List<vacante> lista = repovacantes.findByEstatusIn(estatus);
+        	System.out.println("Registros encontrados:" +  lista.size());
+        	for(vacante v : lista) {
+        		System.out.println(v.getId() +" : " + v.getNombre()+ " : "+v.getEstatus());
+        	}
+        	
+        }
+	
+	
+	// busca vacantes  por salario entre esas cantidades de forma Descendente  1  2  3 4  5 6 
+	private void buscarvacantesalarioDesc() {
+		
+		List<vacante> lista = repovacantes.findBySalarioBetweenOrderBySalarioDesc(7000, 14000);
+		
+		
+		System.out.println("Registros encontrados: "+ lista.size());
+		for (vacante v : lista ) {
+			System.out.println(v.getId()+" : " + v.getNombre() +" : "+ v.getSalario());
+		}
+		
+		
+	}
+	
+	
+	
+	
+	// busca vacantes  por salario entre esas cantidades  5 4 3 2 1 
+	private void buscarvacantesalario() {
+		
+		List<vacante> lista = repovacantes.findBySalarioBetween(7000, 14000);
+		
+		
+		System.out.println("Registros encontrados: "+ lista.size());
+		for (vacante v : lista ) {
+			System.out.println(v.getId()+" : " + v.getNombre() +" : "+ v.getSalario());
+		}
+		
+		
+	}
+	
+	
+	
+	
+	// metod para buscar  vacantes  por   estatus  y destacado
+		private void BuscarIdporestatusyDestacado() {
+			List<vacante>  lista  = repovacantes.findByDestacadoAndEstatusOrderByIdDesc(1,"Aprobada");
+			System.out.println("Registros encontrados: "+ lista.size());
+			for (vacante v : lista ) {
+				System.out.println(v.getId()+" : " + v.getNombre() +" : "+ v.getEstatus() + " : "+ v.getDestacado());
+			}
+		}
+	
+	
+	
+	
+	
+	// metod para buscar  vacantes  por   estatus
+	private void BuscarIdporestatus() {
+		List<vacante>  lista  = repovacantes.findByEstatus("Aprobada");
+		System.out.println("Registros encontrados: "+ lista.size());
+		for (vacante v : lista ) {
+			System.out.println(v.getId()+" : " + v.getNombre() +" : "+ v.getEstatus());
+		}
+	}
+	
+	
+	
        // BUSCA UN USUARIO Y DESPLEGAR SUS PERFILES ASOCIADOS.
 	     public  void  buscarusuario() {
 	    	 Optional<usuario> optional =  repousuarios.findById(1);

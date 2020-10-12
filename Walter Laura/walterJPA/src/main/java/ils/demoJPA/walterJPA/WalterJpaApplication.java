@@ -48,10 +48,91 @@ public class WalterJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		buscarUsuario();
+		ejercicio2();
+		
+	}
+	
+	//Consultas Query tarea
+	
+	
+//	a.	Escriba a continuación cómo sería la declaración de un “Query method” que 
+//	implemente una sentencia SELECT para mostrar todas las vacantes que tengan un salario >= 3500
+	
+	private void ejercicio1() {
+		List<Vacantes> lista = repoVacantes.findBySalarioGreaterThanEqual(3500);
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacantes v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre() + ": s/." + v.getSalario());
+		}
+	}
+	
+	
+//	b.	Escriba a continuación cómo sería la declaración de un “Query method” que 
+//	implemente una sentencia SELECT para mostrar las primeras 7 vacantes en orden descedente por el id
+	
+	private void ejercicio2() {
+		List<Vacantes> lista = repoVacantes.findTop7ByOrderByIdAsc();//findTop7ByOrderByIdDesc();
+		System.out.println("Registros encontrados: " + lista.size());
+		for (Vacantes v : lista) {
+			System.out.println(v.getId() + ": " + v.getNombre());
+		}
+	}
+	
+	
+//	c.	Escriba a continuación cómo sería la declaración de un “Query method” que 
+//	implemente una sentencia SELECT para mostrar todas las vacantes que tengan un estatus <> ‘Aprobada’	
+
+	private void ejercicio3() {
+		List<Vacantes> lista = repoVacantes.findByEstatus("Aprobada");
+		System.out.println("Resgistro encontrados: " + lista.size());
+		for(Vacantes v:lista){
+			System.out.println(v.getId() +": "+v.getNombre() + ": "+v.getEstatus());
+		}
+		
+	}
+	
+	//Consultas QUERY
+	private void buscarVacantesVariosEstatus() {
+		String []estatus=new String [] {"Eliminada","Creada"};
+		List<Vacantes> lista = repoVacantes.findByEstatusIn(estatus);
+		System.out.println("Resgistro encontrados: " + lista.size());
+		for(Vacantes v:lista){
+			System.out.println(v.getId() +": "+v.getNombre() + ": "+v.getEstatus());
+		}
+	}
+	
+	private void buscarVacantesSalario() {
+		List<Vacantes> lista = repoVacantes.findBySalarioBetween(7000, 14000);
+		System.out.println("Resgistro encontrados: " + lista.size());
+		for(Vacantes v:lista){
+			System.out.println(v.getId() +": "+v.getNombre() + ": "+v.getSalario());
+		}
+		
+	}
+	
+	private void buscarVacantesPorDestacadoEstatus() {
+		List<Vacantes> lista = repoVacantes.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
+		System.out.println("Resgistro encontrados: " + lista.size());
+		for(Vacantes v:lista){
+			System.out.println(v.getId() +": "+v.getEstatus() + ": "+v.getDestacado());
+		}
 		
 	}
 	 
+	private void buscarVacantesPorEstatus() {
+		List<Vacantes> lista = repoVacantes.findByEstatus("Aprobada");
+		System.out.println("Resgistro encontrados: " + lista.size());
+		for(Vacantes v:lista){
+			System.out.println(v.getId() +": "+v.getNombre() + ": "+v.getEstatus());
+		}
+		
+	}
+	
+	
+	
+	
+	//Usuarios y perfiles
+	
 	public void buscarUsuario() {
 		Optional<Usuario>optional=repoUsuarios.findById(1);
 		if(optional.isPresent()) {
@@ -93,7 +174,7 @@ public class WalterJpaApplication implements CommandLineRunner{
 		repoPerfiles.saveAll(getPerfilesAplicacion());
 	}
 	
-	
+	//Vacantes
 	public void guardarVacante() {
 		Vacantes vacante = new Vacantes();
 		vacante.setNombre("Profesor de matematicas");
@@ -112,7 +193,7 @@ public class WalterJpaApplication implements CommandLineRunner{
 	}
 	
 	
-	//Vacantes
+
 	
 	private void buscarVacantes() {
 		List<Vacantes> lista = repoVacantes.findAll();

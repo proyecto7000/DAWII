@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ils.rafael.empleosproyecto.model.vacante;
 import ils.rafael.empleosproyecto.service.vacantesService;
@@ -22,13 +23,19 @@ public class Principal {
 	public String paginainicio(Model model){
 
 		
-		List<vacante> lista  =  vacantesservicio.cargarvacante(); 
+	//	List<vacante> lista  =  vacantesservicio.cargarvacante(); 
 		
-		model.addAttribute( "vacantes" , lista );
+	//	model.addAttribute( "vacantes" , lista );
           	  			
 		return "vacantes/home";
 	}
 	
+	@ModelAttribute
+	public void  setGenerico(Model model) {
+		
+		model.addAttribute("vacantes", vacantesservicio.buscarDestacadas());
+		
+	}
 	
 	
 	@GetMapping("/lista")

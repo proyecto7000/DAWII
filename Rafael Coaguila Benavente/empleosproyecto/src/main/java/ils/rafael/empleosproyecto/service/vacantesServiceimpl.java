@@ -108,4 +108,11 @@ public class vacantesServiceimpl implements vacantesService {
 		lista.add(vacante);
 	}
 
+
+	@Override
+	public List<vacante> buscarDestacadas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

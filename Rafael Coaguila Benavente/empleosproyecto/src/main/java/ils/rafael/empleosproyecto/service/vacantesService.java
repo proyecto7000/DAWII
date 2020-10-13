@@ -13,4 +13,7 @@ public interface vacantesService {
 	
 	public  void guardarvacante(vacante vacante);
 	
+	
+	List<vacante> buscarDestacadas();
+	
 }

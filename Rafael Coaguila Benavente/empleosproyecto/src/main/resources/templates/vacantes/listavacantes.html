@@ -53,8 +53,8 @@
                    <td th:text="${vacanteslista.nombre}"></td>                  
                    <td th:text="${vacanteslista.fecha}"></td> 
                    <td th:text="${vacanteslista.estatus}"></td>
-                  <td  th:if="${vacanteslista.destacada==1}"><span class="badge badge-success">SI</span></td>
-     <td  th:unless="${vacanteslista.destacada==1}"><span class="badge badge-pill badge-danger">NO</span></td>
+                  <td  th:if="${vacanteslista.destacado==1}"><span class="badge badge-success">SI</span></td>
+     <td  th:unless="${vacanteslista.destacado==1}"><span class="badge badge-pill badge-danger">NO</span></td>
                    <td>
                     <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     <a th:href="@{/categorias/delete(id=${vacanteslista.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>

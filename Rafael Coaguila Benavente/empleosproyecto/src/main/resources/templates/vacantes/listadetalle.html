@@ -27,15 +27,15 @@
 
 <tr th:each="listados: ${vacantes}">
      
-    <td> <img th:src="@{/images/{img}  ( img=${listados.logo} ) }" width="136" height="136"/> </td>
+    <td> <img th:src="@{/images/{img}  ( img=${listados.imagen} ) }" width="136" height="136"/> </td>
     
     <td  th:text="${listados.id}"/>
     <td  th:text="${listados.nombre}"/>
     <td  th:text="${listados.descripcion}"/>
     <td  th:text="${listados.fecha}"/>
     <td  th:text="${listados.salario}"/>
-	     <td  th:if="${listados.destacada==1}"><span class="badge badge-success">SI</span></td>
-	     <td  th:unless="${listados.destacada==1}"><span class="badge badge-pill badge-danger">NO</span></td>
+	     <td  th:if="${listados.destacado==1}"><span class="badge badge-success">SI</span></td>
+	     <td  th:unless="${listados.destacado==1}"><span class="badge badge-pill badge-danger">NO</span></td>
    <td><a th:href="@{/vacantes/detalle/{id} (id=${listados.id})}" class="badge badge-pill badge-success"  >Detalles</a> </td>
    <td><a th:href="@{/categorias/delete(id=${listados.id})}" class="badge badge-pill badge-danger"  >Borrar</a> </td>
    

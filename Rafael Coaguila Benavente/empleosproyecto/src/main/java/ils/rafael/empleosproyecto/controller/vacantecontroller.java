@@ -106,7 +106,7 @@ public class vacantecontroller {
             	String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
             	if (nombreImagen != null){ // La imagen si se subio
             	// Procesamos la variable nombreImagen
-            	vacante.setLogo(nombreImagen); 
+            	vacante.setImagen(nombreImagen); 
             	
             	}
             }

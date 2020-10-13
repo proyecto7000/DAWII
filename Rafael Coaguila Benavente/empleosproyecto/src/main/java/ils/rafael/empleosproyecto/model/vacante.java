@@ -1,18 +1,38 @@
 package ils.rafael.empleosproyecto.model;
 
+
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+
+
+@Entity
+@Table(name="vacantes")
 public class vacante {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer   id;
 	private String  nombre;
     private String   descripcion;
     private  Date fecha;
     private Double salario;
-    private Integer destacada;
-    private String logo="no-image.png";
+    private Integer destacado;
+    private String imagen="no-image.png";
     private String estatus;
     private String detalles;
+    
+    //@Transient
+    @OneToOne
+    @JoinColumn(name="idCategoria")
     private categoria categoria;
     
     
@@ -39,17 +59,17 @@ public class vacante {
 	public void setDetalles(String detalles) {
 		this.detalles = detalles;
 	}
-	public String getLogo() {
-		return logo;
+	public String getImagen() {
+		return imagen;
 	}
-	public void setLogo(String logo) {
-		this.logo = logo;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
-	public Integer getDestacada() {
-		return destacada;
+	public Integer getDestacado() {
+		return destacado;
 	}
-	public void setDestacada(Integer destacada) {
-		this.destacada = destacada;
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
 	}
 	public Integer getId() {
 		return id;
@@ -84,9 +104,10 @@ public class vacante {
 	@Override
 	public String toString() {
 		return "vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacada=" + destacada + ", logo=" + logo + ", estatus=" + estatus
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
 				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
+	
 	
 	
 	

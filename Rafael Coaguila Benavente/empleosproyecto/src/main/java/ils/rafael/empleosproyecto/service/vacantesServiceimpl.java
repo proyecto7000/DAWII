@@ -23,9 +23,9 @@ public class vacantesServiceimpl implements vacantesService {
    		vacante1.setDescripcion("se necesita ingeniero para soporte intranet");
    		vacante1.setFecha(new Date());
    		vacante1.setSalario(8000.0);
-   		vacante1.setDestacada(0);
+   		vacante1.setDestacado(0);
    		vacante1.setEstatus("Creada");
-   		vacante1.setLogo("empresa1.png");
+   		vacante1.setImagen("empresa1.png");
    		
    		
    		vacante vacante2= new vacante();
@@ -35,9 +35,9 @@ public class vacantesServiceimpl implements vacantesService {
    		vacante2.setDescripcion("se necesita ingeniero de sistemas");
    		vacante2.setFecha(new Date());
    		vacante2.setSalario(10000.0);
-   		vacante2.setDestacada(1);
+   		vacante2.setDestacado(1);
    		vacante2.setEstatus("Aprobada");
-   		vacante2.setLogo("empresa2.png");
+   		vacante2.setImagen("empresa2.png");
    		
    		vacante vacante3= new vacante();
    		vacante3.setId(3);
@@ -46,9 +46,9 @@ public class vacantesServiceimpl implements vacantesService {
    		vacante3.setDescripcion(" Se necesita abogado se paga poco");
    		vacante3.setFecha(new Date());
    		vacante3.setSalario(320.50);
-   		vacante3.setDestacada(1);
+   		vacante3.setDestacado(1);
    		vacante3.setEstatus("Eliminada");
-   		vacante3.setLogo("empresa3.png");
+   		vacante3.setImagen("empresa3.png");
    		
    		vacante vacante4= new vacante();
    		vacante4.setId(4);
@@ -57,7 +57,7 @@ public class vacantesServiceimpl implements vacantesService {
    		vacante4.setDescripcion("se necesita Doctor con doctorado ");
    		vacante4.setFecha(new Date());
    		vacante4.setSalario(5650.0);
-   		vacante4.setDestacada(1);
+   		vacante4.setDestacado(1);
    		vacante4.setEstatus("Creada");
        	
    		

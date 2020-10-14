@@ -42,15 +42,15 @@
 					<th>DETALLE</th>
 					<th>ELIMINAR</th>
 				</tr>
-				<tr th:each="tmpILS:${CategoriasV}">
-	    			<td th:text="${tmpILS.id}"></td>
-					<td th:text="${tmpILS.nombre}"></td>
-					<td th:text="${tmpILS.descripcion}"></td>
+				<tr th:each="categoria:${CategoriasV}">
+	    			<td th:text="${categoria.id}"></td>
+					<td th:text="${categoria.nombre}"></td>
+					<td th:text="${categoria.descripcion}"></td>
                   	<td>
-                    	<a th:href="@{/detalleC/{id} (id=${tmpILS.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    	<a th:href="@{/detalleC/{id} (id=${categoria.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     </td>
                   	<td>
-                    	<a th:href="@{/deleteC?id={id} (id=${tmpILS.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    	<a th:href="@{/deleteC?id={id} (id=${categoria.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   	</td>
                 </tr>          
               </tbody>

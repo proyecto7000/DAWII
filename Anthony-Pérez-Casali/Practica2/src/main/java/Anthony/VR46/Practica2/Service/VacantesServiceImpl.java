@@ -66,5 +66,10 @@ public class VacantesServiceImpl implements IVacantesServices{
 		// TODO Auto-generated method stub
 		Lista.add(vacante);
 	}
+	@Override
+	public List<VACANTE> buscardestacadas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

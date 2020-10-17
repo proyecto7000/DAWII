@@ -17,13 +17,11 @@ public class VacantesServiceJpa implements vacantesService {
 	@Autowired
 	private VacantesRepository vacantesrepo;
 	
-	@Override
 	public List<vacante> cargarvacante() {
 		// TODO Auto-generated method stub
 		return vacantesrepo.findAll();
 	}
 
-	@Override
 	public vacante buscaridvacante(int id) {
 		Optional<vacante>  optional = vacantesrepo.findById(id);
 		if(optional.isPresent()) {
@@ -32,17 +30,20 @@ public class VacantesServiceJpa implements vacantesService {
 		return null;
 	}
 
-	@Override
 	public void guardarvacante(vacante vacante) {
 		
 		vacantesrepo.save(vacante);
 
 	}
 
-	@Override
 	public List<vacante> buscarDestacadas() {
 		// TODO Auto-generated method stub
 		return vacantesrepo.findByDestacadoAndEstatusOrderByIdDesc(1,"Aprobada");
+	}
+
+	public void eliminar(int id) {
+		// TODO Auto-generated method stub
+		vacantesrepo.deleteById(id);
 	}
 
 }

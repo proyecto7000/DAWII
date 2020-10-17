@@ -115,4 +115,11 @@ public class vacantesServiceimpl implements vacantesService {
 		return null;
 	}
 
+
+	@Override
+	public void eliminar(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -16,4 +16,5 @@ public interface vacantesService {
 	
 	List<vacante> buscarDestacadas();
 	
+	void eliminar(int id);
 }

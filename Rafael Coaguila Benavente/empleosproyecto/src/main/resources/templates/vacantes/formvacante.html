@@ -29,7 +29,8 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/vacantes/savevacante}" method="post" th:object="${vacante}"    enctype="multipart/form-data"  >
+          
+            <form th:action="@{/vacantes/createvacante}" method="post" th:object="${vacante}" enctype="multipart/form-data" >
             
             <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
                               porfavor corriga el error:
@@ -59,7 +60,10 @@
                     
                     <select class="form-control" th:field="*{categoria.id}" >
                    
-                      <option th:each="categoriasD  : ${categoriasD}" th:value="${categoriasD.id}" th:text="${categoriasD.nombre}"  >Ventas</option>
+                      <option 
+                      th:each="categoriasD  : ${categoriasD}" 
+                      th:value="${categoriasD.id}" 
+                      th:text="${categoriasD.nombre}"  ></option>
                    
                     </select>
                   </div>

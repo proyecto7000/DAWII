@@ -8,4 +8,5 @@ public interface IUsuariosService {
 	public List<USUARIO>CargaUsuario();
 	public void guardarusuario(USUARIO usuario);
 	void eliminaruser(Integer idusuario);
+	USUARIO buscarPorId(Integer idusuario);
 }

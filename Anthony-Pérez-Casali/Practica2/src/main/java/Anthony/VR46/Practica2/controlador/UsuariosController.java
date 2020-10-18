@@ -53,6 +53,16 @@ public class UsuariosController {
 			return "redirect:/indexusuario";
 	    }
     
+	//METODO DE EDICION JPA
+			@GetMapping("/editaruser/{id}")
+			public String EDITAR(@PathVariable("id") int idusuario, Model model)
+			{
+				USUARIO usuario = usuarioServicio.buscarPorId(idusuario);
+				model.addAttribute("USUARIO", usuario);
+				//model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
+				return "USUARIOS/formRegistro";
+			}
+	
     @GetMapping("/deleteuser")
 	public String eliminar(@RequestParam("id") int idusuario, RedirectAttributes attributes) {		    	
     	System.out.println("PathVariable: " + idusuario);

@@ -24,4 +24,10 @@ public class UsuariosServiceImpl implements IUsuariosService {
 
 	}
 
+	@Override
+	public USUARIO buscarPorId(Integer idusuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

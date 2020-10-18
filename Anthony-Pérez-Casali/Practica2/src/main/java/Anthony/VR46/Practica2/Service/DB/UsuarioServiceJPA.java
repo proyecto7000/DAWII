@@ -1,11 +1,13 @@
 package Anthony.VR46.Practica2.Service.DB;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import Anthony.VR46.Practica2.Model.CATEGORIAS;
 import Anthony.VR46.Practica2.Model.USUARIO;
 import Anthony.VR46.Practica2.Respositorio.USUARIOSRepositorio;
 import Anthony.VR46.Practica2.Service.IUsuariosService;
@@ -30,6 +32,16 @@ public class UsuarioServiceJPA implements IUsuariosService {
 	public void eliminaruser(Integer idusuario) {
 		// TODO Auto-generated method stub
 		usuariosrepositorio.deleteById(idusuario);
+	}
+
+	@Override
+	public USUARIO buscarPorId(Integer idusuario) {
+		Optional<USUARIO> optional = usuariosrepositorio.findById(idusuario);
+		if(optional.isPresent())
+			{
+				return optional.get();
+			}
+		return null;
 	}
 
 	

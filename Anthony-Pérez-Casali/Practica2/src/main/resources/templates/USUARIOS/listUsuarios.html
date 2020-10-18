@@ -37,6 +37,8 @@
                   <th scope="col">Email</th>
                   <th scope="col">Estatus</th>
                   <th scope="col">Operaciones</th>
+                  <th scope="col">Editar</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -53,6 +55,10 @@
                     <a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
                     <a href="#" onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
                   </td>
+                  <td>
+                    	<a th:href="@{/editaruser/{id} (id=${usuario.id})}" class="btn btn-success btn-sm" role="button" title="Editar el usuario."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    </td>
+                  
                 </tr>                      
               </tbody>
             </table>

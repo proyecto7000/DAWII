@@ -29,7 +29,7 @@
 
         <div class="card">
           <h4 class="card-header"><strong>LISTADO DE CATEGORIAS</strong></h4> 
-          <div th:if="${mensaje != null}" class='alert alert-success' th:text="${mensaje}" role='alert'></div>             
+          <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>             
           <div class="card-body">
             <a class="btn btn-primary" th:href="@{/createcategoria}" title="Crear nueva Categoria" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>

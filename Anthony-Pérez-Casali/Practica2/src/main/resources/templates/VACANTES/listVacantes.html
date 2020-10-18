@@ -35,10 +35,10 @@
 		<th>LOGO</th>
 		<th>ID</th>
 		<th>NOMBRE</th>
-		<th>DESCRIPCION</th>
 		<th>CATEGORIA</th>
 		<th>FECHA</th>
 		<th>SALARIO</th>
+		<th>ESTATUS</th>
 		<th>DESTACADO</th>
 		<th>DETALLE</th>
 		<th>ELIMINAR</th>
@@ -47,10 +47,10 @@
 		<td><img th:src="@{/logos/{img}( img=${vacante.imagen})}"width="136" height="136"></td>
 	    <td th:text="${vacante.Id}"></td>
 		<td th:text="${vacante.Nombre}"></td>
-		<td th:text="${vacante.Descripcion}"></td>
 		<td th:text="${vacante.idcategoria.nombre}"></td>
 		<td th:text="${vacante.Fecha}"></td>
 		<td th:text="${vacante.Salario}"></td>
+		<td th:text="${vacante.Estatus}"></td>
 <!-- 		<td th:text="${tmpILS.Destacado==1} ? 'ACTIVO' : 'INACTIVO'"></td> -->
 		<td>
 			<span th:if="${vacante.Destacado==1}" class="badge badge-success">SI</span>

@@ -72,7 +72,7 @@ public class VacantesController {
 	public String EDITAR(@PathVariable("id") int idvacante, Model model)
 	{
 		VACANTE vacante = vacantesServicio.buscarporID(idvacante);
-		model.addAttribute("vacante", vacante);
+		model.addAttribute("VACANTE", vacante);
 		//model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
 		return "VACANTES/formVacante";
 	}

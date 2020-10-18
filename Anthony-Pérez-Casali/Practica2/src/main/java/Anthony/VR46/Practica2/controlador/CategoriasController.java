@@ -71,10 +71,11 @@ public class CategoriasController {
 		}
 		
 		@GetMapping("/deleteC")
-		public String BorrarC(@RequestParam("id") int idCategoria, Model mimodelo){
-		System.out.println("RequestParam: " + idCategoria);
-		mimodelo.addAttribute("id", idCategoria);
-		return "CATEGORIAS/Mensaje";
+		public String BorrarC(@RequestParam("id") int idCategoria, RedirectAttributes atributo){
+		System.out.println("PathVariable: " + idCategoria);
+		categoriasService.eliminarcat(idCategoria);
+		atributo.addFlashAttribute("msg", "CATEGORIA ELIMINADA CON EXITO");
+		return "redirect:/indexcategoria";
 		}
 		
 		

@@ -12,7 +12,7 @@ import Anthony.VR46.Practica2.Respositorio.CATEGORIASRepositorio;
 import Anthony.VR46.Practica2.Service.ICategoriasService;
 
 @Service
-//@Primary
+@Primary
 public class CategoriasServiceJPA implements ICategoriasService {
 
 	@Autowired
@@ -35,6 +35,12 @@ public class CategoriasServiceJPA implements ICategoriasService {
 				return optional.get();
 			}
 		return null;
+	}
+
+	@Override
+	public void eliminarcat(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		categoriasRepositorio.deleteById(idCategoria);
 	}
 
 }

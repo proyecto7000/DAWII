@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Nico.ils.EmpleoNicolas.model.Vacante;
+import Nico.ils.EmpleoNicolas.service.ICategoriasService;
 import Nico.ils.EmpleoNicolas.service.IVacantesService;
 
 
@@ -31,6 +32,9 @@ public class Vacantes {
 	
 	@Autowired
 	private IVacantesService vacanteServicio;
+	
+	 @Autowired
+	 private ICategoriasService categoriasServicio;
 
 	@GetMapping("/detalle/{id}")
 	public String mostrarDetalle(@PathVariable("id") int idVacante, Model model) {
@@ -42,18 +46,25 @@ public class Vacantes {
 		return "detalle";
 	}
 	
-	@GetMapping("/delete")
-	public String borrar(@RequestParam("id") int id, Model miModelo) {
-		//Procesamiento del parámetro 
-		//Aquí ya se hizo la conversión de STRING a INT
-		System.out.println("RequestParam: "+ id);
-		miModelo.addAttribute("miIdVacante" , id);
-		return "Categorias/mensaje";
+	@GetMapping("/delete/{id}")
+	public String borrar(@PathVariable("id") int id, RedirectAttributes attributes) {
+		System.out.println("Id vacante a eliminar: "+ id);
+		vacanteServicio.eliminarVacante(id);
+		attributes.addFlashAttribute("msj", "Vacante eliminada con exito!");
+		return "redirect:/vacantes/index";
+	}
+	
+	@GetMapping("/editar/{id}")
+    public String editar(@PathVariable("id") int idvacante, Model model) {
+         Vacante vacante = vacanteServicio.buscarVacanteporID(idvacante);
+         model.addAttribute("vacante"  , vacante);
+         model.addAttribute("categoriasC" , categoriasServicio.CargaCategorias());        
+         return "vacantes/formVacante";
 	}
 	
 	@GetMapping("/create")
-	public String nuevaVacante(Vacante vacante) {
-
+	public String nuevaVacante(Vacante vacante,Model model) {
+		model.addAttribute("categoriasC" , categoriasServicio.CargaCategorias());  
 		return "vacantes/formVacante";
 	}
 	

@@ -14,10 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import ils.JPA.JPAempleosDB.model.Categoria;
+import ils.JPA.JPAempleosDB.model.Perfil;
+import ils.JPA.JPAempleosDB.model.Usuario;
 import ils.JPA.JPAempleosDB.model.Vacante;
 
 
 import ils.JPA.JPAempleosDB.repository.CategoriasRepository;
+import ils.JPA.JPAempleosDB.repository.PerfilesRepository;
+import ils.JPA.JPAempleosDB.repository.UsuariosRepository;
 import ils.JPA.JPAempleosDB.repository.VacantesRepository;
 
 import org.springframework.boot.CommandLineRunner;
@@ -31,6 +35,11 @@ public class JpAempleosDbApplication implements CommandLineRunner{
 	@Autowired
 	private VacantesRepository repoVacantes;
 	
+	@Autowired
+	private UsuariosRepository repoUsuarios;
+	
+	@Autowired
+	private PerfilesRepository repoPerfiles;
 	public static void main(String[] args) {
 		SpringApplication.run(JpAempleosDbApplication.class, args);
 	}
@@ -55,11 +64,117 @@ public class JpAempleosDbApplication implements CommandLineRunner{
 		//buscarVacantesPorEstatus();
 		//buscarVacantesPorDestacadoEstatus();
 		//buscarVacanteSalario();
-		BuscarVacantesVariosEstatus();
+		//BuscarVacantesVariosEstatus();
 		
+		//PRACTICA 19
+		//buscarUsuario();
+		//guardarDatosUsuario();
+		//guardarPerfiles();
+		//PRACTICA 20
+		
+		//BuscarIdporestatus();
+		//mostrarVacantes();
+		//listarVacantesPorSalario();
+	}
+	
+	//PRACTICA 20
+	
+	//MOSTRAR VACANTES CON SALARIO MAYOR A 3500
+	private void listarVacantesPorSalario() {
+		List<Vacante> lista = repoVacantes.findBySalarioBetween(3500, 100000);
+		
+		System.out.println("Registros encontrados: "+ lista.size());
+		for (Vacante v : lista ) {
+			System.out.println(v.getId()+" : " + v.getNombre() +" : "+ v.getSalario());
+		}
 	}
 	
 	
+	//		BUSCAR VACANTE POR ESTATUS DE APROBADA
+	private void BuscarIdporestatus() {
+		List<Vacante>  lista  = repoVacantes.findByEstatus("Aprobada");
+		System.out.println("Registros Encontrados: "+ lista.size());
+		for (Vacante v : lista ) {
+			System.out.println("ID: "+v.getId()+" Nombre: " + v.getNombre() +" Estatus: "+ v.getEstatus());
+		}
+	}
+	
+	//		MOSTRAR LAS 7 PRIMERAS VACANTES
+	private void mostrarVacantes() {
+		Page<Vacante> page=repoVacantes.findAll(PageRequest.of(0, 7));
+		for(Vacante v:page.getContent()) {
+			System.out.println("Id: "+v.getId()+"  Nombre: "+v.getNombre());
+		}
+	}
+	
+	//PRACTICA 19 BUSCAR USUARIO Y PERFIL, RECUPERAR DATOS DE USUARIO
+	
+	//			  RECUPERAR DATOS DE USUARIO
+    public  void  buscarUsuario() {
+   	 Optional<Usuario> op =  repoUsuarios.findById(2);
+   	 
+   	if (op.isPresent()) 
+	{
+   		Usuario u = op.get();
+		System.out.println("Usuario: " + u.getNombre());
+		System.out.println("Perfiles Asignados:");
+		for(Perfil p : u.getPerfiles()) {
+			System.out.println(p.getPerfil());
+		}
+	}
+
+   	 else {
+   		 System.out.println("Usuario no Encontrado");
+   	 }
+    }
+    
+    // 			GUARDAR USUARIO
+	private void guardarDatosUsuario(){
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Lorenzo");
+		usuario.setEmail("Lorenzo@gmail.com");
+		usuario.setFechaRegistro(new Date());
+		usuario.setUsername("Lorenz3215");
+		usuario.setPassword("1234");
+		usuario.setEstatus(1);
+		
+		Perfil p1 = new Perfil();
+		p1.setId(1);
+		
+		Perfil p2 = new Perfil();
+		p2.setId(2);
+		
+		usuario.agregar(p1);
+		usuario.agregar(p2);
+		
+		repoUsuarios.save(usuario);
+	}
+	
+	//			GUARDAR PERFILES
+	private List<Perfil> crearPerfiles(){
+		
+		List<Perfil> listaPerfil = new LinkedList<Perfil>();
+		
+		Perfil p1 = new Perfil();
+		p1.setPerfil("Usuario");
+		
+		Perfil p2 = new Perfil();
+		p2.setPerfil("Monitor");
+		
+		Perfil p3 = new Perfil();
+		p3.setPerfil("Supervisor");	
+		
+		listaPerfil.add(p1);
+		listaPerfil.add(p2);
+		listaPerfil.add(p3);
+		return listaPerfil;
+	}
+	
+	private void guardarPerfiles()
+	{
+		repoPerfiles.saveAll(crearPerfiles());
+	}
 	
 	//----------------------VACANTES--------------------
 	//BUSCAR VANCANTES

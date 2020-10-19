@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,9 +38,31 @@ public class categoriascontroller {
 	}
 	
 
+@GetMapping("/delete/{id}")
+     public String eliminar(@PathVariable("id") int idcategoria, RedirectAttributes attributes) {
+
+      System.out.println("Borrando Categoria por id:" + idcategoria);    
+         categoriaServicio.eliminar(idcategoria); 
+         attributes.addFlashAttribute("msg", "la vacante fue eliminada con exito!");
+     return "redirect:/categorias/indexcategoria";
+}
+
+
+@GetMapping("/editar/{id}")
+public String editar(@PathVariable("id") int idCategoria, Model model) {
+
+             categoria categoria = categoriaServicio.buscarPorId(idCategoria);
+             model.addAttribute("categoria"  , categoria);
+             
+      return "/categorias/formcategorias";
+}
+
 
 	@GetMapping("/createcategoria")
-	public String mostrarcrear(categoria categoria){
+	public String mostrarcrear(categoria categoria , Model model){
+		
+		
+		
 		return "/categorias/formcategorias";
 	}
 	
@@ -82,13 +105,7 @@ public class categoriascontroller {
 //	}
 	
 	
-	@GetMapping("/delete")
-	public String borrar(@RequestParam("id") int id, Model model){
-       		
-		System.out.println("ELIMINADO CON ID: " + id);
-		  model.addAttribute("borrarid", id);
-		return "categorias/mensajeborrar";
-	}
+	
 	
 	
 	

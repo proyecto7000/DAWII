@@ -79,6 +79,21 @@ public class categoriasServiceimpl implements icategoriasService{
 		return null;
 	}
 
+
+
+
+
+
+
+
+
+
+	@Override
+	public void eliminar(Integer idcategoria) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

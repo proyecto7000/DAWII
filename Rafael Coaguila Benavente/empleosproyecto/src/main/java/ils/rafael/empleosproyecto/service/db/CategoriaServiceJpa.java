@@ -42,4 +42,10 @@ public class CategoriaServiceJpa implements icategoriasService {
 		return null;
 	}
 
+	@Override
+	public void eliminar(Integer idcategoria) {
+		// TODO Auto-generated method stub
+		categoriasRepo.deleteById(idcategoria);
+	}
+
 }

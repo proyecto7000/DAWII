@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import Anthony.VR46.Practica2.Model.VACANTE;
@@ -75,6 +76,11 @@ public class VacantesServiceImpl implements IVacantesServices{
 	public void eliminar(Integer idvacante) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public List<VACANTE> buscarByExample(Example<VACANTE> example) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

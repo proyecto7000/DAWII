@@ -1,5 +1,6 @@
 package Anthony.VR46.Practica2.controlador;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import Anthony.VR46.Practica2.Model.PERFIL;
 import Anthony.VR46.Practica2.Model.USUARIO;
 import Anthony.VR46.Practica2.Service.IUsuariosService;
 
@@ -35,7 +37,13 @@ public class UsuariosController {
 	@PostMapping("/saveusuario")
 	//@RequestMapping(value="/savecategoria", method=RequestMethod.POST)
 	public String NuevaVacante(USUARIO usuario, BindingResult miresultado, RedirectAttributes atributos){
-				
+		
+		usuario.setFechaRegistro(new Date());
+		
+		PERFIL perfil = new PERFIL();
+		perfil.setId(3);
+		usuario.agregar(perfil);
+		
 		for(ObjectError error: miresultado.getAllErrors()) {
 			System.out.println("OCURRIO UN ERROR: " + error.getDefaultMessage());
 			}

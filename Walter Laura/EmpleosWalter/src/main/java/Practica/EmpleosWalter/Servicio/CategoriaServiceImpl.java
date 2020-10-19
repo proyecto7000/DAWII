@@ -2,10 +2,7 @@ package Practica.EmpleosWalter.Servicio;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-
 import Practica.EmpleosWalter.Modelo.Categorias;
 
 
@@ -74,6 +71,14 @@ public class CategoriaServiceImpl implements CategoriaService{
 		
 		
 		return null;
+	}
+
+
+
+	@Override
+	public void eliminar(Integer idcategoria) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

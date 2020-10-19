@@ -29,7 +29,7 @@ public class VacanteServiceImpl implements IVacantesService {
 				vacante1.setDescripcion("Solicitamos Ing Civil para diseñar puente peatonal");
 				vacante1.setFecha(new Date());
 				vacante1.setSalario(9999.00);
-				vacante1.setDestacada(1);
+				vacante1.setDestacado(1);
 				vacante1.setImagen("img1.png");
 				
 				
@@ -40,7 +40,7 @@ public class VacanteServiceImpl implements IVacantesService {
 						vacante2.setDescripcion("Empresa importante solicita contador con 5 años de experiencia titulado");
 						vacante2.setFecha(new Date());
 						vacante2.setSalario(12000.00);
-						vacante2.setDestacada(2);
+						vacante2.setDestacado(2);
 						vacante2.setImagen("img2.png");
 				
 						
@@ -51,7 +51,7 @@ public class VacanteServiceImpl implements IVacantesService {
 						vacante3.setDescripcion("Empresa internacional solicita mecanico para mant e inst elèctrica");
 						vacante3.setFecha(new Date());
 						vacante3.setSalario(10500.00);
-						vacante3.setDestacada(1);
+						vacante3.setDestacado(1);
 						vacante3.setImagen("img3.png");
 						
 						
@@ -62,7 +62,7 @@ public class VacanteServiceImpl implements IVacantesService {
 						vacante4.setDescripcion("Solicitamos Diseñador Gràfio titulado para diseñar publicidad de la empresa");
 						vacante4.setFecha(new Date());
 						vacante4.setSalario(7500.00);
-						vacante4.setDestacada(4);
+						vacante4.setDestacado(4);
 						
 						
 						

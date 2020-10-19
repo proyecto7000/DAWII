@@ -3,6 +3,7 @@ package Nico.ils.EmpleoNicolas.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 
@@ -29,6 +30,7 @@ import Nico.ils.EmpleoNicolas.service.ICategoriasService;
 public class Categorias {
 	
 	@Autowired
+	//@Qualifier("CategoriasServiceJPA")
 	private ICategoriasService categoriaServicio; 
 	
 	@GetMapping("/index")
@@ -70,7 +72,7 @@ public class Categorias {
 		String msj="Categoria Agregada Exitosamente";
 		atributo.addFlashAttribute("mensaje",msj);
 		
-		categoriaServicio.guardarVacante(miCategoria);
+		categoriaServicio.guardarCategoria(miCategoria);
 		
 		System.out.println(miCategoria.toString());
 		

@@ -8,6 +8,8 @@ import Nico.ils.EmpleoNicolas.model.Categoria;
 public interface ICategoriasService {
 
 	public List<Categoria>CargaCategorias();
-	public void guardarVacante(Categoria categoria);
+	public void guardarCategoria(Categoria categoria);
+	Categoria buscarPorId(Integer idCategoria);
+	void eliminarCategoria (Integer idcategoria);
 	
 }

@@ -2,32 +2,42 @@ package Nico.ils.EmpleoNicolas.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+import Nico.ils.EmpleoNicolas.model.Categoria;
+
+
+@Entity
+@Table(name="vacantes")
 public class Vacante {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	
 	private Integer id;
 	private String nombre;
 	private String descripcion;
 	private Date fecha;
 	private Double salario;
-	private Integer destacada;
+	private Integer destacado;
 	private String imagen="no-image.png";
-	
 	private String estatus;
-	private String detalle;
+	private String detalles;
+	
+	//@Transient
+	@OneToOne
+	@JoinColumn(name="idCategoria")
+	private Categoria categoria;
 	
 	
-	public Integer getDestacada() {
-		return destacada;
-	}
-	public void setDestacada(Integer destacada) {
-		this.destacada = destacada;
-	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -58,34 +68,47 @@ public class Vacante {
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
-	
-	
-	
-	
-	
-	public String getStatus() {
+	public Integer getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public String getEstatus() {
 		return estatus;
 	}
-	public void setStatus(String status) {
-		this.estatus = status;
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
-	public String getDetalle() {
-		return detalle;
+	public String getDetalles() {
+		return detalles;
 	}
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
+	public void setDetalles(String detalles) {
+		this.detalles = detalles;
 	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
 	@Override
 	public String toString() {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacada=" + destacada + ", imagen=" + imagen + ", estatus=" + estatus
-				+ ", detalle=" + detalle + ", getDestacada()=" + getDestacada() + ", getImagen()=" + getImagen()
-				+ ", getId()=" + getId() + ", getNombre()=" + getNombre() + ", getDescripcion()=" + getDescripcion()
-				+ ", getFecha()=" + getFecha() + ", getSalario()=" + getSalario() + ", getStatus()=" + getStatus()
-				+ ", getDetalle()=" + getDetalle() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
+				+ ", detalles=" + detalles + ", categoria=" + categoria + ", getId()=" + getId() + ", getNombre()="
+				+ getNombre() + ", getDescripcion()=" + getDescripcion() + ", getFecha()=" + getFecha()
+				+ ", getSalario()=" + getSalario() + ", getDestacado()=" + getDestacado() + ", getImagen()="
+				+ getImagen() + ", getEstatus()=" + getEstatus() + ", getDetalles()=" + getDetalles()
+				+ ", getCategoria()=" + getCategoria() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-
-	
 	
 }

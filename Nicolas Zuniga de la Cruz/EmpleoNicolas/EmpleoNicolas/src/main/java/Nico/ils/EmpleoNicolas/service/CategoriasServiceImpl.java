@@ -3,17 +3,19 @@ package Nico.ils.EmpleoNicolas.service;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import Nico.ils.EmpleoNicolas.model.Categoria;
 
 
 @Service
+//@Primary
 public class CategoriasServiceImpl implements ICategoriasService {
 	
 	
 	private List<Categoria> lista;
-	/*Creamos Constructor*/
+	/*Create Constructor*/
 	
 	public CategoriasServiceImpl() {
 		
@@ -47,11 +49,35 @@ public class CategoriasServiceImpl implements ICategoriasService {
 		// TODO Auto-generated method stub
 		return lista;
 	}
+	
 
 	@Override
-	public void guardarVacante(Categoria categoria) {
+	public void guardarCategoria(Categoria categoria) {
 		// TODO Auto-generated method stub
 		lista.add(categoria);
+	}
+	
+	
+
+	@Override
+	public Categoria buscarPorId(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		for (Categoria  buscarid : lista)
+		{
+			if (buscarid.getId()==idCategoria)
+			{
+				return buscarid;
+			}
+		}	
+		return null;
+	}
+	
+	
+
+	@Override
+	public void eliminarCategoria(Integer idcategoria) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

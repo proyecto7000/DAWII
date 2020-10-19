@@ -70,11 +70,23 @@ public class CategoriasController {
 		return "CATEGORIAS/DetalleC";
 		}
 		
+		//METODO DE EDICION JPA
+		@GetMapping("/editarcat/{id}")
+		public String EDITAR(@PathVariable("id") int idCategoria, Model model)
+		{
+			CATEGORIAS categoria = categoriasService.buscarPorId(idCategoria);
+			model.addAttribute("CATEGORIAS", categoria);
+			//model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
+			return "CATEGORIAS/FormCategoria";
+		}
+		
+		
 		@GetMapping("/deleteC")
-		public String BorrarC(@RequestParam("id") int idCategoria, Model mimodelo){
-		System.out.println("RequestParam: " + idCategoria);
-		mimodelo.addAttribute("id", idCategoria);
-		return "CATEGORIAS/Mensaje";
+		public String BorrarC(@RequestParam("id") int idCategoria, RedirectAttributes atributo){
+		System.out.println("PathVariable: " + idCategoria);
+		categoriasService.eliminarcat(idCategoria);
+		atributo.addFlashAttribute("msg", "CATEGORIA ELIMINADA CON EXITO");
+		return "redirect:/indexcategoria";
 		}
 		
 		

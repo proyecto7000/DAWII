@@ -30,11 +30,13 @@
         <div class="card">
           <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
           <div class="card-body">
-            <a class="btn btn-primary" href="/vacantes/createvacante" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <a class="btn btn-primary" th:href="@{/vacantes/createvacante}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>
+            <div th:if="${msg!= null}" class='alert alert-dark' th:text="${msg}" role='alert'></div>
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
+                <th scope="col">Id</th>   
                    <th scope="col">Categoria</th>   
                   <th scope="col">Nombre</th>                  
                   <th scope="col">Fecha Pub.</th>
@@ -48,7 +50,7 @@
               
               
                 <tr th:each="vacanteslista : ${vacanteslista}">
-                
+                <td th:text="${vacanteslista.Id}"></td>
                       <td th:text="${vacanteslista.categoria.nombre}"></td>
                    <td th:text="${vacanteslista.nombre}"></td>                  
                    <td th:text="${vacanteslista.fecha}"></td> 
@@ -56,8 +58,8 @@
                   <td  th:if="${vacanteslista.destacado==1}"><span class="badge badge-success">SI</span></td>
      <td  th:unless="${vacanteslista.destacado==1}"><span class="badge badge-pill badge-danger">NO</span></td>
                    <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/categorias/delete(id=${vacanteslista.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/editar/{Id} (Id=${vacanteslista.Id})  }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/delete/{id} (id=${vacanteslista.id})  }"  onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                    </td>
                 </tr>
                       

@@ -11,4 +11,6 @@ public interface VacantService {
 List<Vacantes> cargarDatos();
 Vacantes buscarId(Integer idVacante);
 void guardar(Vacantes vacante);
+
+List<Vacantes>buscarDestacados();
 }

@@ -29,7 +29,7 @@
 
         <div class="row">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/{img}  ( img=${listados.imagen} ) }" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}  ( img=${listados.imagen} ) }" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
             <div class="card">
@@ -38,7 +38,7 @@
                 <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${listados.categoria.nombre}"></span></h5>
                 <h6 class="card-title"><strong>Publicado: </strong> <span  th:text="${listados.fecha}"> </span></h6>                
                 <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${listados.salario}"></span></h6>
-                <p class="card-text">La descripción corta de la oferta de trabajo</p>
+                <p class="card-text" th:text=${listados.descripcion}></p>
                 
                 <div class="card bg-light mb-3" >
                   <div class="card-body">

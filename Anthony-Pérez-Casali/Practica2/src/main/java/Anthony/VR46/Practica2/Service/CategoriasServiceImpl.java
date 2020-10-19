@@ -57,4 +57,10 @@ private List<CATEGORIAS> ListaC;
 		// TODO Auto-generated method stub
 		ListaC.add(categoria);
 	}
+
+	@Override
+	public void eliminarcat(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,13 +56,43 @@ public class VacantesController {
 	return "VACANTES/Detalle";
 	}
 	
+	//METODO DE ELIMINACION JPA
+	
 	@GetMapping("/delete")
-	public String Borrar(@RequestParam("ID") int id, Model mimodelo){
+	public String Borrar(@RequestParam("Id") int idvacante, RedirectAttributes atributo){
 	// Procesamiento del parámetro. Aquí, ya se hizo la conversión a String a int.
-	System.out.println("RequestParam: " + id);
-	mimodelo.addAttribute("ID", id);
-	return "CATEGORIAS/Mensaje";
+		System.out.println("PathVariable: " + idvacante);
+		vacantesServicio.eliminar(idvacante);
+		atributo.addFlashAttribute("msg","VACANTE ELIMINADA");
+	return "redirect:/indexvacante";
 	}
+	
+	//METODO DE EDICION JPA
+	@GetMapping("/editar/{id}")
+	public String EDITAR(@PathVariable("id") int idvacante, Model model)
+	{
+		VACANTE vacante = vacantesServicio.buscarporID(idvacante);
+		model.addAttribute("VACANTE", vacante);
+		//model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
+		return "VACANTES/formVacante";
+	}
+	
+	//METODO VIEW VER DETALLE
+	@GetMapping("/view/{id}")
+	public String verDetalle(@PathVariable("id") int idvacante, Model model)
+	{
+		VACANTE vacante = vacantesServicio.buscarporID(idvacante);
+		System.out.println("Vacante: " + vacante);
+		model.addAttribute("vacante", vacante);
+		return "detalle";
+	}
+	
+	@ModelAttribute
+	public void setGenerico(Model model)
+	{
+		model.addAttribute("Categorias", ServiceCategoria.cargarcategorias());
+	}
+	
 	
 	@GetMapping("/createvacante")
 	public String NuevaVacante(VACANTE vacante , Model model)

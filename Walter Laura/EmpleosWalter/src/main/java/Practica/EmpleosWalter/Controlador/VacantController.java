@@ -38,7 +38,7 @@ public class VacantController {
 	private VacantService servicioVacantes;
 	
 	@Autowired
-	//@Qualifier("CategoriasServiceJPA")
+//	@Qualifier("CategoriasServiceJPA")
 	private CategoriaService servicioCategorias;
 	
 	@GetMapping ("/Index")
@@ -93,13 +93,18 @@ public class VacantController {
 		return "vacantes/mensaje";
 	}
 	
-	@GetMapping ("/Vistas/{id}")
-	public String verDetalle(@PathVariable("id")int idVacante, Model model) {
+	@GetMapping("/Vistas/{id}")
+	public String mostrardetalle(@PathVariable("id") int idvacante , Model model) {
 		
-		Vacantes vacante = servicioVacantes.buscarId(idVacante);	
-		model.addAttribute("VacanteV",vacante);
+        System.out.println("PathVariable:" + idvacante);    
+        
+        Vacantes estavacante =  servicioVacantes.buscarId(idvacante);
+        
+		model.addAttribute("VacanteV",estavacante );
+		
 		return "vacantes/detalle";
 	}
+	
 	
 	
 	@InitBinder

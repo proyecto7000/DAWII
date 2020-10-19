@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class vacantecontroller {
         
 		model.addAttribute("listados",estavacante );
 		
-		return "vacantes/detalle";
+		return "/vacantes/detalle";
 	}
 	
 	
@@ -77,6 +78,25 @@ public class vacantecontroller {
 	}
 	
 	
+	@GetMapping("/delete/{id}")
+         public String eliminar(@PathVariable("id") int id, RedirectAttributes attributes) {
+		
+        System.out.println("Borrando vacante por id:" + id);    
+        vacanteservicio.eliminar(id); 
+		attributes.addFlashAttribute("msg", "la vacante fue eliminada con exito!");
+		return "redirect:/vacantes/index";
+	}
+	
+	
+	@GetMapping("/editar/{id}")
+    public String editar(@PathVariable("id") int idvacante, Model model) {
+	
+                 vacante vacante = vacanteservicio.buscaridvacante(idvacante);
+                 model.addAttribute("vacante"  , vacante);
+                 model.addAttribute("categoriasD" , categoriaservicio.buscarTodas());
+                 
+	return "vacantes/formvacante";
+}
 	
 	
 	
@@ -84,13 +104,16 @@ public class vacantecontroller {
 	public String guardarvaca(vacante vacante, BindingResult resultado,RedirectAttributes Attributes,  @RequestParam("archivoImagen") MultipartFile multiPart) 
 	{
 		
-		for(ObjectError error: resultado.getAllErrors()){
-
-                         System.out.println("Ocurrio un error en : " +  error.getDefaultMessage()); 
-		}
+		
 		
 		
 		if(resultado.hasErrors()){
+			
+			for(ObjectError error: resultado.getAllErrors()){
+
+                System.out.println("Ocurrio un error en : " +  error.getDefaultMessage()); 
+}
+			
 			return "/vacantes/formvacante";
 		}
 		
@@ -117,6 +140,17 @@ public class vacantecontroller {
 		vacanteservicio.guardarvacante(vacante);
 		 return "redirect:/";
 	}
+	
+	
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		 model.addAttribute("categoriasD" , categoriaservicio.buscarTodas());
+	}
+	
+	
+	
+	
 	
 	@InitBinder
 	public  void  initBinder(WebDataBinder webDataBinder) {

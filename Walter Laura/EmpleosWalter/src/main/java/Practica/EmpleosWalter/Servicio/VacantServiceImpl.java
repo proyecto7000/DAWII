@@ -99,4 +99,10 @@ public class VacantServiceImpl implements VacantService {
 		
 	}
 
+	@Override
+	public List<Vacantes> buscarDestacados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

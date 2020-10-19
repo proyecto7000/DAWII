@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,32 +46,28 @@
       <div class="container"> 
         <h2 class="font-weight-bold text-center text-capitalize">Lista de Vacantes</h2>
         <hr>
-        <div class="row" th:each="list: ${Vacantes}">
+        <div class="row" th:each="list:${Vacantes}">
           <div class="col-md-3">            
-            <img th:src="@{/images/{logo} (logo=${list.imagenes})}" width="150" height="136">          
-          </div>
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}  (img=${list.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+                 </div>
           <div class="col-md-9">
           
             <h2 th:text="${list.nombre}"></h2>
          
                 <h5 class="card-title"><strong>Categoria: </strong><span th:text="${list.categoria.nombre}"></span></h5>                
                 <h6 class="card-title"><strong>Publicado: </strong><span th:text="${list.fecha}"></span></h6>
-                <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${list.salario}"></span></h6>
-            
-				<div class="card bg-light mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <p class="card-text" th:utext="${list.detalles}"></p>
-                  </div>
-                </div>   
-
+               <p th:text="${list.descripcion}"></p>
+               
            <p><a th:href="@{/vacantes/Vistas/{id}(id=${list.id})}" class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a>            
-           <a th:href="@{/vacantes/Borrar/(id=${list.id})}" class="btn btn-secondary" href="#" role="button">Eliminar &raquo;</a></p>            
-          
           </div>
         </div>  
-      
-      
+      	
+      <!-- 				<div class="card bg-light mb-3" > -->
+<!--                   <div class="card-body"> -->
+<!--                     <h5 class="card-title">Detalles de la oferta de trabajo</h5> -->
+<!--                     <p class="card-text" th:utext="${list.detalles}"></p> -->
+<!--                   </div> -->
+<!--                 </div>    -->
                
 		  <hr>	
       </div> <!-- /container -->

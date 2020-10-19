@@ -66,11 +66,13 @@ public class Vacantes {
 	public void setDestacado(Integer destacado) {
 		this.destacado = destacado;
 	}
-	public String getImagenes() {
+
+	
+	public String getImagen() {
 		return imagen;
 	}
-	public void setImagenes(String imagenes) {
-		this.imagen = imagenes;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	public String getEstatus() {
 		return estatus;
@@ -96,9 +98,11 @@ public class Vacantes {
 	@Override
 	public String toString() {
 		return "Vacantes [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacado=" + destacado + ", imagenes=" + imagen + ", estatus="
-				+ estatus + ", detalles=" + detalles + ", categoria=" + categoria + "]";
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
+				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
+	
+
 	
 	
 }

@@ -13,4 +13,5 @@ Vacantes buscarId(Integer idVacante);
 void guardar(Vacantes vacante);
 
 List<Vacantes>buscarDestacados();
+void eliminar(Integer idVacante);
 }

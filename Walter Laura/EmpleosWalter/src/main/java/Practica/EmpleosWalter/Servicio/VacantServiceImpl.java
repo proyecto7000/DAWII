@@ -27,7 +27,7 @@ public class VacantServiceImpl implements VacantService {
 			v1.setSalario(8000.500);
 			v1.setDestacado(1);
 			v1.setEstatus("Aprobado");
-			v1.setImagenes("logo1.png");
+			v1.setImagen("logo1.png");
 			v1.setDetalles("");
 			
 			
@@ -39,7 +39,7 @@ public class VacantServiceImpl implements VacantService {
 			v2.setSalario(2000.100);
 			v2.setDestacado(1);
 			v2.setEstatus("Creado");
-			v2.setImagenes("logo2.png");
+			v2.setImagen("logo2.png");
 			v2.setDetalles("");
 
 			
@@ -51,7 +51,7 @@ public class VacantServiceImpl implements VacantService {
 			v3.setSalario(6000.000);
 			v3.setDestacado(0);
 			v3.setEstatus("Eliminado");
-			v3.setImagenes("logo3.png");
+			v3.setImagen("logo3.png");
 			v3.setDetalles("");
 
 			
@@ -63,7 +63,7 @@ public class VacantServiceImpl implements VacantService {
 			v4.setSalario(7000.800);
 			v4.setDestacado(1);
 			v4.setEstatus("Aprobado");
-			v4.setImagenes("logo4.png");
+			v4.setImagen("logo4.png");
 			v4.setDetalles("");
 
 			
@@ -103,6 +103,12 @@ public class VacantServiceImpl implements VacantService {
 	public List<Vacantes> buscarDestacados() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void eliminar(Integer idVacante) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

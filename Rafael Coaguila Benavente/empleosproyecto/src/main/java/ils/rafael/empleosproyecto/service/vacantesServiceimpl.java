@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ils.rafael.empleosproyecto.model.vacante;
@@ -120,6 +123,20 @@ public class vacantesServiceimpl implements vacantesService {
 	public void eliminar(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public List<vacante> buscarByExample(Example<vacante> example) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Page<vacante> cargarvacante(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -101,6 +101,14 @@ public class vacante {
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
+	
+	
+	public void  reset() {
+		this.imagen=null;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha

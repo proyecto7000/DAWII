@@ -8,6 +8,8 @@ import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,6 +66,21 @@ public class vacantecontroller {
 		
 		return  "/vacantes/listavacantes";
 	}
+	
+	
+	
+	
+	
+	@GetMapping(value ="/indexPaginate")
+	public String mostraIndexPaginado( Model model, Pageable page) {
+		
+		 Page<vacante> lista =  vacanteservicio.cargarvacante(page);
+		
+		model.addAttribute("vacanteslista" , lista);
+		
+		return "/vacantes/listavacantes";
+	}
+	
 	
 	
 	

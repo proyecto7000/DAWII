@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ils.rafael.empleosproyecto.model.vacante;
@@ -44,6 +47,18 @@ public class VacantesServiceJpa implements vacantesService {
 	public void eliminar(int id) {
 		// TODO Auto-generated method stub
 		vacantesrepo.deleteById(id);
+	}
+
+	@Override
+	public List<vacante> buscarByExample(Example<vacante> example) {
+		// TODO Auto-generated method stub
+		return vacantesrepo.findAll(example);
+	}
+
+	@Override
+	public Page<vacante> cargarvacante(Pageable page) {
+		// TODO Auto-generated method stub
+		return vacantesrepo.findAll(page);
 	}
 
 }

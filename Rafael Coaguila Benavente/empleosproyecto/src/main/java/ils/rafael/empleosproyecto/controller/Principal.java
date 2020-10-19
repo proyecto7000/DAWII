@@ -6,11 +6,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +25,17 @@ import ils.rafael.empleosproyecto.model.perfil;
 import ils.rafael.empleosproyecto.model.usuario;
 import ils.rafael.empleosproyecto.model.vacante;
 import ils.rafael.empleosproyecto.service.iUsuariosService;
+import ils.rafael.empleosproyecto.service.icategoriasService;
 import ils.rafael.empleosproyecto.service.vacantesService;
 
 
 @Controller
 public class Principal {
 
+	
+	@Autowired
+	icategoriasService categoriasservicio;
+	
 	@Autowired
 	vacantesService vacantesservicio;
 	
@@ -45,8 +55,11 @@ public class Principal {
 	
 	@ModelAttribute
 	public void  setGenerico(Model model) {
-		
+		vacante vacantesearch =  new vacante();
+		vacantesearch.reset();
 		model.addAttribute("vacantes", vacantesservicio.buscarDestacadas());
+		model.addAttribute("categorias", categoriasservicio.buscarTodas());
+		model.addAttribute("search" , vacantesearch);
 		
 	}
 	
@@ -77,6 +90,30 @@ public class Principal {
 		return "/usuarios/formusuario";
 	}
 
+	
+	
+	@GetMapping("/search")
+	public String buscar(@ModelAttribute("search") vacante vacante, Model model){
+		
+		System.out.println("Buscando por : "  + vacante );
+		                                 // where  descripcion like '%?%'
+		ExampleMatcher martcher =  ExampleMatcher.matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+		
+		
+		Example<vacante> example = Example.of(vacante,martcher);
+		List<vacante> lista =  vacantesservicio.buscarByExample(example);
+		model.addAttribute("vacantes", lista);
+		return "/vacantes/home";
+	}
+	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		
+		
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		
+	}
 	
 	
 	

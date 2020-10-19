@@ -1,10 +1,26 @@
 package ils.JPA.JPAempleosDB.model;
 
+//import java.beans.Transient;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import ils.JPA.JPAempleosDB.model.Categoria;
 
-public class Vacante {
 
+@Entity
+@Table(name="vacantes")
+public class Vacante {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
 	private Integer id;
 	private String nombre;
 	private String descripcion;
@@ -14,7 +30,13 @@ public class Vacante {
 	private String imagen="no-image.png";
 	private String estatus;
 	private String detalles;
+	
+	//@Transient
+	@OneToOne
+	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -76,6 +98,16 @@ public class Vacante {
 		this.categoria = categoria;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
+				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
+				+ ", detalles=" + detalles + ", categoria=" + categoria + ", getId()=" + getId() + ", getNombre()="
+				+ getNombre() + ", getDescripcion()=" + getDescripcion() + ", getFecha()=" + getFecha()
+				+ ", getSalario()=" + getSalario() + ", getDestacado()=" + getDestacado() + ", getImagen()="
+				+ getImagen() + ", getEstatus()=" + getEstatus() + ", getDetalles()=" + getDetalles()
+				+ ", getCategoria()=" + getCategoria() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
 	
 }

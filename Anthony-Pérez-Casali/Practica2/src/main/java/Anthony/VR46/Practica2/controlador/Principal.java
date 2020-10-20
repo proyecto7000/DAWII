@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -65,13 +66,18 @@ public class Principal {
 		return "lista";	
 	}
 	
+	
+	
+	
 	@GetMapping("/search")
 	public String buscar(@ModelAttribute("search")  VACANTE vacante , Model model)
 	{
 		System.out.println("buscando por : " + vacante);
-		Example<VACANTE> example = Example.of(vacante);
+		ExampleMatcher matcher = ExampleMatcher
+				.matching().withMatcher("descripcion" , ExampleMatcher.GenericPropertyMatchers.contains());
+		Example<VACANTE> example = Example.of(vacante,matcher);
 		List<VACANTE> lista = vacanteServicio.buscarByExample(example);
-		model.addAttribute("vacantes", lista);
+		model.addAttribute("VacantesV", lista);
 		return "Home";
 	}
 	
@@ -80,6 +86,7 @@ public class Principal {
 	{
 		binder.registerCustomEditor(String.class,new StringTrimmerEditor(true));
 	}
+
 	
 	@ModelAttribute
 	public void setGenericos(Model model)

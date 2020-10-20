@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,6 +49,15 @@ public class VacantesController {
 		model.addAttribute("VacantesV", Listas);
 		return "/VACANTES/listVacantes";
 	}
+	
+	@GetMapping(value="/indexpaginate")
+	public String mostrarindexpaginado(Model model , Pageable page)
+	{
+		Page<VACANTE> lista = vacantesServicio.buscartodas(page);
+		model.addAttribute("VacantesV",lista);
+		return "/VACANTES/listVacantes";
+	}
+	
 	
 	@GetMapping("/detalle/{id}")
 	public String mostrarDetalle(@PathVariable("id") int idVacante,Model model){

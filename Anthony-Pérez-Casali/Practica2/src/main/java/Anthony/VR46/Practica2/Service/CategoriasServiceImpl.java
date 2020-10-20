@@ -3,6 +3,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import Anthony.VR46.Practica2.Model.CATEGORIAS;
 
@@ -62,5 +64,11 @@ private List<CATEGORIAS> ListaC;
 	public void eliminarcat(Integer idCategoria) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Page<CATEGORIAS> buscartodas(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

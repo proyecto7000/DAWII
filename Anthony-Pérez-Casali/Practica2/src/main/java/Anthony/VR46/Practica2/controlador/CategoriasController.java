@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Anthony.VR46.Practica2.Model.CATEGORIAS;
+import Anthony.VR46.Practica2.Model.VACANTE;
 import Anthony.VR46.Practica2.Service.ICategoriasService;
 
 @Controller
@@ -32,6 +35,14 @@ public class CategoriasController {
 		public String mostrarIndex(Model model) {
 			List<CATEGORIAS> ListaC= categoriasService.cargarcategorias();
 			model.addAttribute("CategoriasV", ListaC);
+			return "/CATEGORIAS/ListaCategoria";
+		}
+		
+		@GetMapping(value="/indexpaginatecat")
+		public String mostrarindexpaginado(Model model , Pageable page)
+		{
+			Page<CATEGORIAS> lista = categoriasService.buscartodas(page);
+			model.addAttribute("CategoriasV",lista);
 			return "/CATEGORIAS/ListaCategoria";
 		}
 		

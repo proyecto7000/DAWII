@@ -37,7 +37,7 @@ public class HomeController {
 	@Autowired
    	private IUsuariosService servicioUsuarios;
 	
-	@GetMapping("/lista")
+	@GetMapping("/")
 	public String mostrarLista(Model model) {
 	
 //		List<Vacantes> listaS= servicioVacantes.cargarDatos();

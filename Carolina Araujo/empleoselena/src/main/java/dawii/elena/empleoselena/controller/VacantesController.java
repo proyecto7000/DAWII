@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dawii.elena.empleoselena.model.Categoria;
 import dawii.elena.empleoselena.model.Vacante;
 import dawii.elena.empleoselena.service.ICategoriasService;
 import dawii.elena.empleoselena.service.IVacantesService;
@@ -46,11 +50,19 @@ public class VacantesController {
 	
 	
 	@GetMapping("/index")
-	public String mostrarIndex(Model model) {
-		List<Vacante> listas=vacanteServicio.CargaVacantes();
+	public String mostrarIndex(Model model) { 
+		List<Vacante> listas=vacanteServicio.buscarTodas();
 		model.addAttribute("vacantesV", listas);
-		return "/vacantes/listVacantes";
+		return "vacantes/listVacantes";
 	}
+	
+	@GetMapping(value="/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) { 
+		Page<Vacante> listas=vacanteServicio.buscarTodas(page);
+		model.addAttribute("vacantesV", listas);
+		return "vacantes/listVacantes";
+	}
+	
 	
 	
 	@GetMapping("/create")
@@ -58,28 +70,34 @@ public class VacantesController {
 		model.addAttribute("categorias", categoriaServicio.buscarTodas());
 		return "/vacantes/formVacante";
 	}
-	
+
 	
 	@GetMapping("/detalle/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
-		
-		System.out.println("PathVariable: "+ idVacante);
-		
-		Vacante estaVacante= vacanteServicio.buscarPorId(idVacante);
-		
-		model.addAttribute("vacanteV", estaVacante);
-		return "/vacantes/detalle";
+		System.out.println("PathVariable: " + idVacante);
+		Vacante vacante= vacanteServicio.buscarPorId(idVacante);	
+		model.addAttribute("vacante", vacante);
+		return "vacantes/detalle";
 	}
 	
-	@GetMapping("/delete")
-	public String borrar(@RequestParam("id") int id, Model miModelo) {
+	
+	
+	@GetMapping("/delete/{id}")
+	public String borrar(@PathVariable("id") int idVacante, RedirectAttributes attributes) {
 		//Procesamiento del parámetro. Aqui ya se hizo la conversion de String a int
-		System.out.println("RequestParam: "+ id);
-		miModelo.addAttribute("miId" , id);
-		return "/categorias/mensaje";
+		System.out.println("Borrando vacante con id: "+ idVacante);
+		vacanteServicio.eliminar(idVacante);
+		attributes.addFlashAttribute("msg","La vacante fue eliminada!");
+		return "redirect:/VACANTE/index";
 	}
 	
-	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idVacante, Model model) {
+		Vacante vacante = vacanteServicio.buscarPorId(idVacante);
+		model.addAttribute("vacante", vacante);
+		//model.addAttribute("categorias", categoriaServicio.buscarTodas());
+		return "vacantes/formVacante";
+	}
 	
 	@PostMapping("/save")
 	public String guardarVacante(Vacante vacante, BindingResult result, RedirectAttributes attributes, 
@@ -88,9 +106,7 @@ public class VacantesController {
 			for(ObjectError error: result.getAllErrors()) {
 				System.out.println("Ocurrio un error: "+error.getDefaultMessage());
 			}
-
-				return "/vacantes/formVacante";
-			
+				return "/vacantes/formVacante";			
 		}
 		
 		if (!multiPart.isEmpty()) {
@@ -111,6 +127,10 @@ public class VacantesController {
 		return "redirect:/";
 	}
 	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categoria", categoriaServicio.buscarTodas());
+	}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

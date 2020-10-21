@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import dawii.elena.empleoselena.model.Vacante;
@@ -58,13 +61,11 @@ public class VacantesServiceImpl implements IVacantesService {
 		  
 	}
 	
-	@Override
-	public List<Vacante> CargaVacantes(){
+	public List<Vacante> buscarTodas(){
 		return lista;
 	}
 	
-	@Override
-	public Vacante buscarPorId(int idVacante) {
+	public Vacante buscarPorId(Integer idVacante) {
 		// TODO Auto-generated method stub
 		for(Vacante v : lista) {
 			if(v.getId()==idVacante) {
@@ -75,11 +76,36 @@ public class VacantesServiceImpl implements IVacantesService {
 	}
 
 
-	@Override
 	public void guardarVacante(Vacante miVacante) {
 		// TODO Auto-generated method stub
 		lista.add(miVacante);
 	}
+
+	public List<Vacante> buscarDestacadas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void eliminar(Integer idVacante) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Vacante> buscarByExample(Example<Vacante> example) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<Vacante> buscarTodas(org.springframework.data.domain.Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
 	
 	
 

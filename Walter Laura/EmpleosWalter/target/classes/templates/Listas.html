@@ -21,32 +21,35 @@
 
     <main role="main">
 
-      <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
           <h3>Encuentra el Empleo que andas buscando.</h3>
           Puedes buscar por descripción y categoría.
-          <form class="form-inline">
-            <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
-            <select class="custom-select custom-select mb-3">
-              <option selected>Seleccione una categoría</option>
-              <option value="1">Ventas</option>
-              <option value="2">Contabilidad</option>
-              <option value="3">Transporte</option>
-              <option value="4">Informática</option>
-              <option value="5">Construcción</option>
+          
+          <form class="form-inline"  th:object="${search}"     th:action="@{/search}" method="get">
+            <input   type="text" class="form-control mb-3" id="exampleFormControlInput1" th:field="*{descripcion}" placeholder="Escriba una búsqueda">&nbsp;
+            <select th:field="*{categoria.id}"   class="custom-select custom-select mb-3">
+              <option  th:value="${null}"  selected>Seleccione una categoría</option>
+              <option th:each=" categoria : ${Categorias}"
+                       th:value="${categoria.id}"
+                       th:text="${categoria.nombre}"
+              >
+              </option>
+              
             </select>&nbsp;
             <button type="submit" class="btn btn-primary mb-3">Buscar</button>
           </form>
+          
+          
         </div>
       </div>
       <hr>
-      
+            <div  th:if="${mensaje != null}"  class="alert alert-success"  th:text="${mensaje}"   role="alert" ></div>
 
       <div class="container"> 
         <h2 class="font-weight-bold text-center text-capitalize">Lista de Vacantes</h2>
         <hr>
-        <div class="row" th:each="list:${Vacantes}">
+        <div class="row" th:each="list :${Vacantes}">
           <div class="col-md-3">            
             <img class="rounded mx-auto d-block" th:src="@{/logos/{img}  (img=${list.imagen})}" alt="Generic placeholder image" width="220" height="220">            
                  </div>
@@ -61,24 +64,14 @@
            <p><a th:href="@{/vacantes/Vistas/{id}(id=${list.id})}" class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a>            
           </div>
         </div>  
-      	
-      <!-- 				<div class="card bg-light mb-3" > -->
-<!--                   <div class="card-body"> -->
-<!--                     <h5 class="card-title">Detalles de la oferta de trabajo</h5> -->
-<!--                     <p class="card-text" th:utext="${list.detalles}"></p> -->
-<!--                   </div> -->
-<!--                 </div>    -->
                
 		  <hr>	
-      </div> <!-- /container -->
+      </div>
 
     </main>
 
     <footer th:insert="fragmentos/Footer ::pie-pagina" class="footer"></footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
   </body>

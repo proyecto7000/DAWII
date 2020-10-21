@@ -50,8 +50,8 @@
         <h2 class="font-weight-bold text-center text-capitalize">Lista de Vacantes</h2>
         <hr>
         <div class="row" th:each="list :${Vacantes}">
-          <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}  (img=${list.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+          <div class="col-md-3" >            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/ {img}  (img = ${list.imagen})}" alt="Generic placeholder image" width="220" height="220">            
                  </div>
           <div class="col-md-9">
           

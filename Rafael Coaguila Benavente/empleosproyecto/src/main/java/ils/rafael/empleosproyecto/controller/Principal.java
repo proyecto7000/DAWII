@@ -82,7 +82,7 @@ public class Principal {
 	
 	
 	
-	@GetMapping("/createusuario")
+	@GetMapping("/signup")
 	public String mostrarcrear(usuario usuario, Model model){
 		
 		

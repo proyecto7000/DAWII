@@ -93,13 +93,13 @@ public class Principalcar {
 		
 		Example<Vacante> example = Example.of(vacante);
 		List<Vacante> lista = vacanteServicio.buscarByExample(example);
-		model.addAttribute("vacante", lista);
+		model.addAttribute("vacantesV", lista);
 		return "home";
 	}
 	
 	@InitBinder
 	public void InitBender(WebDataBinder binder) {
-	binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 	
 	@ModelAttribute

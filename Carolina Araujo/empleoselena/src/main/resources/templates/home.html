@@ -31,7 +31,7 @@
             <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
             <select th:field="*{categoria.id}" class="custom-select custom-select mb-3">
               <option th:value="${null}" selected>Seleccione una categoría</option>
-              <option th:each="categoria : ${categoria}"
+              <option th:each="categoria : ${categorias}"
               		  th:value="${categoria.id}"
               		  th:text="${categoria.nombre}"></option>
               

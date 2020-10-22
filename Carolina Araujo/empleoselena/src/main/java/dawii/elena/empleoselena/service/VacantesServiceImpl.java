@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import dawii.elena.empleoselena.model.Vacante;
@@ -98,10 +98,16 @@ public class VacantesServiceImpl implements IVacantesService {
 	}
 
 	@Override
-	public Page<Vacante> buscarTodas(org.springframework.data.domain.Pageable page) {
+	public Page<Vacante> buscarTodas(Pageable page) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
+	
+
+
 
 	
 

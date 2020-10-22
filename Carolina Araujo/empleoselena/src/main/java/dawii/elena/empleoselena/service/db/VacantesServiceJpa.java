@@ -3,8 +3,9 @@ package dawii.elena.empleoselena.service.db;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -54,7 +55,7 @@ public class VacantesServiceJpa implements IVacantesService{
 	}
 
 	@Override
-	public Page<Vacante> buscarTodas(org.springframework.data.domain.Pageable page) {
+	public Page<Vacante> buscarTodas(Pageable page) {
 		// TODO Auto-generated method stub
 		return vacantesRepo.findAll(page);
 	}

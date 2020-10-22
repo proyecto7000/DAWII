@@ -56,7 +56,8 @@
 				 <td th:text="${tmpEmp.nombre}"></td>
 				 <td th:text="${tmpEmp.descripcion}"></td>
 				 <td th:text="${tmpEmp.fecha}"></td>
-				 <td th:text="${tmpEmp.salario}"></td>		
+				 <td th:text="${tmpEmp.salario}"></td>	
+				 <td th:text="${tmpEmp.destacado==1 ? 'SI' : 'NO' }"></td>	
 				 <td>
 				 	<span th:if="${tmpEmp.destacado==1}" class="badge badge-success">Si </span>
 				 	<span th:unless="${tmpEmp.destacado==1}"class="badge badge-danger">No</span>
@@ -70,11 +71,10 @@
                                
               </tbody>
             </table>
-            
-            <nav th:if="${VACANTE.totalPages > 0}" arria-label="Page navigation example" >
+            <nav th:if="${VACANTE.totalPages > 0}" aria-label="Page navigation example" >
             	<ul class="pagination">
-            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${vacantes.number -1})}" class="page-link">Anterior</a></li>
-            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${vacantes.number +1})}" class="page-link">Siguiente</a></li>
+            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${VACANTE.number -1})}" class="page-link">Anterior</a></li>
+            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${VACANTE.number +1})}" class="page-link">Siguiente</a></li>
             	</ul>
             
             </nav>

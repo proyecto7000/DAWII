@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,8 @@ public class Categorias {
 		model.addAttribute("CategoriasV", listaCat);
 		return "categorias/listCategorias";
 	}
+	
+	
 	
 	@GetMapping("/create")
 	//@RequestMapping(value="/create", method=RequestMethod.GET)
@@ -83,12 +86,18 @@ public class Categorias {
 	
 	
 	
-	@GetMapping("/delete")
-	public String borrar(@RequestParam("idVacante") int id, Model miModelo) {
-		//procesamiento del parametro
-		//aquí ya se realizo la converción de String a int 	
-		System.out.println("RequestParam: "+id);
-		miModelo.addAttribute("idVacante",id);
-		return "categorias/mensaje";
+	@GetMapping("/delete/{id}")
+	public String borrar(@PathVariable("id") int id, RedirectAttributes attributes) {
+		System.out.println("Id de Categoria a eliminar: "+ id);
+		categoriaServicio.eliminarCategoria(id);
+		attributes.addFlashAttribute("msjCategoria", "Categoria eliminada con exito!");
+		return "redirect:/categorias/index";
+	}
+	
+	@GetMapping("/editar/{id}")
+    public String editar(@PathVariable("id") int idCategoria, Model model) {
+         Categoria categoria = categoriaServicio.buscarPorId(idCategoria);
+         model.addAttribute("categoria"  , categoria);    
+         return "categorias/formCategoria";
 	}
 }

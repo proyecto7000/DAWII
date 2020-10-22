@@ -32,7 +32,7 @@
             <a class="btn btn-primary" th:href="@{/categorias/create}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             
             <div th:if="${mensaje != null}" class='alert alert-success' th:text="${mensaje}" role='alert'></div>
-            
+            <div th:if="${msjCategoria != null}" class='alert alert-dark' th:text="${msjCategoria}" role='alert'></div>     
             <hr>
             <table class="table table-hover">
               <thead class="thead-light">
@@ -51,8 +51,8 @@
                   <td th:text="${tmpCat.nombre}"></td>
                   <td th:text="${tmpCat.Descripcion}"></td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/editar/{id} (id=${tmpCat.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/delete/{id} (id=${tmpCat.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>
 

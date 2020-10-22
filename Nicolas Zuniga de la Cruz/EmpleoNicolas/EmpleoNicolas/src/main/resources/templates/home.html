@@ -28,16 +28,30 @@
         <div class="container">
           <h3>Encuentra el trabajo que andas buscando.</h3>
           Puedes buscar por descripción y categoría.
-          <form class="form-inline">
+          
+          
+          <form class="form-inline" th:action="@{/buscar}" method="get" th:object="${buscar}">
             <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
-            <select class="custom-select custom-select mb-3">
-              <option selected>Seleccione una categoría</option>
-              <option value="1">Ventas</option>
-              <option value="2">Contabilidad</option>
-              <option value="3">Transporte</option>
-              <option value="4">Informática</option>
-              <option value="5">Construcción</option>
-            </select>&nbsp;
+<!--             <select class="custom-select custom-select mb-3"> -->
+<!--               <option selected>Seleccione una categoría</option> -->
+<!--               <option value="1">Ventas</option> -->
+<!--               <option value="2">Contabilidad</option> -->
+<!--               <option value="3">Transporte</option> -->
+<!--               <option value="4">Informática</option> -->
+<!--               <option value="5">Construcción</option> -->
+<!--             </select>&nbsp; -->
+
+			<select th:field="*{categoria.id}"   class="custom-select custom-select mb-3">
+                      <option th:value="${null}" selected>Seleccione una categoría</option>
+                      <option 
+                      th:each="tmpCat : ${categorias}"
+                      th:value="${tmpCat.id}"
+                      th:text="${tmpCat.nombre}">
+                      </option>
+                    
+                    </select>
+			
+			
             <button type="submit" class="btn btn-primary mb-3">Buscar</button>
           </form>
         </div>
@@ -60,7 +74,7 @@
          
           <div class="col-md-9">
             <h2 th:text="${tmpILS.nombre}"></h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>Arquitectura</span></h6>
+            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${tmpILS.categoria.nombre}"></span></h6>
             <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${tmpILS.fecha}"></span></h6>                
             <p th:text="${tmpILS.descripcion}"></p>
             <p><a class="btn btn-secondary" th:href="@{/vacantes/detalle/{id} (id=${tmpILS.id})	}" role="button">Ver Detalles &raquo;</a></p>            

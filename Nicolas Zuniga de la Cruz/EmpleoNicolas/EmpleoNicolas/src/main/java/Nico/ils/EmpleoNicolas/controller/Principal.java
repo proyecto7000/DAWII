@@ -7,11 +7,15 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import Nico.ils.EmpleoNicolas.model.Vacante;
+import Nico.ils.EmpleoNicolas.service.ICategoriasService;
 import Nico.ils.EmpleoNicolas.service.IVacantesService;
 
 @Controller
@@ -20,6 +24,8 @@ public class Principal {
 	
 	@Autowired
 	private IVacantesService vacanteServicio;
+	
+	@Autowired ICategoriasService categoriaServicio;
 	
 	
 	@GetMapping("/tabla")
@@ -53,6 +59,30 @@ public String paginaInicial(Model model) {
 	return "home";
 }
 
+
+
+@GetMapping("/buscar")
+public String buscar(@ModelAttribute("buscar") Vacante vacante,Model model) {
+	
+	ExampleMatcher matcher = ExampleMatcher.
+			//where descripcion like '%?%'
+			matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+	
+	Example<Vacante> example = Example.of(vacante);
+	List<Vacante> lista = vacanteServicio.buscarByExample(example);
+	model.addAttribute("vacantesV", lista);
+	return "home";
+}
+
+@ModelAttribute
+public void  setGenerico(Model model) {
+	Vacante vacanteB =  new Vacante();
+	vacanteB.reset();
+	model.addAttribute("vacantes", vacanteServicio.buscarVacanteDestacadas());
+	model.addAttribute("categorias", categoriaServicio.CargaCategorias());
+	model.addAttribute("search" , vacanteB);
+	
+}
 
 
 

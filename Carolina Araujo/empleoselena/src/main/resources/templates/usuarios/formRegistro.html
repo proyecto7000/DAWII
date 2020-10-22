@@ -29,7 +29,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Formulario de registro</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/VACANTE/save}" method="post" th:object="${vacante}" enctype="multipart/form-data" >
+            <form th:action="@{/usuarios/save}" method="post" th:object="${usuario}" enctype="multipart/form-data" >
             
             <div th:if="${#fields.hasErrors('*')}" class= "alert alert-danger" role="alert" >
                Por favor corriga los errores:
@@ -42,6 +42,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
+                    <input type="hidden" th:field="*{id}">
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Escriba su nombre"  required="required">
                   </div>
                 </div>
@@ -56,16 +57,24 @@
                   <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" th:field="*{username}" id="username" name="username" placeholder="Escribaa su nombre de usuario" required="required">
-                  </div> 
-                </div>    
+                  </div>   
               </div> 
-               <div class="col-md-9"> 
+              <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="password">Password</label>
                     <input type="text" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Escriba su clave de acceso" required="required">
                   </div> 
-                </div>    
               </div> 
+              <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="estatus">Estatus</label>
+                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus">
+					  <option value="1">Activo</option>
+                      <option value="2">Bloqueado</option>
+                    </select>
+                  </div>   
+              </div> 
+              
 
               <button type="submit" class="btn btn-primary">Registrarse</button>  
             </form>

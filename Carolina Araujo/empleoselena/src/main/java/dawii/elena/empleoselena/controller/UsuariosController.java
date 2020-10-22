@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dawii.elena.empleoselena.model.Perfil;
@@ -28,7 +29,7 @@ public class UsuariosController {
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
   		List<Usuario>lista = usuarioServicio.buscarTodos(); 			
-  		model.addAttribute("Usuarios" , lista);
+  		model.addAttribute("usuarios" , lista);
     	
     	return "usuarios/listUsuarios";
 	}
@@ -59,13 +60,14 @@ public class UsuariosController {
 			return "redirect:/index";
 	    }
     
-    @GetMapping("/delete/{id}")
-    public String eliminar(@PathVariable("id") int idUsuario, RedirectAttributes attributes) {		    	
+    @GetMapping("/delete")
+    public String eliminar(@RequestParam("id") int idusuario, RedirectAttributes attributes) {		    	
 		
-      	System.out.println("Borrando usuario por id:" + idUsuario);    
-        usuarioServicio.eliminar(idUsuario); 
-        attributes.addFlashAttribute("msg", "El usuario fue eliminado exitosamente");
-       	
-   		return "redirect:/usuarios/index";
+    	System.out.println("PathVariable: " + idusuario);
+		usuarioServicio.eliminar(idusuario);
+		attributes.addFlashAttribute("msg", "Usuario eliminado exitosamente!");
+    	return "redirect:/index";
 	}
+    
+    
 }

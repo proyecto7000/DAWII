@@ -106,8 +106,8 @@ public class Principalcar {
 	public void setGenericos(Model model) {
 		Vacante vacanteSearch = new Vacante();
 		vacanteSearch.reset();
-		model.addAttribute("vacantes", vacanteServicio.buscarDestacadas());
-		model.addAttribute("categorias", categoriaServicio.buscarTodas());
+		model.addAttribute("vacantesV", vacanteServicio.buscarDestacadas());
+		model.addAttribute("listaCategorias", categoriaServicio.buscarTodas());
 		model.addAttribute("search",vacanteSearch);
 		
 	}

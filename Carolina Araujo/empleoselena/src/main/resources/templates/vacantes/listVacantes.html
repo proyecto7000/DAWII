@@ -71,10 +71,10 @@
                                
               </tbody>
             </table>
-            <nav th:if="${VACANTE.totalPages > 0}" aria-label="Page navigation example" >
+            <nav th:if="${tmpEmp.totalPages > 0}" aria-label="Page navigation example" >
             	<ul class="pagination">
-            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${VACANTE.number -1})}" class="page-link">Anterior</a></li>
-            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${VACANTE.number +1})}" class="page-link">Siguiente</a></li>
+            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${tmpEmp.number -1})}" class="page-link">Anterior</a></li>
+            		<li class="page-item"><a th:href="@{/VACANTE/indexPaginate(page=${tmpEmp.number +1})}" class="page-link">Siguiente</a></li>
             	</ul>
             
             </nav>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.www.thymeleaf.org/extras/spring-security"
+>
 
 <head>
 <meta charset="utf-8">
@@ -46,7 +48,14 @@
                     <p    class="card-text" th:utext="${vacanteV.detalles}" ></p>
                   </div>
                 </div>   
-                <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
+                
+
+				<a class="btn btn-primary" href="#" sec:authorize="isAuthenticated()" role="button" 
+				title="Quiero aplicar para esta oferta de trabajo.">
+				Aplicar</a>                            
+
+                
+              
               </div>
             </div>  
           </div>

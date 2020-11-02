@@ -10,6 +10,11 @@
             <li class="nav-item">
               <a class="nav-link active" href="#">Inicio</a>
             </li>
+            
+            
+<!--             sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')" -->
+<!--             sec:authorize="hasAnyAuthority('ADMINISTRADOR')" -->
+            
             <li class="nav-item">
               <a class="nav-link" th:href="@{/vacantes/index}">Vacantes</a>
             </li>
@@ -20,7 +25,27 @@
               <a class="nav-link" th:href="@{/usuarios/index}">Usuarios</a>
             </li>
           </ul>  
-          <a class="btn btn-primary" th:href="@{/usuarios/prueba}">Ingresar</a>&nbsp;
-          <a class="btn btn-primary" th:href="@{/usuarios/create}">Registrarse</a>
+          <a class="btn btn-primary" th:href="@{/login}" sec:authorize="!isAuthenticated()">Ingresar</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/usuarios/create}" sec:authorize="!isAuthenticated()">Registrarse</a>&nbsp;
+          
+          
+          
+          
+          <li class="dropdown" sec:authorize="isAuthenticated()">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <span sec:authentication="name"></span>
+		  </a>
+		
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		    <a class="dropdown-item" href="#">Perfil</a>
+		    <a class="dropdown-item" href="#">Configuraciones</a>
+		    <a class="dropdown-item" href="#">Amigos</a>
+		  </div>
+		  &nbsp;
+		  </li>
+
+
+          
+          <a class="btn btn-primary" th:href="@{/logout}">Salir</a>
         </div>
       </nav>

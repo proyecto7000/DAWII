@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,16 +31,8 @@
           Puedes buscar por descripción y categoría.
           
           
-          <form class="form-inline" th:action="@{/buscar}" method="get" th:object="${buscar}">
+          <form class="form-inline" th:action="@{/search}" method="get" th:object="${search}">
             <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
-<!--             <select class="custom-select custom-select mb-3"> -->
-<!--               <option selected>Seleccione una categoría</option> -->
-<!--               <option value="1">Ventas</option> -->
-<!--               <option value="2">Contabilidad</option> -->
-<!--               <option value="3">Transporte</option> -->
-<!--               <option value="4">Informática</option> -->
-<!--               <option value="5">Construcción</option> -->
-<!--             </select>&nbsp; -->
 
 			<select th:field="*{categoria.id}"   class="custom-select custom-select mb-3">
                       <option th:value="${null}" selected>Seleccione una categoría</option>
@@ -50,10 +43,12 @@
                       </option>
                     
                     </select>
-			
-			
+                    
             <button type="submit" class="btn btn-primary mb-3">Buscar</button>
           </form>
+          
+          
+          
         </div>
       </div>
       <hr>

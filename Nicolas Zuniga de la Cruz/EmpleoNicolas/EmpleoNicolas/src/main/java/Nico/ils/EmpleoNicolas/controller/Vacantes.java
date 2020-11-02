@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +37,30 @@ public class Vacantes {
 	
 	 @Autowired
 	 private ICategoriasService categoriasServicio;
+	 
+	 
+	 
+		@GetMapping("/index")
+		public String mostrarIndex(Model model) {
+			
+			List<Vacante> lista = vacanteServicio.CargaVacantes();
+			model.addAttribute("vacanteV", lista);
+			
+			return "vacantes/listaVacantes";
+		}
+		
+		
+		@GetMapping("/indexPaginate")
+		public String mostrarIndexPaginado(Model model,Pageable page) {
+			Page<Vacante> lista=vacanteServicio.cargarVacante(page);
+			model.addAttribute("vacanteV",lista);
+			return "vacantes/listaVacantes";
+		}
+	 
+	 
+	 
+	 
+	 
 
 	@GetMapping("/detalle/{id}")
 	public String mostrarDetalle(@PathVariable("id") int idVacante, Model model) {
@@ -119,13 +145,6 @@ public class Vacantes {
 		
 	}
 	
-	@GetMapping("/index")
-	public String mostrarIndex(Model model) {
-		
-		List<Vacante> lista = vacanteServicio.CargaVacantes();
-		model.addAttribute("vacantesV", lista);
-		
-		return "vacantes/listaVacantes";
-	}
+
 	
 }

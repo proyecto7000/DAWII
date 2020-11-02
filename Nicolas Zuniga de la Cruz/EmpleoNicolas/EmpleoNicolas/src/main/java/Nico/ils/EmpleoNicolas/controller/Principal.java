@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Nico.ils.EmpleoNicolas.model.Vacante;
 import Nico.ils.EmpleoNicolas.service.ICategoriasService;
@@ -25,7 +27,8 @@ public class Principal {
 	@Autowired
 	private IVacantesService vacanteServicio;
 	
-	@Autowired ICategoriasService categoriaServicio;
+	@Autowired 
+	private ICategoriasService categoriaServicio;
 	
 	
 	@GetMapping("/tabla")
@@ -61,26 +64,32 @@ public String paginaInicial(Model model) {
 
 
 
-@GetMapping("/buscar")
+
+
+@GetMapping("/search")
 public String buscar(@ModelAttribute("buscar") Vacante vacante,Model model) {
 	
-	ExampleMatcher matcher = ExampleMatcher.
-			//where descripcion like '%?%'
-			matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+	System.out.println("Buscando: : "  + vacante );
 	
-	Example<Vacante> example = Example.of(vacante);
+	
+	//where descripcion like '%?%'
+	ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descripcion", ExampleMatcher.GenericPropertyMatchers.contains());
+	
+	
+	
+	Example<Vacante> example = Example.of(vacante,matcher);
 	List<Vacante> lista = vacanteServicio.buscarByExample(example);
-	model.addAttribute("vacantesV", lista);
+	model.addAttribute("vacanteV", lista);
 	return "home";
 }
 
 @ModelAttribute
 public void  setGenerico(Model model) {
-	Vacante vacanteB =  new Vacante();
-	vacanteB.reset();
-	model.addAttribute("vacantes", vacanteServicio.buscarVacanteDestacadas());
+	Vacante vacantesearch  =  new Vacante();
+	vacantesearch.reset();
+	model.addAttribute("vacanteV", vacanteServicio.buscarVacanteDestacadas());
 	model.addAttribute("categorias", categoriaServicio.CargaCategorias());
-	model.addAttribute("search" , vacanteB);
+	model.addAttribute("search" , vacantesearch);
 	
 }
 

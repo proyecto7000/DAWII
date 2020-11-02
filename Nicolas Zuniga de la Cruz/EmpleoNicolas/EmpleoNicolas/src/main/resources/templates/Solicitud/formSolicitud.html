@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Registro de Solicitud</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link th:href="@{https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}" rel="stylesheet" >
+  </head>
+  
+  
+  
+<body>
+
+		<header th:insert="/fragments/menu :: menu-principal">
+    	</header>
+
+		
+		
+		    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>FORMULARIO DE REGISTRO</strong></h4>              
+          <div class="card-body">
+          
+          
+          <form th:action="@{/solicitudes/save}" method="post" th:object="${solicitud}" enctype="multipart/form-data" >
+          
+		<hr>
+              
+              <div class="row">
+              
+              
+                <div class="col-md-9"> 
+                  <div class="form-group">
+                    <label for="nombre">Comentario:</label>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="text" class="form-control" th:field="*{comentarios}" id="comentarios" name="comentarios" placeholder="Escriba su comentario"  required="required">
+                  	
+                  	<label for="nombre">Archivo:</label>
+                  	<input type="file" class="form-control" th:field="*{archivo}" id="archivo" name="archivo" placeholder="Suba su Archivo"  required="required">
+                  	
+                  	<label for="nombre">Fecha:</label>
+                  	<input type="date" class="form-control" th:field="*{fecha}" id="fecha" name="fecha"  required="required">
+                  	
+                  	
+                  </div>
+                </div>
+                
+                
+                
+                
+                 
+              </div>  
+              
+              
+  
+              
+              
+              <hr>
+              <button type="submit" title="Guardar la solicitud" class="btn btn-primary">Guardar</button>  
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+   <footer  th:insert="/fragments/footer ::  pie-pagina"  class="footer">
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script> 
+    <script th:src="@{https://code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+		
+		
+</body>
+</html>
